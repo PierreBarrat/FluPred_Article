@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.6)  1 JUL 2020 16:57
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.6)  2 JUL 2020 16:02
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -940,11 +940,11 @@ spread_and_time_h1n1pdm.png>] [28 <./SM_figures/GeoSpread_v_time_ha.png>]
 [29 <./SM_figures/EMD_to_future.png>] [30 <./SM_figures/simulation.png>]
 [31 <./SM_figures/simulation_fitness.png>] (./article.aux) ) 
 Here is how much of TeX's memory you used:
- 8574 strings out of 492982
- 134733 string characters out of 6134897
- 307745 words of memory out of 5000000
- 11744 multiletter control sequences out of 15000+600000
- 21221 words of font info for 165 fonts, out of 8000000 for 9000
+ 8571 strings out of 492982
+ 134707 string characters out of 6134897
+ 307778 words of memory out of 5000000
+ 11743 multiletter control sequences out of 15000+600000
+ 21113 words of font info for 164 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,17n,46p,1271b,398s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive
@@ -972,7 +972,7 @@ xlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti9.pfb></usr/share/texlive/t
 exmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/texlive/texmf-d
 ist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/texmf-dist/fon
 ts/type1/public/amsfonts/cm/cmu10.pfb>
-Output written on article.pdf (31 pages, 3259294 bytes).
+Output written on article.pdf (31 pages, 3259244 bytes).
 PDF statistics:
  246 PDF objects out of 1000 (max. 8388607)
  149 compressed objects within 2 object streams
