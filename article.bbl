@@ -1,4 +1,4 @@
-\begin{thebibliography}{33}
+\begin{thebibliography}{34}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -206,6 +206,22 @@ Fabio Zanini and Richard~A. Neher.
 \newblock ISSN 1367-4803.
 \newblock \doi{10.1093/bioinformatics/bts633}.
 \newblock URL \url{https://doi.org/10.1093/bioinformatics/bts633}.
+
+\bibitem[Huddleston et~al.(2020)Huddleston, Barnes, Rowe, Kondor, Wentworth,
+  Whittaker, Ermetal, Daniels, McCauley, Fujisaki, Nakamura, Kishida, Watanabe,
+  Hasegawa, Barr, Subbarao, Neher, and Bedford]{huddleston_integrating_2020}
+John Huddleston, John~R. Barnes, Thomas Rowe, Rebecca Kondor, David~E.
+  Wentworth, Lynne Whittaker, Burcu Ermetal, Rodney~S. Daniels, John~W.
+  McCauley, Seiichiro Fujisaki, Kazuya Nakamura, Noriko Kishida, Shinji
+  Watanabe, Hideki Hasegawa, Ian Barr, Kanta Subbarao, Richard Neher, and
+  Trevor Bedford.
+\newblock Integrating genotypes and phenotypes improves long-term forecasts of
+  seasonal influenza {A}/{H3N2} evolution.
+\newblock \emph{bioRxiv}, page 2020.06.12.145151, June 2020.
+\newblock \doi{10.1101/2020.06.12.145151}.
+\newblock URL
+  \url{https://www.biorxiv.org/content/10.1101/2020.06.12.145151v1}.
+\newblock Publisher: Cold Spring Harbor Laboratory Section: New Results.
 
 \bibitem[Bush et~al.(1999)Bush, Bender, Subbarao, Cox, and
   Fitch]{bush_predicting_1999}

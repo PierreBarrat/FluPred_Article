@@ -5,47 +5,46 @@ The style file: unsrtnat.bst
 Database file #1: articleNotes.bib
 Database file #2: references.bib
 Warning--entry type for "WHOfactsheet" isn't style-file defined
---line 567 of file references.bib
-Warning--I didn't find a database entry for "huddleston_integrating_2020"
-You've used 33 entries,
+--line 585 of file references.bib
+You've used 34 entries,
             2481 wiz_defined-function locations,
-            841 strings with 13934 characters,
-and the built_in function-call counts, 15570 in all, are:
-= -- 1362
-> -- 943
-< -- 14
-+ -- 351
-- -- 284
-* -- 1454
-:= -- 2597
-add.period$ -- 175
-call.type$ -- 33
-change.case$ -- 66
-chr.to.int$ -- 32
-cite$ -- 33
-duplicate$ -- 647
-empty$ -- 1231
-format.name$ -- 333
-if$ -- 3231
+            848 strings with 14573 characters,
+and the built_in function-call counts, 16683 in all, are:
+= -- 1446
+> -- 1054
+< -- 15
++ -- 389
+- -- 320
+* -- 1546
+:= -- 2770
+add.period$ -- 181
+call.type$ -- 34
+change.case$ -- 68
+chr.to.int$ -- 33
+cite$ -- 34
+duplicate$ -- 701
+empty$ -- 1279
+format.name$ -- 370
+if$ -- 3475
 int.to.chr$ -- 2
-int.to.str$ -- 34
-missing$ -- 31
-newline$ -- 248
-num.names$ -- 99
-pop$ -- 167
+int.to.str$ -- 35
+missing$ -- 32
+newline$ -- 256
+num.names$ -- 102
+pop$ -- 174
 preamble$ -- 1
-purify$ -- 33
+purify$ -- 34
 quote$ -- 0
-skip$ -- 365
+skip$ -- 424
 stack$ -- 0
-substring$ -- 752
-swap$ -- 118
-text.length$ -- 2
+substring$ -- 788
+swap$ -- 156
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 231
+type$ -- 238
 warning$ -- 0
-while$ -- 114
+while$ -- 117
 width$ -- 0
-write$ -- 587
-(There were 2 warnings)
+write$ -- 606
+(There was 1 warning)

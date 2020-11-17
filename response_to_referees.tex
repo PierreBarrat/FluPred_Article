@@ -1,0 +1,97 @@
+%\documentclass[12pt]{article}
+\documentclass[aps,rmp,onecolumn]{revtex4-1}
+\usepackage{color}
+\usepackage{enumitem}
+%\usepackage{natbib}
+\newcommand{\gene}[1]{{\it #1}}
+\newcommand{\comment}[1]{{\color{red}#1}}
+\definecolor{response}{rgb}{0.1, 0.1, 0.1}
+\definecolor{drab}{rgb}{0.59, 0.44, 0.09}
+\definecolor{celestialblue}{rgb}{0.29, 0.59, 0.82}
+\definecolor{purple}{rgb}{0.459,0.109,0.538}
+\definecolor{deepsaffron}{rgb}{1.0, 0.6, 0.2}
+\newcommand{\Richard}[1]{{\color{drab}Richard: #1}}
+\newcommand{\refa}[1]{\textbf{R1:} #1}
+\newcommand{\refb}[1]{\textbf{R2:} #1}
+\newcommand{\editor}[1]{\textbf{Editor:} #1}
+%\newcommand{\criticism}[1]{\textbf{Criticism:} #1}
+\newcommand{\response}[1]{{\it {\color{response}\textbf{Response:} #1}}}
+
+
+\begin{document}
+\section*{Response to reviewers}
+
+\subsection*{Editor}
+
+\response{
+Thank you very much for handling our manuscript and providing these two constructive reviews that have helped us to improve the paper. 
+}
+
+\editor{The comments and recommendations from two expert reviewers are now available for your manuscript. These reviewers judged the reported discoveries to be of medium significance, and the potential scientific impact of your work to be medium/high. They found that the manuscript needs improvement in text and additional data analysis. Editors generally agree with their concerns and recommendations, which led to a designation of medium/high priority.  
+
+Note that many manuscripts receiving medium priority based on reviewer comments are not accepted by the Board of Editors. If appropriate, the board may invite a resubmission following the rejection, which is intended to enable you to improve the manuscript towards receiving a high or top priority. The authors should pay close attention to the detailed review comments and address each comment with significant improvements.}
+
+\response{}
+
+
+\subsection*{Reviewer: 1}
+
+\refa{The manuscript by Barrat-Charlaix et al. discusses the problem of
+predictability of mutations in seasonal influenza viruses. It presents
+data analysis of frequency trajectories in H1N1 and H3N2 lineages and
+simulations of different selection scenarios.
+It is an interesting revisit to predictions in influenza, however I
+have some major concerns about the analysis and formulation of the
+conclusions that should be addressed:}
+
+\refa{1. The prediction problem is defined for each mutation: based on the
+tracked frequency trajectory, can the future (fixation, loss, or
+polymorphism) of the mutation be predicted. Such formulation has been
+previously proposed by Illingworth and Mustonen, (eg. Genetics 2011,
+Plos Pathogens 2012). By averaging over all amino-acid substitutions,
+the authors show that the fates of mutations are not determined by the
+value of the starting frequency.}
+
+\refa{1.1. Mutations in influenza are highly nested, with a substantial
+hitch-hiking, and no attempt is made to disentangle such dependencies when counting the mutations.}
+
+\refa{1.2 Despite the more general formulation in the beginning, this
+approach makes use only of the last time point in the trajectory,
+rather than the full trace (contrary to the work of Illingworth\&
+Mustonen). I find the observed neutral-like statistics not surprising
+for such a limited data input, which doesn't capture past frequency dynamics. Therefore, these conclusions should be
+revisited and benchmarked against the more general implementation of Illingworth\&Mustonen-like approach.}
+
+\refa{2. The authors examined the predictive power of one predictive
+method, the LBI. However, they did not do a systematic comparison of
+the different methods that they cite (Morris et al, 2018), which differ in prediction
+targets and methods. Therefore, the general conclusions about
+predictability, eg. on page 8, in line 47, and on page 9, line 48 are
+too sweeping and should be made precisely for those methods looked at
+in detail.}
+
+\refa{3. Going through the previous and cited literature, I think the authors should cite some of these works in a more careful way. Specifically, the very related work by Illingworth and Mustonen is not mentioned. The distribution $P_delta_t(f|f_0)$ has been at the core of
+the method of Strelkowa and Lassig, 2012 (which is cited, but at other
+parts of the text), and the same paper also uses a similar simulation model, which should be acknowledged at the appropriate points of the text.}
+
+\refa{It would help if the plots with red-green-blue lines were also distinguished by differing markers.}
+
+
+\subsection*{Reviewer: 2}
+
+\refb{The paper does a retrospective study of amino acid substitutions in seasonal Influenza to determine what properties of these substitutions could help predict their fate in the future. The authors find that future frequency trajectories are surprisingly unpredictable. Even predicting which mutations fix in the population is hard. The authors find that the current frequency of a mutation is the best predictor for the probability of fixation, which would be expected under neutrality but not in a model with selection. 
+I appreciate this study, I think it will be of interest to many readers and it is generally well done and fairly easy to follow. 
+}
+
+\refb{1. The authors focus on one feature at a time (frequency, epitope status, LBI …). It is interesting to see that each of these is not very predictive of future frequency / prob of fixation. However, I think the obvious next step is to see whether a combination of many features could do a better job of predicting. I am not sure why the authors don’t try to fit a model that takes into account all information they have about sites (say, type of AA change, location in the gene, current frequency etc) and see if a ML model is able to make predictions. }
+
+\refb{2. Fig 2A and 2B look quite different to me. In the text it appears to me as if these are very similar to the authors. What are the characteristics of the AAs that fix in H1N1? }
+
+\refb{3. Question: what do these results mean for vaccines? How to decide which strains to use for vaccines? This may be known to those who work on Influenza, but for a relative outsider it is not clear. }
+
+\refb{4. Question: at what point is it expected that the vaccine itself will influence frequency trajectories? See Wen et al Biorxiv 2020}
+\response{We should mention Wen \emph{et. al.} MDPI-Viruses 2018: \emph{Estimating Vaccine-Driven Selection in Seasonal Influenza}. }
+
+\refb{Fig 1B is very hard to read. Maybe it should get more space (fig 1C could work with less space).}
+
+\end{document}

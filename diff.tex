@@ -1,11 +1,7 @@
-%DIF 1c1
+\documentclass[reprint,amsmath,amssymb,superscriptaddress,showpacs,rmp]{revtex4-1}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /home/pierrebc/TÃ©lÃ©chargements/tmpFlu/article.tex   Tue Nov 17 13:09:52 2020
-%DIF ADD article.tex                                           Fri Jul 31 17:10:44 2020
-%DIF < \documentclass[reprint,amsmath,amssymb,superscriptaddress,showpacs,rmp]{revtex4-1}
-%DIF -------
-\documentclass[reprint,amsmath,amssymb,superscriptaddress,showpacs,pre]{revtex4-1} %DIF > 
-%DIF -------
+%DIF DEL /dev/fd/63    Tue Nov 17 14:39:51 2020
+%DIF ADD article.tex   Tue Nov 17 13:09:52 2020
 
 
 
@@ -26,11 +22,7 @@
 \usepackage{lineno}
 \usepackage{enumitem}
 \usepackage{csvsimple}
-%DIF 22c22
-%DIF < % \linenumbers
-%DIF -------
-\linenumbers %DIF > 
-%DIF -------
+% \linenumbers
 
 \newcommand{\RAN}[1]{{\color{blue}Richard: #1}}
 \newcommand{\pierre}[1]{{\color{red}Pierre: #1}}
@@ -127,14 +119,11 @@
 	Parallel evolution was found to be moderately predictive of fixation. 
 	While the LBI had little power to predict frequency dynamics, it was still successful at picking strains representative of future populations. 
 	The latter is due to a tendency of the LBI to be high for consensus-like sequences that are closer to the future than the average sequence. 
-	\DIFdelbegin \DIFdel{Simulations }\DIFdelend \DIFaddbegin \DIFadd{These results are in contrast to simulations }\DIFaddend of models of adapting populations, \DIFdelbegin \DIFdel{in contrast, show }\DIFdelend \DIFaddbegin \DIFadd{where we find the }\DIFaddend clear signals of predictability. 
+	Simulations of models of adapting populations, in contrast, show clear signals of predictability. 
 	This indicates that the evolution of influenza HA and NA, while driven by strong selection pressure to change, is poorly described by common models of directional selection such as travelling fitness waves.  
 \end{abstract}
-\DIFdelbegin %DIFDELCMD < \date{\today}
-%DIFDELCMD < %%%
-\DIFdelend \DIFaddbegin 
-
-\DIFaddend \maketitle
+\date{\today}
+\maketitle
 
 \section*{Introduction} % (fold)
 \label{sec:introduction}
@@ -177,14 +166,13 @@
 \label{sec:results}
 
 The main underlying question asked in this work is the following: given a mutation $X$ in the genome of influenza that we observe at a frequency $f$ in the population at a given date, what can we say about the future of $X$?  
-\DIFdelbegin \DIFdel{The trajectory of a mutation will depend on its own effect on fitness, the contribution of the genetic background on the same segment, and the effect of the remaining seven segments. 
-Here, we investigate properties of broad categories of mutations effectively averaging over different genetic backgrounds to isolate the effects intrinsic to the mutation. }%DIFDELCMD < 
+The trajectory of a mutation will depend on its own effect on fitness, the contribution of the genetic background on the same segment, and the effect of the remaining seven segments. 
+Here, we investigate properties of broad categories of mutations effectively averaging over different genetic backgrounds to isolate the effects intrinsic to the mutation. 
 
-%DIFDELCMD < %%%
-\DIFdel{First, we ask whether we can }\DIFdelend \DIFaddbegin \DIFadd{There are different ways to make this question more specific. First, one can try to }\DIFaddend quantitatively predict the frequency of $X$ at future times $f(t)$. In other words, having observed a mutation at frequencies $(f_1, f_2,\ldots,f_n)$ at dates $(t_1,t_2,\ldots,t_n)$, what can we say about its frequency at future dates $(t_{n+1}, t_{n+2},\ldots)$?
+First, we ask whether we can quantitatively predict the frequency of $X$ at future times $f(t)$. In other words, having observed a mutation at frequencies $(f_1, f_2,\ldots,f_n)$ at dates $(t_1,t_2,\ldots,t_n)$, what can we say about its frequency at future dates $(t_{n+1}, t_{n+2},\ldots)$?
 A simpler, more qualitative question, is to ask whether $X$ will fix in the population, will disappear, or whether the site will stay polymorphic. 
 
-\DIFdelbegin \DIFdel{We }\DIFdelend \DIFaddbegin \DIFadd{In this work, we }\DIFaddend use amino-acid sequences of the HA and NA genes of A/H3N2 (since the year 2000) and A/H1N1pdm (since the year 2009) influenza available in GISAID \citep{shu2017gisaid} (see supplementary materials for an acknowledgment of all data contributors). 
+We use amino-acid sequences of the HA and NA genes of A/H3N2 (since the year 2000) and A/H1N1pdm (since the year 2009) influenza available in GISAID \citep{shu2017gisaid} (see supplementary materials for an acknowledgment of all data contributors). 
 This amounts to $44\,976$ HA and $36\,300$ NA sequences for A/H3N2 and $45\,350$ HA and $40\,412$ NA sequences for A/H1N1, with a minimum of 100 per year. These sequences are binned in non-overlapping intervals of one month. Each single-month time bin and the sequences that it contains represent a (noisy) snapshot of the influenza population at a given date. The number of sequences per time bin varies strongly both with year and according to the season, with earlier time bins containing around 10 sequences while more recent bins contain several hundreds (see figures~\sref{fig:nseq_per_year} and \sref{fig:nseq_per_month} in SM for details).
 
 The central quantities that we derived from this data are \emph{frequency trajectories} of amino acids at each position in the sequences. If an amino acid $X_i$ is found at position $i$ at a frequency between 5\% and 95\% in the population of a given time bin $t$, then the population is considered polymorphic at position $i$ and at time $t$. This polymorphism is characterized by the frequency of $X_i$, $f_{X_i}(t)$, and also by frequencies of other amino acids at $i$. The series of values $f_{X_i}(t)$ for contiguous time bins constitutes the frequency trajectory of $X_i$. A trajectory is terminated if the corresponding frequency is measured above 95\% (resp.~below 5\%) for two time bins in a row, in which case amino acid $X_i$ is considered as \emph{fixed} (resp.~\emph{absent}) in the population. Otherwise, the trajectory is considered \emph{active}. Examples of trajectories can be seen in figure~\sref{fig:sample_trajectories} of the Supplement.
@@ -196,9 +184,9 @@ Such distinction in novel and ancestral variants is necessary to meaningfully in
 Each rising trajectory of a new mutation implies the existence of another decreasing one at the same position, since frequencies of all amino acids at a given position must sum to one. 
 If novel variants arise by selection, we expect to see a stronger signal of selection after conditioning on these novel variants. 
 In classic models of population genetics, strongly advantageous variants undergo rapid selective \emph{sweeps}, i.e., the rapid rise and fixation. 
-\DIFdelbegin \DIFdel{The sweep of a mutation can be due to its own fitness effect, to the genetic background or to the effect of the seven other segments. 
+The sweep of a mutation can be due to its own fitness effect, to the genetic background or to the effect of the seven other segments. 
 By considering the ensemble of novel variants that are rising in frequency, we effectively average over backgrounds, obtaining a set of mutations that we expect to be beneficial on average.
-}\DIFdelend If such sweeps are common in the evolution of HA and NA, the restriction to trajectories that start at low frequency\DIFdelbegin \DIFdel{should thus }\DIFdelend \DIFaddbegin \DIFadd{, should }\DIFaddend enrich for mutations that are positively selected and on their way to fixation.
+If such sweeps are common in the evolution of HA and NA, the restriction to trajectories that start at low frequency should thus enrich for mutations that are positively selected and on their way to fixation.
 
 \subsection*{Predicting future frequencies}
 Having observed the frequency trajectory $f(t)$ of a mutation until a given date $t_0$, how much can we say about the future values of $f$ after $t_0$? 
@@ -469,10 +457,9 @@ These considerations might explain the disconnect between models of rapid adapta
 \subsection*{Data and code availability} % (fold)
 \label{sub:data}
 	The sequences used are obtained from the GISAID database~\cite{shu2017gisaid}. 
-	Strain names and accession numbers are given as tables in two supplementary files. Outliers strains listed at \DIFdelbegin %DIFDELCMD < \url{https://github.com/PierreBarrat/FluPredictibility/src/config} %%%
-\DIFdelend \DIFaddbegin \url{https://github.com/nextstrain/seasonal-flu/tree/081be2f487182252627418491be36cd01d645954/config} \DIFaddend were removed. \\
+	Strain names and accession numbers are given as tables in two supplementary files. Outliers strains listed at \url{https://github.com/PierreBarrat/FluPredictibility/src/config} were removed. \\
 	The code used to generate the figures presented here is available at \url{https://github.com/PierreBarrat/FluPredictibility}. 
-%DIF <  https://github.com/nextstrain/seasonal-flu/tree/081be2f487182252627418491be36cd01d645954/config
+	% https://github.com/nextstrain/seasonal-flu/tree/081be2f487182252627418491be36cd01d645954/config
 % subsection data (end)
 
 \subsection*{Frequency trajectories} % (fold)
@@ -536,14 +523,10 @@ These considerations might explain the disconnect between models of rapid adapta
 
 % section methods (end)
 
-\DIFdelbegin \section{\DIFdel{Funding}}
-%DIFAUXCMD
-\addtocounter{section}{-1}%DIFAUXCMD
-\DIFdel{This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_188547).
-}%DIFDELCMD < 
+\section{Funding}
+This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_188547).
 
-%DIFDELCMD < %%%
-\DIFdelend \bibliographystyle{unsrtnat}
+\bibliographystyle{unsrtnat}
 \bibliography{references}
 
 \newpage 
@@ -842,8 +825,7 @@ The amplitude of these deviations depends on the strength of selection $sN$, as 
 	\begin{figure*}
 		\centering
 		\includegraphics[width=0.9\textwidth]{./SM_figures/ShortTerm_h1n1.png}
-		\caption{Equivalent to \DIFdelbeginFL \DIFdelFL{panels }\DIFdelendFL \DIFaddbeginFL \DIFaddFL{panel }\DIFaddendFL \textbf{B} \DIFdelbeginFL \DIFdelFL{and }\textbf{\DIFdelFL{C}} %DIFAUXCMD
-\DIFdelendFL of figure \ref{fig:trajectories} of the main text for A/H1N1pdm influenza. $89$ trajectories are shown and participate to the mean (thick black line). }
+		\caption{Equivalent to panels \textbf{B} and \textbf{C} of figure \ref{fig:trajectories} of the main text for A/H1N1pdm influenza. $89$ trajectories are shown and participate to the mean (thick black line). }
 		\label{fig:trajectories_h1n1}
 	\end{figure*}
 
@@ -913,4 +895,3 @@ The amplitude of these deviations depends on the strength of selection $sN$, as 
 
 
 \end{document}
-
