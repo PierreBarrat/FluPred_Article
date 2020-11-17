@@ -6,47 +6,46 @@ Database file #1: articleNotes.bib
 Database file #2: references.bib
 Warning--entry type for "WHOfactsheet" isn't style-file defined
 --line 567 of file references.bib
-Warning--empty year in xue_within-host_nodate
-Warning--empty year in xue_within-host_nodate
-You've used 34 entries,
+Warning--I didn't find a database entry for "huddleston_integrating_2020"
+You've used 33 entries,
             2481 wiz_defined-function locations,
-            845 strings with 14156 characters,
-and the built_in function-call counts, 15960 in all, are:
-= -- 1394
-> -- 970
+            841 strings with 13934 characters,
+and the built_in function-call counts, 15570 in all, are:
+= -- 1362
+> -- 943
 < -- 14
-+ -- 361
-- -- 292
-* -- 1489
-:= -- 2666
-add.period$ -- 181
-call.type$ -- 34
-change.case$ -- 68
-chr.to.int$ -- 33
-cite$ -- 36
-duplicate$ -- 665
-empty$ -- 1259
-format.name$ -- 342
-if$ -- 3309
++ -- 351
+- -- 284
+* -- 1454
+:= -- 2597
+add.period$ -- 175
+call.type$ -- 33
+change.case$ -- 66
+chr.to.int$ -- 32
+cite$ -- 33
+duplicate$ -- 647
+empty$ -- 1231
+format.name$ -- 333
+if$ -- 3231
 int.to.chr$ -- 2
-int.to.str$ -- 35
-missing$ -- 32
-newline$ -- 256
-num.names$ -- 102
-pop$ -- 176
+int.to.str$ -- 34
+missing$ -- 31
+newline$ -- 248
+num.names$ -- 99
+pop$ -- 167
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 33
 quote$ -- 0
-skip$ -- 373
+skip$ -- 365
 stack$ -- 0
-substring$ -- 754
-swap$ -- 120
+substring$ -- 752
+swap$ -- 118
 text.length$ -- 2
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 238
-warning$ -- 2
-while$ -- 116
+type$ -- 231
+warning$ -- 0
+while$ -- 114
 width$ -- 0
-write$ -- 604
-(There were 3 warnings)
+write$ -- 587
+(There were 2 warnings)

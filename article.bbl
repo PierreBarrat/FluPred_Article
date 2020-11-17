@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{33}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -215,24 +215,6 @@ R.~M. Bush, C.~A. Bender, K.~Subbarao, N.~J. Cox, and W.~M. Fitch.
   1921--1925, December 1999.
 \newblock ISSN 0036-8075.
 
-\bibitem[Xue et~al.()Xue, Moncla, Bedford, and Bloom]{xue_within-host_nodate}
-Katherine~S. Xue, Louise~H. Moncla, Trevor Bedford, and Jesse~D. Bloom.
-\newblock Within-{Host} {Evolution} of {Human} {Influenza} {Virus}.
-\newblock \emph{Trends in Microbiology}.
-\newblock ISSN 0966-842X.
-\newblock \doi{10.1016/j.tim.2018.02.007}.
-\newblock URL
-  \url{https://www.sciencedirect.com/science/article/pii/S0966842X1830043X}.
-
-\bibitem[Morris et~al.(2020)Morris, Petrova, Rossine, Parker, Grenfell, Neher,
-  Levin, and Russell]{morris_asynchrony_2020}
-Dylan~H. Morris, Velislava Petrova, Fernando~W. Rossine, Edyth Parker, Bryan
-  Grenfell, Richard Neher, Simon Levin, and Colin Russell.
-\newblock Asynchrony between virus diversity and antibody selection limits
-  influenza virus evolution.
-\newblock preprint, Open Science Framework, April 2020.
-\newblock URL \url{https://osf.io/847p2}.
-
 \bibitem[Steinbrück and McHardy(2012)]{steinbruck_inference_2012}
 Lars Steinbrück and Alice~Carolyn McHardy.
 \newblock Inference of {Genotype}–{Phenotype} {Relationships} in the
@@ -283,6 +265,15 @@ Jason Schweinsberg.
 \newblock \doi{10.1016/S0304-4149(03)00028-0}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0304414903000280}.
+
+\bibitem[Morris et~al.(2020)Morris, Petrova, Rossine, Parker, Grenfell, Neher,
+  Levin, and Russell]{morris_asynchrony_2020}
+Dylan~H. Morris, Velislava Petrova, Fernando~W. Rossine, Edyth Parker, Bryan
+  Grenfell, Richard Neher, Simon Levin, and Colin Russell.
+\newblock Asynchrony between virus diversity and antibody selection limits
+  influenza virus evolution.
+\newblock preprint, Open Science Framework, April 2020.
+\newblock URL \url{https://osf.io/847p2}.
 
 \bibitem[Hadfield et~al.(2018)Hadfield, Megill, Bell, Huddleston, Potter,
   Callender, Sagulenko, Bedford, and Neher]{10.1093/bioinformatics/bty407}

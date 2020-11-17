@@ -1,0 +1,766 @@
+\documentclass[reprint,amsmath,amssymb,superscriptaddress,showpacs,pre]{revtex4-1}
+
+
+
+% \usepackage{arxiv}
+
+\usepackage[utf8]{inputenc} % allow utf-8 input
+% \usepackage[T1]{fontenc}    % use 8-bit T1 fonts
+% \usepackage{hyperref}       % hyperlinks
+% \usepackage[numbers]{natbib}
+\usepackage{color}      
+% \usepackage{url}            % simple URL typesetting
+% \usepackage{booktabs}       % professional-quality tables
+\usepackage{amsfonts}       % blackboard math symbols
+\usepackage{nicefrac}       % compact symbols for 1/2, etc.
+\usepackage{microtype}      % microtypography
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{lineno}
+\usepackage{enumitem}
+\usepackage{csvsimple}
+\linenumbers
+
+\newcommand{\RAN}[1]{{\color{blue}Richard: #1}}
+\newcommand{\pierre}[1]{{\color{red}Pierre: #1}}
+\newcommand{\discuss}[1]{{\color{green}Todiscuss: #1}}
+\newcommand{\sref}[1]{S\ref{#1}}
+
+
+
+
+\begin{document}
+% \title{Seasonal influenza: the limits of predictability}
+% \title{Limited predictability of seasonal influenza virus evolution}
+\title{Limited predictability of amino acid substitutions in seasonal influenza viruses}
+\date{} 					
+
+\author{Pierre Barrat-Charlaix} 
+\affiliation{Biozentrum, Universität Basel, Switzerland}
+%
+\author{John Huddleston}
+\affiliation{Molecular Cell Biology, University of Washington, Seattle, WA, USA}
+%
+\author{Trevor Bedford}
+\affiliation{Vaccine and Infectious Disease Division, Fred Hutchinson Cancer Research Center, Seattle, WA, USA}
+%
+\author{Richard Neher}
+\email{Correspondence to: Richard Neher, Biozentrum, Klingelbergstrasse 70, 4056, Basel, Switzerland. \bf{richard.neher@unibas.ch}}
+\affiliation{Biozentrum, Universität Basel, Switzerland}
+
+\begin{abstract}
+	Seasonal influenza viruses repeatedly infect humans in part because they rapidly change their antigenic properties and evade host immune responses, necessitating frequent updates of the vaccine composition. 
+	Accurate predictions of strains circulating in the future could therefore improve the vaccine match. 
+	Here, we studied the predictability of frequency dynamics and fixation of amino acid substitutions.
+	Current frequency was strongest predictor of eventual fixation, as expected in neutral evolution. 
+    Other properties, such as for example falling in characterized epitopes or high/low \emph{Local Branching Index} (LBI) had little predictive power. 
+	Only parallel evolution was found to be predictive of fixation. 
+	While the LBI had little power to predict frequency dynamics, is was still successful at picking strains representative of future populations. 
+	The latter is due to a tendency of the LBI to be high for consensus-like sequences that are closer to the future than the average sequence. 
+	These results are in contrast to simulations of models of adapting populations, where we find the clear signals of predictability. 
+	This indicates that the evolution of influenza HA and NA, while driven by strong selection pressure to change, is poorly described by common models of directional selection such as travelling fitness waves.  
+\end{abstract}
+
+\maketitle
+
+\section*{Introduction} % (fold)
+\label{sec:introduction}
+	
+	Seasonal influenza A viruses (IAV) infect about 10\% of the global population every year, resulting in hundreds of thousands of deaths~\cite{WHOfactsheet,petrova_evolution_2017}. Vaccination is the primary measure to reduce influenza morbidity.
+	However, the surface proteins hemagglutinin (HA) and neuraminidase (NA) continuously accumulate mutations at a high rate, leading to frequent antigenic changes \cite{petrova_evolution_2017, Shih6283, bhatt_genomic_2011, Koel976}. 
+	While a vaccine targeting a particular strain may be efficient for some time, antigenic drift will sooner or later render it obsolete.
+	World Health Organization (WHO) regularly updates influenza vaccine recommendations to best match the circulating strains. 
+	Since developing, manufacturing, and distributing the vaccine takes many months, forecasting the evolution of influenza of essential interest to public health \citep{morris2018predictive,klingen_silico_2018}.
+	
+	The number of available high quality HA and NA sequences has increased rapidly over the last 20 years~\cite{bogner2006global, shu2017gisaid} and virus evolution and dynamics can be now be tracked at high temporal and spatial resolution \cite{rambaut_genomic_2008}.
+	This wealth of data has given rise to an active field of predicting influenza virus evolution ~\cite{morris2018predictive,klingen_silico_2018}. 
+	These models predict the future population of influenza viruses by estimating strain fitness or use proxies of fitness.
+	\citet{luksza_predictive_2014}, for example, train a fitness model to capture antigenic drift and protein stability on patterns of epitope and non-epitope mutations. 
+	Other approaches by \citet{Steinbrueck12123, neher_prediction_2016} use  hemagglutination inhibition (HI) data to determine possible antigenic drift of clades in the genealogy of the HA protein to predict. 
+	Finally, \citet{neher_predicting_2014} use branching patterns of HA phylogenies as a proxy for fitness. 
+	These branching patterns are summarized by the Local Branching Index (LBI), which was shown to be a proxy of relative fitness in mathematical models of rapidly adapting populations \citep{neher_predicting_2014}.
+	
+	The underlying assumption of all these methods is that (i) differences in growth rate between strains can be estimated from sequence or antigenic data and (ii) that these growth rate differences persist for long enough to be predictive of future success. 
+	Specific positions in surface proteins are of particular interest in this context.
+	The surface proteins are under a strong positive selection and change their amino acid sequence much more rapidly than other IAV proteins or than expected under neutral evolution \citep{bhatt_genomic_2011,strelkowa_clonal_2012}. 
+	Epitope positions, i.e., positions targeted by human antibodies, are expected to change particularly often since virus with altered epitopes can evade existing immune responses \citep{Koel976,wolf_long_2006,Shih6283}.
+    It therefore seems plausible that mutations at these positions have a tendency to increase fitness and a higher probability of fixation \citep{strelkowa_clonal_2012}. 
+    But one has to be careful to account for the fact that these positions are often ascertained post-hoc \citep{Shih6283} and human immune responses are diverse with substantial inter-individual variation
+    \citep{lee_mapping_2019}.
+	
+	In this work, we use HA and NA sequences of A/H3N2 and A/H1N1 influenza from year 2000 to 2019 to perform a retrospective analysis of frequency trajectories of amino acid mutations. 
+	We quantify how rapidly mutations at different frequencies are lost or fixed and how rapidly they spread through the population.
+	We further investigate whether any properties or statistics are predictive of whether a particular mutation fixes or not. 
+	To our surprise, we find that the predictability of these trajectories is very limited: The probability that a mutation fixes differs little from its current frequency, as would be expected if fixation happened purely by chance.
+	This observation holds for many different categories of mutations, including mutations at epitope positions. 
+	This weak predictability is not attributable solely to clonal interference and genetic linkage, as simulation of models including even strong interference retain clear signatures of predictability. 
+	Consistent with these observations, we show that a simple predictor uninformed by fitness, the consensus sequence, performs as the well as the Local Branching Index (LBI), the growth measure based on the genealogy used in \cite{neher_predicting_2014}. 
+	This suggests that although LBI has predictive power, the reason for its success may not be related to it approximating fitness of strains.  
+
+% section introduction (end)
+
+
+\section*{Results} % (fold)
+\label{sec:results}
+
+The main underlying question asked in this work is the following: given a mutation $X$ in the genome of influenza that we observe at a frequency $f$ in the population at a given date, what can we say about the future of $X$?  \\
+There are different ways to make this question more specific. First, one can try to quantitatively predict the frequency of $X$ at future times $f(t)$. In other words, having observed a mutation at frequencies $(f_1, f_2,\ldots,f_n)$ at dates $(t_1,t_2,\ldots,t_n)$, what can we say about its frequency at future dates $(t_{n+1}, t_{n+2},\ldots)$?
+A simpler, more qualitative question, is to ask whether $X$ will fix in the population, will disappear, or whether the site will stay polymorphic. 
+
+In this work, we use amino-acid sequences of the HA and NA genes of A/H3N2 (since the year 2000) and A/H1N1 (since the year 2001) influenza available in GISAID \citep{shu2017gisaid} (see supplementary materials for an acknowledgment of all data contributors). 
+This amounts to $44\,976$ HA and $36\,300$ NA sequences for A/H3N2 and $45\,350$ HA and $40\,412$ NA sequences for A/H1N1, with a minimum of 100 per year. These sequences are binned in non-overlapping intervals of one month. Each single-month time bin and the sequences that it contains represent a (noisy) snapshot of the influenza population at a given date. The number of sequences per time bin varies strongly both with year and according to the season, with earlier time bins containing around 10 sequences while more recent bins contain several hundreds (see figures~\sref{fig:nseq_per_year} and \sref{fig:nseq_per_month} in SM for details).
+
+The central quantities that are derived from this data are \emph{frequency trajectories} of amino acids at each position in the sequences. If an amino acid $X_i$ is found at position $i$ at a frequency between 5\% and 95\% in the population of a given time bin $t$, then the population is considered polymorphic at position $i$ and at time $t$. This polymorphism is characterized by the frequency of $X_i$, $f_{X_i}(t)$, and also by frequencies of other amino acids at $i$. The series of values $f_{X_i}(t)$ for contiguous time bins constitutes the frequency trajectory of $X_i$. A trajectory is terminated if the corresponding frequency is measured above 95\% (resp.~below 5\%) for two time bins in a row, in which case amino acid $X_i$ is considered as \emph{fixed} (resp.~\emph{absent}) in the population. Otherwise, the trajectory is considered \emph{active}. Examples of trajectories can be seen in figure~\sref{fig:sample_trajectories} of the Supplement.
+
+%Frequency trajectories allow a simple formulation of the above-stated questions. The short term prediction amounts to predicting the curve $f(t)$ starting from a given date $t_0$. On the other hand, the long term prediction amounts to predicting how long a trajectory will remain active, and whether it will fix or disappear when it finishes. 
+In the rest of this work, we will focus on frequency trajectories that are starting at a zero (low) frequency, \emph{i.e.} $f(t=0)=0$. 
+These represent new amino acid variants which were absent in the population at the time bin when the trajectory started and are currently rising in the population (see Methods).
+Such distinction in novel and ancestral variants is necessary to meaningfully interrogate predictability.
+Each rising trajectory of a new mutation implies the existence of another decreasing one at the same position, since frequencies of all amino acids at a given position must sum to one. 
+If novel variants arise by selection, we expect to see a stronger signal of selection after conditioning on these novel variants. 
+In classic models of population genetics, strongly advantageous variants undergo rapid selective \emph{sweeps}, i.e., the rapid rise and fixation. 
+If such sweeps are common in the evolution of HA and NA, the restriction to trajectories that start at low frequency, should enrich for mutations that are positively selected and on their way to fixation.
+
+\subsection*{Predicting future frequencies}
+Having observed the frequency trajectory $f(t)$ of a mutation until a given date $t_0$, how much can we say about the future values of $f$ after $t_0$? 
+We consider the idealized case sketched in panel \textbf{A} of figure~\ref{fig:trajectories}: given the trajectory of a \emph{new} mutation, \emph{i.e.} that started at a frequency of 0, and that we observe at frequency $f_0$ at time $t_0$, what is the probability $P_{\Delta t}(f)$ of observing it at a value $f$ at time $t_0 + \Delta t$? 
+
+To answer this question retrospectively, we use all frequency trajectories extracted from HA and NA sequences that satisfy these conditions for a given $f_0$.  The number of trajectories is limited and the frequency estimates themselves are based on a finite sample and are hence imprecise. 
+Therefore, we consider trajectories in an interval $[f_0-\delta f, f_0+\delta f]$ with $\delta f = 0.05$. 
+
+For $f_0=0.3$, we find $120$ such trajectories in the case of A/H3N2 influenza, represented on the panel \textbf{B} of figure~\ref{fig:trajectories}, where time is shifted such that $t_0 = 0$. The same analysis is performed for A/H1N1, with the $89$ found trajectories displayed in figure \sref{fig:trajectories_h1n1}.
+Some trajectories fall in the frequency bin around $f_0$ while decreasing, even though they crossed that bin at an earlier time. 
+This is due to the fact that some trajectories ``skipped" the interval $f_0$ in question on their initial rise due to sparse sampling. 
+These trajectories are nevertheless rising in the sense that they start at frequency 0 for $t\rightarrow -\infty$. 
+Removing them does not change results significantly. 
+
+Since rapid sequence evolution of influenza HA and NA mediates immune evasion, one could expect that a significant fraction of new amino acid mutations on rising trajectories in figure~\ref{fig:trajectories} are \emph{adaptive}. 
+We could thus expect that most of these trajectories continue to rise after reaching frequency $f_0$, at least for some time. 
+A fraction of those would then sweep through the population and fix. 
+
+To quantify the extent to which this preconception of sweeping adaptive mutations is true, we estimated the probability distribution $P_{\Delta t}(f\vert\,f_0)$ of finding a trajectory at frequency $f$ after a time $\Delta t$ given that it was observed at $f_0$ at time $0$. 
+The results for different $\Delta t$ are shown in figure~\ref{fig:trajectories}C. 
+Initially, \emph{i.e.} at time $t_0=0$, this distribution is by construction peaked around $f_0$. 
+If a large fraction of the trajectories keep increasing after this time, we should see the ``mass'' of $P_{\Delta t}(f\vert\,f_0)$ move to the right towards higher frequencies as time progresses.
+
+However, future distributions for $\Delta t >0$ do not seem to behave according to this hypothesis. 
+The thick black line in Figure~\ref{fig:trajectories}B shows the average frequency of all trajectories. 
+This average makes a sharp turn at $t=0$ and is essentially flat for $t>0$ in the case of A/H3N2, and slightly increasing for A/H1N1.
+Hence, the fact that this average rose for $t<0$ gives little information for $t>0$, and is due to the conditions by which these trajectories were selected.
+This shows that sweep-like trajectories rising steadily from frequency $0$ to $1$ are not common enough to reflect in the average trajectory.  
+
+Consistent with the average, the frequency distribution of the selected trajectories broadens in time without a significant shift of the mean as time passes. 
+After 60 days, the distribution is rather symmetrical around the initial $f_0=0.3$ value, suggesting that the knowledge that the trajectories were rising is lost after two months. 
+On a timescale of 60 to 120 days, the only possible prediction is that trajectories are likely to be found in a broad interval around the initial frequency $f_0$. 
+After one year the distribution becomes almost flat (excluding mutations that have disappeared or fixed), and the initial peak at $f_0$ is not visible anymore. 
+The only information remaining from the initial frequency is the fraction that fixed or was lost (see below). 
+This behavior is expected in neutral models of evolution \citep{kimura_diffusion_1964} but incompatible with a dynamic dominated by sweeps taking over the population. 
+
+While this observation does not rule out that signatures exist that predict future frequency dynamics, past dynamics alone is weakly informative.
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/Panel1.png}
+	\caption{\textbf{A}: Sketch of the idea behind the short term prediction of frequency trajectories. Given a mutation that we have seen increasing in frequency and that we ``catch'' at frequency $f_0$ at time $t_0$, what can we say about the distribution of future frequencies $P_{\Delta t}(f\vert\,f_0)$? \textbf{B}: All frequency trajectories of amino acid mutations in the A/H3N2 HA and NA genes that were absent in the past, are seen around $f_0=30\%$ frequency at time $t_0=0$, and are based on more than 10 sequences at each time point. Red curves represent mutations that will ultimately fix, blue the ones that will be lost, and black the ones for which we do not know the final status. Dashed horizontal lines (blue and red) represent loss and fixation thresholds. The thick black line is the average of all trajectories, counting those that fix (resp. disappear) as being at frequency 1 (resp. 0). \textbf{C}: Distribution of future frequencies $P_{\Delta t}(f\vert\,f_0)$ for the trajectories shown in panel \textbf{B} and for specific values of $\Delta t$. }
+	\label{fig:trajectories}
+\end{figure*}
+
+\subsection*{Prediction of fixation or loss}
+Instead of predicting future frequency, let's consider the more modest goal of predicting the probability that a mutation fixes in the population. 
+We first estimate the fraction of frequency trajectories that either fix in the population or are lost, as well as the time it takes for one or the other to happen. 
+Panels \textbf{A} and \textbf{B} of figure~\ref{fig:fix_loss_active} shows the fraction of frequency trajectories in HA and NA that either have fixed, were lost or remained active as a function of the time elapsed since they were first seen above 25\% frequency. 
+Most mutations are either lost or become fixed after 2-3 years, with very few trajectories remaining active after 5 years.
+This time scale of 2-3 years is consistent with the typical coalescence time observed in phylogenetic trees of A/H3N2 influenza \citep{rambaut_genomic_2008,yan_phylodynamic_2019}. 
+We also note that the fraction of lost trajectories increases sharply at small times with 40\% of mutations observed above 25\% frequency being lost within one year for A/H3N2, while it takes longer to fix a mutation in the whole population. 
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/Panel2.png}
+	\caption{\textbf{A}: Activity of all rising frequency trajectories seen above 25\% frequency for A/H3N2 HA and NA. \textbf{B}: Same as \textbf{A} for A/H1N1. \textbf{C}: Probability of fixation of a mutation (amino acid or synonymous) $P_{fix}(f)$ as a function of the frequency $f$ at which it is measured, for A/H3N2 HA and NA. Only new mutations are considered, \emph{i.e.} mutations that were absent in the past. The diagonal dashed line is the expectation from a neutrally evolving population. Colored dashed lines represent synonymous mutations. Colored solid lines represent amino acid mutations. Error bars represent a 95\% confidence interval. \textbf{D}: Same as \textbf{C} for A/H1N1.}
+	\label{fig:fix_loss_active}
+\end{figure*}
+
+We then examined the probability of mutations to fix in the population as a function of the frequency at which they are seen. 
+For different values of frequency $f$, we consider all trajectories that started at a null frequency and are seen in the interval $[f - 7.5\%, f + 7.5\%]$ at any given time. 
+The probability of a mutation fixing given that it is seen at frequency $f$, $P_{fix}(f)$, is then estimated by the fraction of those trajectories which terminate at a frequency larger than $95\%$, \emph{i.e.} our fixation threshold.
+Panels \textbf{C} and \textbf{D} of figure~\ref{fig:fix_loss_active} show $P_{fix}(f)$ as a function of $f$ for NA and HA. 
+For both proteins, the probability of fixation of a new mutation at frequency $f$ is very close to $f$ itself, \discuss{that is $P_{fix}(f)\simeq f$.} 
+This result is exactly what is expected in a population evolving in the \emph{absence} of or under very weak selection. 
+Indeed, in a neutrally evolving and structure-less population of constant size $N$ such as in the Wright-Fisher model~\cite{kimura_diffusion_1964}, the probability that any individual ultimately becomes the ancestor of all the future population is $1/N$. 
+A mutation or trait appearing at frequency $f$ is shared by $f\cdot N$ individuals, and the probability for one of them to become the ancestor of all the future population is $f\cdot N/N=f$. 
+Thus, the probability of this mutation or trait to fix in the population is equal to its current frequency, a case which we will refer to as the neutral expectation. 
+Panel \textbf{C} of figure~\ref{fig:fix_loss_active} indicates that mutations in the surface proteins of A/H3N2 influenza are in good agreement with the neutral expectation, while those in A/H1N1 show only small deviations from it. 
+In both cases, the probability of fixation seems to be mainly dictated by the current frequency $f$ at which the mutations is observed. 
+
+This dynamics is in apparent contradiction with evidence that influenza surface proteins are under strong selective pressure to evade human immune responses \citep{bhatt_genomic_2011}.
+If strong selection was present, we would expect rising amino acid mutations to fix at a distinctively higher frequency than the one at which they are measured. 
+In an extreme case where most trajectories would be clean sweeps, $P_{fix}(f)$ should be close to $1$ for all but very small values of $f$.
+
+To investigate further, we try to find categories of mutations that deviate from the diagonal of panels \textbf{C} and \textbf{D} of figure~\ref{fig:fix_loss_active}. 
+We first turn to the \emph{Local Branching Index} (LBI), a quantity calculated for each node in a phylogenetic tree that indicates how dense the branching of the tree is around that node. 
+LBI has previously been successfully used as a predictor of the future population of influenza~\cite{neher_predicting_2014}, and was shown to be a proxy for fitness of leaves or ancestral nodes in mathematical models of evolution. 
+Here, we define the LBI of a mutation at date $t$ as the average LBI of strains that carry this mutation and that were sampled in the time bin corresponding to $t$. 
+Panel A of figure~\ref{fig:pfix_stratified} shows fixation probability for HA mutations with LBI in the top or bottom half of the distribution. 
+Both groups have identical probability of fixation, suggesting that LBI carries very little information on the probability of fixation of a mutation.
+
+Next, we focused on previously reported antigenic sites in the A/H3N2 HA protein, referred to as \emph{epitope} positions. 
+Mutations at these position might mediate immune escape and are therefore likely under strong selection. 
+We used four lists of relevant epitope positions from different sources comprising from 7 to 129 positions in the sequence of the HA1 protein~\cite{Koel976, luksza_predictive_2014, Shih6283, wolf_long_2006}. 
+Panel Fig.~\ref{fig:pfix_stratified}\textbf{B} shows fixation probability as a function of frequency for the four lists of epitopes. 
+Only mutations at the 7 epitope sites reported in~\cite{Koel976} have higher chances of fixation than expected by chance. 
+No clear difference is found for the lists by \citet{luksza_predictive_2014, wolf_long_2006}, while positions from \citet{Shih6283} show lower chances of fixation.
+One should also note that many of these positions were determined post-hoc and enriched for positions that experienced rapid substitutions before the publication of the respective studies. 
+
+Two ways of categorising mutations, however, suggest some power to predict fixation. 
+In panel Fig.~\ref{fig:pfix_stratified}\textbf{C}, we split trajectories into those occurring at binary positions where only two amino acid variants co-circulate and non-binary positions with more than two variants. 
+Novel variants at non-binary positions, \emph{i.e.} ones for which competition between three amino acids or more has occurred at least once, have a higher chance of fixation. 
+In panel \textbf{D}, we separated mutations that appear more than once or only once in the reconstructed tree (see methods), and found that the former fix more often. 
+Panels \textbf{C} and \textbf{D} show that it is possible to gain some information on the chance of fixation of a particular mutation, as was done in panel \textbf{B}. 
+However, the predictive power remains small, with the ``top'' curves in panels \textbf{C\&D} being very close to the diagonal. 
+
+We conduct the same analysis on A/H1N1 influenza, with results visible in figure \sref{fig:pfix_stratified_h1n1}. 
+Results are qualitatively similar to those obtained for A/H3N2, with LBI giving little information and mutations at non-binary positions having a higher chance of fixation. 
+Panel \textbf{D} differs between figures~\ref{fig:pfix_stratified} and \sref{fig:pfix_stratified_h1n1}, with convergent evolution giving less information on fixation in the latter case. 
+However, this could be due to the shorter time period over which A/H1N1 evolved, resulting in a shorter tree and less possibilities of convergent evolution. 
+Indeed, error bars for mutations appearing multiple times in \textbf{D} of figure~\sref{fig:pfix_stratified_h1n1} are relatively large, indicating a lower amount of trajectories.\\
+
+Since influenza is seasonal in temperate regions, geographic spread and persistence might be predictive of the success of mutations. 
+We quantify geographic spread of a mutation by the entropy of its frequency distribution across regions (see methods) and its persistence by the age of the trajectory by the time it reaches frequency $f$. 
+Figures~\sref{fig:geospread_and_time_h3n2} and \sref{fig:geospread_and_time_h1n1pdm} show the fixation probabilities as a function of observed frequency for mutations classified according to these scores. 
+The two scores also allow a quantitatively moderate distinction between mutations: for a given frequency $f$, mutations found in many regions or those that are older (in the sense that they have taken more time to reach frequency $f$) tend to fix more often than geographically localized mutations or more recent ones, but the effect is small.
+These two scores are in fact correlated, with older trajectories representing mutations that are more geographically spread, as can be seen in figure~\sref{fig:geospread_v_time} of SM.
+% A natural way to explain these observations would be to refer to the seasonal characteristics of A/H3N2. 
+% In temperate regions, the number of A/H3N2 infections drastically increases during winter, leading to an at first rapidly growing and then declining population of viruses. 
+% For this reason, one could imagine that some mutations rise in frequency in an ``opportunistic'' way during an epidemic season, but do not survive the following decline in population size. 
+% For the same reason, mutations that are localized in a particular region might mostly be due to the epidemic season specific to that region. 
+However, it is important to note that sampling biases and heterogeneity across time and space (see supplementary figures~\sref{fig:nseq_per_year} and \sref{fig:nseq_per_month}) make answering such specific hypothesis challenging.
+Frequency of mutations might thus be amplified through different sampling biases, making the connection between geographic spread, seasonality and mutation frequency non-trivial to measure. 
+%It is however interesting to observe that quantities based on the population's geographical and temporal structure can apparently give as much or more information on fixation probability and predictability than genomic or phylogenetic ones. 
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/Panel3.png}
+	\caption{Fixation probability $P_{fix}(f)$ as a function of frequency, for A/H3N2 influenza. Figure \sref{fig:pfix_stratified_h1n1} shows the same analysis for A/H1N1. \textbf{A}: HA mutations with higher or lower LBI values, based on their position with respect to the median LBI value. \textbf{B}: Different lists of epitope positions in the HA protein. The authors and the number of positions is indicated in the legend. \textbf{C}: HA and NA mutations for binary positions, \emph{i.e.} positions for which we never see more than two amino acids in the same time bin. \textbf{D}: HA and NA mutations that appear once or more than once in the tree for a given time bin.}
+	\label{fig:pfix_stratified}
+\end{figure*}
+
+\subsection*{Simulations of models of adaptation}
+\label{sub:a_simple_model}
+
+The results shown in figures~\ref{fig:fix_loss_active} and \ref{fig:pfix_stratified} are difficult to reconcile with the notion that seasonal influenza virus evolution is driven by rapid directed positive selection.
+One possible explanation for the weakly predictable behaviour of mutations (beyond current frequency) might be tight genetic linkage inside each protein and strong competition between different adaptive mutations \citep{neher_genetic_2011}. 
+We design a simple model of population evolution based on the \texttt{ffpopsim} simulation software to test this hypothesis~\cite{10.1093/bioinformatics/bts633}. 
+The model represents a population of binary genomes of length $L=200$ evolving in a fitness landscape that changes through time. 
+
+First, we use an additive fitness function, with sequence $(x_1\ldots x_L)$ having a fitness $\sum_i h_i x_i$. 
+This implies that for a given genome position $i$, the trait $x_i = 1$ is favored if $h_i>0$ whereas  $x_i = -1$ is favored if $h_i<0$. 
+All $h_i$'s have the same magnitude, and only their signs matter. 
+Every $\Delta t$ generations, we randomly choose a position $i$ and flip the sign of $h_i$, effectively changing the fitness landscape. 
+Individuals in the population now have the opportunity to make an adaptive mutation at site $i$ giving them a fitness advantage $2\vert h \vert$. 
+A ``flip'' at position $i$ of the fitness landscape will decrease fitness of all individuals that carried the adapted variant at position $i$ and increases the fitness of those that happened to carry a deleterious variant. 
+
+To increase competition between genomes, we designed a second model that includes epistasis. 
+Once again, the baseline fitness of a genome is an additive function, this time with values of $h_i$ that do not change through time. 
+In addition, we added a component that mimics immune selection.
+Every $\Delta t$ generation, we now introduce ``antibodies'' that target a specific sub-sequence of length $l=5$, noted $(x^{ab}_{i_1}, \ldots, x^{ab}_{i_l})$. 
+The positions $(i_1\ldots i_l)$ are chosen at random, while the targeted sub-sequence is the dominant state at each position.
+Genomes that include the \emph{exact} sub-sequence targeted by the antibody suffer a strong fitness penalty. However, a single mutation away from that sub-sequence removes this penalty completely, resulting in a fitness landscape with very strong epistasis. 
+This has the effect of triggering a strong competition between adaptive mutations: for a given antibody, $l=5$ possible mutations are now adaptive, but combinations of these mutations do not bring any fitness advantage.
+
+Having simulated populations in these two fitness landscapes, we perform the same analysis of frequency trajectories as for the real influenza data. 
+Figure~\sref{fig:simulations} of the SM shows the $P_{fix}(f)$ as a function of $f$ for the two models and for different values of the inverse rate of change $\Delta t$ of the fitness landscape. 
+For all models, this curve deviates significantly from the diagonal. 
+This is most evident for the case of a simple additive fitness landscape that changes rarely $\Delta t=1000$: rising mutations almost always fix in the population, with $P_{fix}(f)\simeq 1$ for any $f$ larger than a few percent. 
+This is corroborated by visual inspection of the trajectories, which shows that evolution in this regime is driven by regular selective sweeps that take a typical time of $\sim 400$ generations. 
+In other regimes, with smaller $\Delta t$ or with strong epistatic competition, $P_{fix}(f)$ is reduced and closer to the diagonal. 
+However, it takes an extremely fast changing fitness landscape to push $P_{fix}$ close to the diagonal: with $\Delta t=10$, that is about 40 changes to the fitness landscape in the time it would take a selective sweep to go from 0\% to fixation, $P_{fix}(f)$ differs from $f$ in a way that is comparable to what is observed in A/H1N1 influenza.
+
+These models are not meant to be accurate models of influenza viruses evolution. 
+But figure~\sref{fig:simulations} does show is that the patterns observed in influenza virus evolution are only reproduced by models of adapting populations when pushing clonal competition to extreme values.
+We conclude that the pattern in figure~\ref{fig:fix_loss_active} may not a straightforward manifestation of genetic linkage and clonal interference, but that some more intricate interplay of epidemiology, seasonality, human immunity and chance gives rise to the weakly predictable yet strongly selected evolutionary dynamics of IAVs.
+
+\subsection*{Why do predictions work?}
+The statistics of frequency trajectories seems to be in conflict with the notion that influenza evolution is predictable.
+Likewise, the LBI, a quantity that correlates with fitness in mathematical models and is used to predict future influenza populations \citep{neher_predicting_2014}, does not seem to contain any information on whether a specific mutation is going to fix or not, see figure~\ref{fig:pfix_stratified}. 
+To resolve this conundrum, we first note that criterion by which predictive power for influenza was measured in \citep{neher_predicting_2014} was the distance between the strain with the highest LBI and the future population, not the ability of the LBI to predict dynamics.
+The distance was compared to the average distance between the present and future population, as well as the post-hoc optimal representative and the future. 
+
+To quantify the ability of the LBI and other measures to pick good representatives of the future, we construct a large tree of HA sequences with 100 sequences in non-overlapping time bins of 4 months from year 2003 to 2019 (a total of 4402 as some 4 month intervals contain less than 100 sequences).
+Each time bin is considered as a snapshot of the A/H3N2 influenza population and we will refer to sequences in time bin $t$ as the population of the \emph{present}. 
+From this present population, we will predict \emph{future} populations in time bin $t+\Delta t$, using only sequences in time bin $t$ and before. 
+
+To assess the ability of the LBI to pick a close representative of the future, we compute the LBI of each node of one time bin in the tree using only the leaves that belong to that time bin. 
+The top panel in figure~\ref{fig:LBI_consensus} shows the hamming distance of the strain with the highest LBI to future populations at different $\Delta t$ along with the same distance for a randomly chosen strain. 
+The figure shows the distance averaged over all possible values of $t$ for $\Delta t$ between $0$ and $32$ months, giving us an average efficiency of a predictor over 16 years of influenza evolution. 
+
+The strain with the highest LBI is consistently closer to the future than the average strain by about 1-2 amino acids, while the overall distance increases linearly due to the continuous evolution of the population.
+We hence reproduce previous results showing that the LBI picks closer than average representatives \citep{neher_predicting_2014}.
+To investigate whether this apparent success is due to the ability of the LBI to predict fitness or not, we explored a different predictor: the amino acid consensus sequence of the present population (see Methods for a definition of the consensus sequence). 
+The choice is motivated by the fact that it can be shown to be the best possible long term predictor for a neutrally evolving population in terms of Hamming distance (see SM section \ref{sub:consensus_sequence_as_a_predictor}). 
+Figure~\ref{fig:LBI_consensus} shows that the consensus sequence is in fact a equally good or even slightly better representative of the future than the sequence with highest LBI 
+(note that the consensus sequence does \emph{not} necessarily exist in the population). 
+
+This near equivalence of the consensus and the strain with highest LBI is curious can be explained as follows.
+The LBI tends to be high for nodes in a tree that are close to the root of a dense and large clade. 
+A typical sample of influenza HA sequences fall into a small number of recognizable clades, and the strains with maximal LBI will often be close to the root of the largest of those clades. 
+This root of the largest clade, however, will therefore often be close to the consensus of the whole population, explaining the similar distance patterns.
+To test that hypothesis, we measure the hamming distance from the sequence of the top LBI strain to the consensus sequence for populations of all time bins. 
+Panel \textbf{B} of figure~\ref{fig:LBI_consensus} shows these distances, scaled with respect to an average strain (details in caption). It clearly shows that the top-LBI strain and the consensus sequence are indeed quite similar: out of 48 time bins, only once is the sequence of the top-LBI strain farther away from the consensus than the average sequence is. Moreover, the sequence of the top-LBI strain \emph{exactly} matches the consensus in 19 cases. 
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{./Figures/Panel4.png}
+	\caption{\textbf{A}: Average Hamming distance of the sequences of different predictors to HA sequences of future influenza populations, themselves averaged over all ``present'' populations from year 2003 to 2019. Predictors are: a randomly picked sequence in the present population; the sequence of the strain with the highest LBI in the present population; the consensus sequence of the present population. \textbf{B}: Scaled Hamming distance between the sequence of the top LBI strain and the consensus sequence for populations at different dates. The scaling is such that for each date, the Hamming distance between a strain from the population and the consensus is on average $1$. The strain with the highest LBI is almost always closer to the consensus sequence than the average strain.}
+	\label{fig:LBI_consensus}
+\end{figure*}
+
+% section results (end)
+
+\section*{Discussion} % (fold)
+\label{sec:discussion}
+
+The premises of predicting the trajectory of a mutation are (i) significant fitness difference between genomes carrying different variants at the site and (ii) a selection pressure that changes slowly over time. 
+Under such conditions, it is expected that frequency trajectories will show a persistent behavior which would make them predictable for some time. 
+However, we could find only limited evidence for such persistent behavior in the past 19 years of IAV evolution. 
+This lead us to conclude that (i) influenza virus evolution is qualitatively different from models of rapidly adapting population (despite clear evidence for frequent positive selection), and (ii) previous methods to predict influenza evolution work primarily because they pick strains that represent the future well, not because they predict future dynamics. 
+
+
+The primary quantity we investigated is the probability that a novel mutation fixes, given it is currently observed at frequency $f$.
+In neutral models of evolution this probability is equal to $f$, while it should be higher or lower than $f$ for beneficial or deleterious mutations, respectively, an effect readily seen in simulations of simple models of evolution \citep{kimura_diffusion_1964}.
+However, in the case of influenza, the probability of fixation differs little from $f$, making the current frequency of a mutation the best predictor for fixation.
+In figure \ref{fig:pfix_stratified}, we tried to break trajectories into groups that where previously associated with rapid adaptation (e.g.~epitope positions as defined in \citep{Shih6283,Koel976,bush_predicting_1999,luksza_predictive_2014}) or high and low fitness \citep{neher_predicting_2014}. 
+Most of these methods did not result in an increased predictability: only mutations at the seven ``Koel''-positions fixed more often than expected by chance. 
+Other stratification schemes had a measurable effect on fixation, such as whether or not convergent evolution (at the level of amino acid or position) was observed, or whether the position had seen competition between more than two amino acids in the past. 
+
+Concerning the short term prediction of dynamics, we found that on average, the direction of a frequency trajectory does not persist for longer than a few months and memory of the initial frequency is lost after one year. 
+Moreover, the average frequency trajectory in figure \ref{fig:trajectories} shows no ``inertia'' when going from $t<0$ to $t>0$, suggesting that selective sweeps are representative of typical trajectories. 
+
+This failure to meaningfully predict mutation frequency trajectories is seemingly at odds with the strong signatures of selection in influenza surface proteins \citep{bhatt_genomic_2011,strelkowa_clonal_2012}.
+These signatures clearly indicate that surface proteins change their amino acid sequence to evade human immunity and these pressures can be recapitulated both in vivo and in vitro \citep{lee_mapping_2019,xue_within-host_nodate}.
+\pierre{Maybe move the rest of this paragraph at the end?} A recent preprint proposed that influenza virus evolution is primarily limited by an asynchrony between population level selection and generation of new variants within infected hosts \citep{morris_asynchrony_2020}. 
+Along these lines, it is possible that the A/H3N2 population readily responds once population level selection is high enough by giving rise to essentially equivalent variants.
+In addition, every successful variant will produce population immunity limiting its future spread. 
+These considerations might explain the disconnect between models of rapid adaptation and the frequency dynamics observed in influenza virus populations.
+
+Methods for predicting the future evolution of influenza either construct explicit fitness models \citep{luksza_predictive_2014}, use historical patterns of evolution \citep{luksza_predictive_2014,bush_predicting_1999}, phenotypic assays \citep{neher_prediction_2016,steinbruck_inference_2012}, or dynamic or phylogenetic patterns \citep{neher_predicting_2014,klingen_sweep_2018}. 
+The goal of these methods is to pick strains that are good representatives of future populations and could serve as vaccine candidates \citep{morris2018predictive}.
+
+The low power to predict frequency dynamics or fixation naturally triggers the question why the above methods have been found to work. 
+Picking representatives of the future and predicting frequency dynamics are distinct objectives and that success at the former (as compared to random picks) is not inconsistent with a lack of predictable dynamics.
+The strain with the highest LBI in the population is a better predictor of the future population than a randomly picked one -- consistent with the result in \citep{neher_predicting_2014} -- despite the fact future frequencies are not predicted by the LBI.
+In fact, the very simple method of taking the consensus sequence of all present strains performs slightly but consistently better than picking the strain with the LBI. 
+The consensus sequence is the best possible predictor for a neutrally evolving population, and does not attempt to model fitness in any way. 
+While the LBI was shown to be a correlate of relative fitness and be predictive of fixation in mathematical models of evolution \citep{neher_predicting_2014}, the reason it is predictive for influenza, does not seem to due to an ability to measure fitness of influenza viruses from genealogical structure.
+Instead, we believe it picks closer than average strains simply because it has the tendency to be maximal at the base of large and dense clades. 
+These basal genotypes are closer to the future populations than the current tips of the tree and hence a better predictor on average.
+
+At the same time, influenza virus phylogenies show clear deviations from those expected from the neutral Kingman coalescent, similar to those expected under Bolthausen-Sznitman coalescent (BSC) processes that are generated by traveling wave models of rapid evolution \citep{neher_genealogies_2013,desai_genetic_2013}.
+The correspondence between the BSC and traveling wave models comes from transient exponential amplification of fit strains before these fitness differences are wiped out by further mutation. 
+This exponential amplification generates long-tailed effective offspring distributions which in turn can leads to genealogies described by the BSC \citep{schweinsberg_coalescent_2003,neher_genealogies_2013}. 
+Many processes other than selection, including seasonality and spatio-temporal heterogeneity, can generate effective long tailed offspring distributions even in absence of bona-fide fitness differences, which might explain ladder-like non-Kingman phylogenetic trees.
+
+% section discussion (end)
+
+\section*{Methods} % (fold)
+\label{sec:methods}
+
+\subsection*{Data and code availability} % (fold)
+\label{sub:data}
+	The sequences used are obtained from the GISAID database~\cite{shu2017gisaid}. 
+	Strain names and accession numbers are given as tables in two supplementary files. \\
+	The code used to generate the figures presented here is available at \url{https://github.com/PierreBarrat/FluPredictibility}. 
+% subsection data (end)
+
+\subsection*{Frequency trajectories} % (fold)
+\label{sub:frequency_trajectories}
+	
+	For a set of sequences in a given time bin, we compute frequencies of amino acids at each position by simple counting. We make the choice of not applying any smoothing method in an attempt to be as close to the data and ``model-less'' as possible. This is especially important for the short term prediction of frequency trajectories, as estimations of the ``persistence time'' of a trajectory might be biased by a smoothing method. \\
+	We compute frequency trajectories based on the frequencies of amino acids. A trajectory begins at time $t$ if an amino acid is seen under the lower frequency threshold of 5\% (resp. above the higher threshold of 95\%) for the two time bins preceding $t$, and above this lower threshold (resp. below the higher threshold) for time bin $t$. It ends in the reciprocal situation, that is when the frequency is measured below the lower threshold (resp. above the higher threshold) for two time bins in a row. \\
+	In order to avoid estimates of frequencies that are too noisy, we only keep trajectories that are based on a population of at least 10 sequences for \emph{each} time bin. As said in the Results section, we also restrict the analysis to trajectories that begin at a $0$ frequency, in part to avoid double counting. We find a total of 460 such trajectories. However, only 106 reach a frequency of 20\%, on which figure~\ref{fig:fix_loss_active} is based for instance.  \\
+	Note that the fact that we use samples of relatively small sizes -- at least for some time bins -- leads to biases in the estimation of frequencies. We show in Supplementary Material that these biases are generally small and do not induce any qualitative changes to results presented here. 
+
+% subsection frequency_trajectories (end)
+
+\subsection*{Local Branching Index} % (fold)
+\label{sub:local_branching_index}
+		
+	LBI was introduced in \cite{neher_predicting_2014} as an approximation of fitness in populations evolving under persistent selective pressure that is fully based on a phylogenetic tree. It relies on the intuition that the tree below high-fitness individuals will show dense branching events, whereas absence of branching is a sign of low-fitness individuals. Quantitatively, the LBI $\lambda_i(\tau)$ of a node $i$ is the integral of all of the tree's branch length around $i$, with an exponentially decreasing weight $e^{-t/\tau}$ with $t$ being the branch length. When considering a time binned population, the LBI is computed once for each time bin by considering only the leaves of the tree that belong to the time bin. This means that only branches that ultimately lead to a leaf that belongs to the time bin are considered in the integration.\\ 
+	$\tau$ is the time scale for which the tree is informative of the fitness of a particular node. Here, we use a value of $\tau$ equal to a tenth of $T_C\simeq6$ years, the coalescence time for influenza A/H3N2 strains, converted to units of tree branch length through the average nucleotide substitution rate ($\simeq 4\cdot 10^{-3}$ substitutions per site per year for HA). We have observed that given our method to predict the future from present populations corresponding to time bins of 4 months, changing the value of $\tau$ has little effect on the pick of the top LBI strain. By retrospectively optimizing its value, it is possible to reduce the average distance to the population 2 years ahead by $\sim0.25$ amino acids on average, making the LBI method almost as good as the consensus on figure~\ref{fig:LBI_consensus}. 
+
+% subsection local_branching_index (end)
+
+\subsection*{Measuring the geographical spread of a mutation} % (fold)
+\label{sub:measuring_the_geographical_spread_of_a_mutation}
+	For a mutation $X$ we define its regional distribution using the numbers $n_r(X)$ that represent the number of sequences sampled in region $r$ that carry $X$. Regional weights are then defined as 
+	$$ w_r(X) = \frac{n_r(X)}{\sum_{r}n_r(X)}.$$
+	We can then measure the geographical spread $G(X)$ of $X$ by using the Shannon entropy of the probability distribution $w_r(X)$: 
+	$$G(X) = \sum_r w_r(X)\log(w_r(X)).$$
+	$G(X)$ is a positive quantity that is larger when $X$ is equally present in many regions, and equal to zero when $X$ is concentrated in only one region.\\
+	Region used are the ones defined in the \texttt{nextstrain} tool~\cite{10.1093/bioinformatics/bty407}. Those are {North America}, {South America}, {Europe}, {China}, {Oceania}, {Southeast Asia}, {Japan \& Korea}, {South Asia}, {West Asia}, and {Africa}.
+% subsection measuring_the_geographical_spread_of_a_mutation (end)
+
+\subsection*{Assigning a fitness to trajectories} % (fold)
+\label{sub:assigning_a_fitness_to_trajectories}
+
+% subsection assigning_a_fitness_to_trajectories (end)
+
+\subsection*{Consensus sequence} % (fold)
+\label{sub:consensus_sequence}
+	Given a set of $N$ sequences $(\sigma^1,\ldots,\sigma^N)$ based on an alphabet $\mathcal{A}$ (\emph{e.g.} $\mathcal{A}$ has 20 elements for amino acids, 4 for nucleotides), we can define a \emph{profile} distribution $p_i(a)$ by the following expression:
+	$$ p_i(a) = \sum_{n=1}^N \delta_{\sigma^n_i,a} $$ 
+	where $i$ is a position in the sequence, $\sigma^n_i$ the character appearing at position $i$ in sequence $\sigma^n$, $a$ a character of the alphabet and $\delta$ the Kronecker delta. The profile $p_i(a)$ simply represents the fraction of sequences which have character $a$ at position $i$. \\
+	We then simply define the consensus sequence $\sigma^{cons}$ such that 
+	$$\sigma^{cons}_i = \text{argmax}_a \;p_i(a).$$
+	In other words, the consensus sequence is the one that has the dominant character of the initial set of sequences at each position.   
+% subsection consensus_sequence (end)
+
+\subsection*{Earth Mover's Distance} % (fold)
+\label{sub:earth_mover_s_distance}
+
+	In order to measure the distance of several predictor sequences to the future population, we rely on the \emph{EarthMover's Distance} (EMD), a metric commonly applied in machinelearning to compare collections of pixels or words \cite{710701,10.5555/3045118.3045221}. Here, we apply it to compute the distance between the sequences of two populations, noted as $\mathcal{X} = \left\{(x^n, p^n)\right\}$ and $\mathcal{Y}=\left\{(y^m,q^m)\right\}$ with $n\in\{1\ldots N\}$ and $m\in\{1\ldots M\}$. In this notation, $x^n$ and $y^m$ are sequences, and $p^n$ and $q^m$ are the frequencies at which these sequences are found in their respective populations. For convenience, we also define $d_{mn} = H(x^n,y^m)$ as the Hamming distance between pairs of sequences in the two populations. \\
+	We now introduce the following functional
+	$$ F(\mathbf{w}) = \sum_{n,m} d_{nm}w_{nm}, $$
+	with $\mathbf{w} = \{w_{nm}\}$ being a matrix of positive weights. The EMD between the two populations $\mathcal{X}$ and $\mathcal{Y}$ is now defined as the minimum value of function $F$ under the conditions 
+	\begin{equation*}
+		% \begin{split}
+			\sum_{n=1}^N w_{nm} = q^m,\;\; \sum_{m=1}^M w_{nm} = p^n, \,\text{and}\;\; w_{nm}\geq 0
+		% \end{split}
+	\end{equation*}
+	Intuitively, the weight $w_{nm}$ tells us how much of sequence $x^n$ is ``moved'' to sequence $y^m$. The functional $F$ sums all of these moves and attributes them a cost equal to the Hamming distance $d_{nm}$. The conditions on weights in $\mathbf{w}$ ensure that all the weight $p^n$ of $x^n$ is ``moved'' to elements in $\mathcal{Y}$ and vice versa. \\
+	The minimization is easily performed by standard linear optimization libraries. Here, we use the Julia library {JuMP}~\cite{DunningHuchetteLubin2017}.
+% subsection earth_mover_s_distance (end)
+
+% section methods (end)
+
+\bibliographystyle{unsrtnat}
+\bibliography{references}
+
+\newpage 
+\appendix
+\setcounter{figure}{0}
+\renewcommand{\figurename}{Figure S}
+\setcounter{table}{0}
+\renewcommand{\tablename}{Table S}
+\onecolumngrid
+
+\section*{Supplementary material} % (fold)
+\label{sec:supplementary_material}
+
+\subsection{Consensus sequence as a predictor for neutrally evolving populations} % (fold)
+\label{sub:consensus_sequence_as_a_predictor}
+	
+	We consider the case of a neutrally evolving and structure-less population, such as the one in the Wright-Fisher model of evolution~\cite{10.1080/10635150500354860}. At an initial time $t=0$, the population consists of $N$ individuals with genomes $(\sigma^1\ldots\sigma^N)$ of length $L$ (not necessarily distinct). \\
+	% We introduce the distribution $f(\sigma)$ representing the frequency at which a particular genome $\sigma$ appears in the population, that is 
+	% $$ f(\sigma) = \frac{1}{N}\sum_{n=1}^N \delta_{\sigma, \sigma^n}$$
+	% where $\delta_{x,y}$ is the Kronecker delta. \\
+	We make two hypotheses about this population. We first suppose that \emph{no} mutations occur during the evolution of this population. This may seem surprising and is of course not true in the case of influenza. This assumption is however in line with the fact that the object of this work is to predict the outcome of \emph{already existing} mutations in the influenza population. The prediction of mutations that we have not yet seen is not in its scope. Thus, assuming that no new mutations take place can be seen as a simple way to model the fact that we have no information about such events. \\
+	The second assumption is that the population evolves in a completely neutral way, meaning that the average number of descendants of each genome $\sigma^n$ is the same. Let us now consider the population after it has evolved for a long time $t\gg T$ where $T$ is the typical coalescence time (for the Wright-Fisher model, $T=2N$). At this point, all individuals in the future population will descend from a unique individual $n_0$ in the $t=0$ population. Our two hypotheses now allow us to make two statements. First, since no new mutations are allowed, the population at $t\gg T$ will be clonal, with all individuals having genome $\sigma^{n_0}$. Second, since the evolution is neutral and does not favour any genome in particular, the probability that $\sigma^{n_0}$ is equal to a given genome $\sigma$ is $1/N$. In other words, the probability that a genome at $t=0$ ultimately becomes the ancestor of all the future population is equal to its frequency in the $t=0$ population. \\
+
+	We now try to find the genome $\sigma$ that best predicts the future population on the long run, that is for $t\gg T$. Here, we take best to mean that the predictor minimizes $H(\sigma,\sigma^{n_0})$ where $H$ is the Hamming distance defined by
+	\begin{equation}
+	 	H(\sigma^a, \sigma^b) = \sum_{i=1}^L (1 - \delta_{\sigma^a_i, \sigma^b_i}),
+	 	\label{eq:hdist}
+	\end{equation} 
+	with $\sigma_i$ being the character appearing at position $i$ of genome $\sigma$ and $\delta$ the Kronecker delta. Since we do not know $n_0$, we have to average over all its possible values. $\sigma$ must thus minimize the following quantity: 
+	\begin{equation}
+		\begin{split}
+			\langle H(\sigma, \sigma^{n_0})\rangle_{n_0} &= \sum_{n=1}^N H(\sigma, \sigma^n)\\ 
+			&= \sum_{i=1}^L\sum_{n=1}^N (1 - \delta_{\sigma_i,\sigma^n_i})
+		\end{split}
+	\label{eq:2}
+	\end{equation}
+	by using the definition of the Hamming distance. We now assume that characters at each positions of the genomes can be indexed by an integer $a$ running from $1$ to $q$. For instance, if these were amino acid sequences, we could index the $20$ amino acids by $a$ running from $1$ to $q=20$. We rewrite the Kronecker delta in the previous expression using this indexation:
+	$$ \delta_{\sigma_i,\sigma_i^n} = \sum_{a=1}^q \delta_{\sigma_i,a}\delta_{\sigma_i^n,a}.$$
+	We also introduce the \emph{profile} frequencies $p_i(a)$ of the population at time $t=0$: 
+	\begin{equation}
+		p_i(a) = \sum_{n=1}^N \delta_{\sigma^n_i, a}.
+		\label{eq:profile}	
+	\end{equation}
+	$p_i(a)$ represents the frequency at which character $a$ appears at position $i$ in genomes of the initial population. \\
+	Equation~\ref{eq:2} now becomes
+	\begin{equation}
+		\begin{split}
+			\langle H(\sigma, \sigma^{n_0})\rangle_{n_0} &= \sum_{i=1}^L\sum_{n=1}^N\left(1 - \sum_{a=1}^q \delta_{\sigma_i,a}\delta_{\sigma_i^n,a}\right)\\
+			&= \sum_{i=1}^N \left(1- \sum_{a=1}^q\delta_{\sigma_i,a}p_i(a) \right) \\ 
+			&= \sum_{i=1}^L \left(1-p_i(\sigma_i)\right)
+		\end{split}
+		\label{eq:3}
+	\end{equation}
+	This means that the genome $\sigma = (\sigma_1\ldots\sigma_L)$ which best predicts the future population according to our definition is the one that minimizes the quantity $(1-p_i(\sigma_i))$ for all positions $i$. This obviously implies that each $\sigma_i$ must be chosen as to maximize $p_i(a)$, that is $\sigma_i$ must be the character that appears the most frequently at position $i$. Thus, $\sigma$ must be the \emph{consensus} sequence of the initial population.
+
+% subsection consensus_sequence_as_a_predictor (end)
+
+\subsection{Predictor based on the local LBI maxima} % (fold)
+\label{sub:predictor_based_on_the_local_lbi_maxima}
+	In figure~\ref{fig:emd_to_future}, we use several sequences as a predictor of the future population. Distance between two sets of sequences, \emph{i.e.} the predictor sequences and the ones of the future population, is defined as the Earth Mover's Distance (EMD). Here, we show that for a population evolving under the same hypotheses as in section~\ref{sub:consensus_sequence_as_a_predictor}, the best \emph{multiple} sequence long term predictor is again the consensus sequence with weight $1$. \\
+	Let the predictor be a set of weighted sequences $\{(s^\alpha, q_\alpha)\}$. We again use the fact that in the long term, a unique sequence $\sigma^{n_0}$ from the present will be the ancestor of the entire population. We want to compute the EMD from the predictor to $\sigma^{n_0}$, that is the EMD between the sets $\mathcal{X}=\{(s^\alpha, q_\alpha)\}$ and $\mathcal{Y} = \{\sigma^{n_0},1\}$. Applying the definition of the Methods section, it follows that the weights $\mathbf{w}$ are in this case equal to the $q_\alpha$s. By averaging over all values of $n_0$, we now obtain
+	$$ \left\langle \,\text{EMD}\left(\{(s^\alpha, q_\alpha)\}\right) \right\rangle_{n_0} = \sum_{n=1}^N\sum_{\alpha} H(s^\alpha, \sigma^n)\cdot q_\alpha.$$
+	By the same calculation procedure as in the previous section, this expression simplifies to 
+	$$ \left\langle \,\text{EMD}\left(\{(s^\alpha, q_\alpha)\}\right)\right\rangle_{n_0} = \sum_{i=1}^L\left( 1 - \sum_{a=1}^q p_i(a)q_i(a) \right), $$
+	where the profile of the present population $p_i(a)$ has already been defined, and $q_i(a)$ stands for the profile of the predictor, that is 
+	$$ q_i(a) = \sum_{\alpha} \delta_{s^\alpha_i, a}q_\alpha.$$
+	To minimize this distance, we find a profile $q_i(a)$ that maximizes the quantity $\sum_{\alpha} \delta_{s^\alpha_i, a}q_\alpha$ for each position $i$. It is clear that this is done by assigning a value $q_i(a)=1$ if $a$ maximizes $p_i(a)$, and $q_i(a)=0$ otherwise. Thus, the profile of the predictor must be that of the consensus sequence, which is only possible if the predictor becomes $\{\sigma^{cons},1\}$.
+% subsection predictor_based_on_the_local_lbi_maxima (end)
+
+\subsection{Biases in frequency estimations} % (fold)
+\label{sub:biases_in_frequency_estimations}
+
+	The frequency of mutations in a given time-bin is simply performed by computing their frequency in sequences sampled in that time bin. 
+	This leads to potential biases in estimating frequencies, that arise for two reasons:
+	\begin{enumerate}[label=(\roman*)]
+		\item A mutation present at frequency $p$ in the population might be observed at another frequency $f\neq p$ if $f$ is estimated using a sub-sample of the population. 
+		\item For a neutrally evolving population, the distribution of frequencies of alleles is of the form $P(p)\propto 1/p$. This means that the amount of alleles at frequency $p$ is lower when $p$ is higher. 
+	\end{enumerate}
+	To illustrate \emph{(i)}, let us compute the probability that a mutation present at ``real'' frequency $p$ in the population is found to be in a given frequency bin $[f_1,f_2]$ when $p$ is estimated from a sample of size $n$. 
+	The sample consists of $n$ observations $\{x_i\}$ with $1\leq i\leq n$, with $x_i=1$ if sequence sequence $i$ of the sample bears the mutation, and $x_i=0$ if not. 
+	If $n$ is small with regard to the total population size, we can consider the $x_i$ as random variables with a binomial distribution, meaning that $P(x_i=1)=p$ and $P(x_i=0) = 1-p$.  
+	The empirical frequency $f$ is then estimated by taking the average of the $x_i$ variables, that is $f = (x_1 + \ldots + x_n)/n$. 
+	If those are independently sampled and $n$ is large enough, the probability of measuring value $f$ is given by the Central Limit Theorem:
+	\begin{equation}
+		P_{n,p}(f) \propto e^{(f - p)^2 / 2\sigma^2},\;\; \text{where } \sigma^2 = \frac{p(1-p)}{n}.
+		\label{eq:ctl}
+	\end{equation}
+	To compute the probability that this mutation is found in a given frequency bin $[f_1,f_2]$, we integrate this distribution: 
+	\begin{equation}
+		P_{f_1,f_2}(p,n) = \int_{f_1}^{f_2}\text{d}x P_{n,p}(x). % = \int_{f1}^{f_2}\text{d}x\left(2\pi\sigma^2\right)^{-1/2}e^{(x - p)^2 / 2\sigma^2}
+		\label{eq:pinterval}
+	\end{equation}
+	\begin{figure}
+		\centering
+		\includegraphics[scale=0.5]{SM_figures/frequency_biases.png}
+		\caption{\textbf{Left}: For a mutation present at frequency $p$ in the population, probability of being observed in the frequency bin $[0.1, 0.2]$ as a function of $p$ and for different sample sizes $n$. The dashed black line sketches the (non-normalized) background distribution $P_b(p)$. \textbf{Right}: Expected ``real'' average frequency of mutations found in frequency bin $[f_1,f_2]$ as a function of the centre of the bin $(f_1+f_2)/2$, for different sample sizes.}
+		\label{fig:freq_biases}
+	\end{figure}
+
+	Function $P_{f_1,f_2}(p,n)$ is shown as a function of $p$ for a fixed interval and for different values of $n$ in the first panel of figure \sref{fig:freq_biases}.
+	Note the asymmetry of it: the variance of a binomial distribution of parameter $p$ is small when $p$ is close to $0$ or $1$, and goes through a maximum at $p=0.5$. 
+	For this reason, mutations present at frequency $p$ close to $0.5$ have a higher probability of being observed in other frequency bins. 
+	On the contrary, this is unlikely for very rare or very frequent mutations.  \\
+	We now try to estimate biases in frequency estimation due this phenomenon. 
+	Given a set of mutations that have been measured in frequency bin $[f_1, f_2]$, what is the average \emph{real} frequency of these mutations? 
+	To compute this, we need to sum $P_{f_1,f_2}(p,n)$ over all possible real frequencies $p$, giving us the amount of mutations that are observed in interval $[f_1,f_2]$, and weigh this sum by the frequency value $p$ as well as by the background distribution of frequencies $P_b(p)\propto 1/p$. 
+	This last quantity represents the expected amount of mutations that are present at frequency $p$ in the population. 
+	Note that there is no divergence problem as the smallest non zero frequency is $1/N$, where $N$ is the population size. 
+	This leads us to the following expression for the average of ``real'' frequencies:
+	\begin{equation}
+		\begin{split}
+			\langle p \rangle (f_1,f_2,n) &= \int_{1/N}^{1-1/N} \text{d}p\, P_{f_1,f_2}(p,n)P_b(p)\,p\\
+			&= \int_{1/N}^{1-1/N} \text{d}p\, P_{f_1,f_2}(p,n).
+		\end{split}
+	\end{equation}
+	We have not made normalization explicit in these equations.
+	It is simply achieved by dividing the above expression by $\int \text{d}p\, P_{f_1,f_2}(p,n)P_b(p)$.\\
+	In the second panel of figure~\sref{fig:freq_biases}, $\langle p \rangle (f_1,f_2,n)$ is plotted as a function of the centre of the interval $[f_1,f_2]$ and for different values of $n$. 
+	For sample sizes $n>100$, the biases due to this effect are almost non existent. 
+	For smaller samples, for instance $n=10$, they are small but non negligible. 
+	However, we argue that this is not a significant problem with respect to the main results presented in this article. 
+	First, figure~\sref{fig:nseq_per_month} shows that sample sizes of the order of $n=10$ are only the case for a few months in the period going from year 2000 to 2018. 
+	From 2010 and onwards, more than a hundred sequences are available per month for most months.  
+	Secondly, even if most samples were in the $n=10$ case, deviations shown in figure~\sref{fig:freq_biases} are small enough that results shown in figures~\ref{fig:fix_loss_active} and \ref{fig:pfix_stratified} would be \emph{qualitatively} unchanged. \\
+	Note that using the centre of the interval as a reference in figure~\sref{fig:freq_biases}, \emph{i.e.} $(f_1 + f_2)/2$, would be correct in the case of a very large $n$ and a flat background distribution $P_b(p)$. 
+	For figures~\ref{fig:fix_loss_active} and \ref{fig:pfix_stratified} of the main text however, the average frequency of mutations found in an interval $[f_1, f_2]$ is computed by taking the average of the observed frequencies, and not the centre of the interval. 
+	This partially takes into account biases considered here, as the background distribution $P_b(p)$ is then accounted for, even though it is equivalent to assuming infinite sample sizes. 
+
+
+% subsection biases_in_frequency_estimations (end)
+\newpage
+\subsection{Cutting off the HA1 159S branch}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[scale=0.55]{SM_figures/nextstrain_h3n2_ha_5.png}
+	\caption{Tree used for this study, based on a random selection of 100 strains per month from year 2002 to 2018. Nodes and branches are colored according to the amino acid found at position HA1:159. The HA1 159S mutation is visible as a thin but long  light-greened color branch, coalescing with the ``trunk'' around year 2013.}
+	\label{fig:tree_159S}
+\end{figure}
+
+The analysis of the main text is in a large part based on the probability of fixation of mutations. 
+The motivation underlying this choice is the relatively short coalescence time of the A/H3N2 influenza population, typically around three years. 
+This can be seen in figure~\ref{fig:fix_loss_active} of the main text, which shows the typical lifetime of frequency trajectories, ending in fixation or loss after at most 3 years in most cases.  
+The tree in figure~\sref{fig:tree_159S} is another illustration of this: for the most part of it, a ``trunk'' is clearly identifiable, and lineages that depart from it have a relatively short lifetime. \\
+This is no longer the case since the year $\sim 2013$: two clades have been competing since then, with no definite way to identify a trunk in the tree. 
+The clade defined by the HA1$\,$159S mutation, colored in light green on figure~\sref{fig:tree_159S}, is one of these two competing lineages. 
+Because of this particular situation, the number of mutations fixating in the population is strongly reduced, as a mutation must appear in both clades to reach a frequency of $1$. 
+This is a potential flaw in our analysis, which concentrates on mutations fixating. \\
+For this reason, we decided to re-run our analysis after having cut off the HA1$\,$159S clade. 
+In other words, we remove from the set of sequences those that carry the HA1$\,$159S mutation. 
+Results are shown in figures , equivalent to figures~\ref{fig:fix_loss_active} and~\ref{fig:pfix_stratified} of the main text. 
+It is clear that qualitative results are left unchanged when this competing clade is removed. \\
+This can be surprising, as almost no complete fixation of an amino acid mutation has occurred since 2013. 
+Cutting off the HA1 159S branch should thus result in many new fixations, changing the analysis. 
+The reason for the similarity of results can be explained: fixation (resp. loss) of a mutation are defined here as the frequency of this mutation being measured above $95\%$ (resp. $5\%$) frequency for two months in a row. 
+As the HA1 159S clade is rather sparsely populated, it reaches frequencies lower than $5\%$ two times (in 2015 and 2017), allowing mutations in the competing clade to ``fix'' as defined here. 
+Thus, removing strains carrying HA1 159S does not introduce a significant amount of ``new'' fixation events. 
+
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{./SM_figures/cutoff_159S_p1.png}
+	\caption{Equivalent to figure \ref{fig:fix_loss_active} of the main text, but with strains carrying the HA1 159S mutation removed.}
+	\label{fig:cutoff_159S_p1}
+\end{figure*}
+
+\begin{figure*}
+	\centering
+	\includegraphics[width=0.9\textwidth]{./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png}
+	\caption{Equivalent to figure \ref{fig:pfix_stratified} of the main text, but with strains carrying the HA1 159S mutation removed.}
+	\label{fig:cutoff_159S_p2}
+\end{figure*}
+
+
+% \newpage
+% \section{A/H1N1 influenza}
+
+\newpage
+\subsection{Mutation tables}
+
+% All mutations
+\begin{table}[h]
+    \centering
+    \csvreader[
+      tabular=|r*{8}{|c}|,
+      table head= \hline Gene & Position & AA & Start date & End date & Shih & Luksza & Koel & Tree counts \\ \hline,
+      late after last line=\\\hline,
+    ]{Mutation_Tables/all_fixed_mutations.csv}{}%
+    {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii & \csvcolviii & \csvcolix}
+    \caption{The 30 trajectories that took place between year 2000 and year 2018 and resulted in fixation. Columns \texttt{Shih}, \texttt{Luksza} and \texttt{Koel} respectively indicate whether the position is found in the epitopes lists in (respectively)~\cite{Shih6283}, \cite{luksza_predictive_2014} and \cite{Koel976}. The \texttt{Tree counts} column indicates the number of times the mutation corresponding to the trajectory can be found in the phylogenetic tree. Note that a trajectory is only shown in the table if the sequenced population counts more than $10$ strains at its time of fixation. This explains that only 30 trajectories are displayed, whereas more mutations did fix in this period of time.} %A value $n$ of \texttt{Tree counts} means that there exists at least one time interval of a month during the lifetime of the trajectory where strains found with the corresponding mutation can be traced back to $n$ different occurrences in the tree.
+    \label{tab:my_label}
+\end{table}
+% Shih mutations
+\begin{table}[h]
+    \centering
+    \csvreader[
+      tabular=|r*{8}{|c}|,
+      table head= \hline Gene & Position & AA & Start date & End date & Fixation & Max. freq. \\ \hline,
+      late after last line=\\\hline,
+    ]{Mutation_Tables/shih_mutations.csv}{}%
+    {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii}
+    \caption{Trajectories of mutations at epitope positions in \cite{Shih6283} (\emph{Shih et. al.}) that have been observed at least once above frequency $0.25$. The \texttt{Fixation} column indicates whether the mutation has fixed, disappeared, or is still polymorphic as of October 2018. The \texttt{Max.freq.} column indicates the maximum frequency reached by the trajectory. A maximum frequency of $1$ for mutations that finally disappear is explained by trajectories reaching frequency $1$ for one time bin and going back to lower values for following ones (a frequency above $0.95$ for two time bins in a row defines fixation).} 
+    \label{tab:shih}
+\end{table}
+% Luksza mutations
+\begin{table}[h]
+    \centering
+    \csvreader[
+      tabular=|r*{8}{|c}|,
+      table head= \hline Gene & Position & AA & Start date & End date & Fixation & Max. freq. \\ \hline,
+      late after last line=\\\hline,
+    ]{Mutation_Tables/luksza_mutations.csv}{}%
+    {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii}
+    \caption{Same as table~\sref{tab:shih}, for \cite{luksza_predictive_2014} (\emph{Luksza et. al.}).} 
+    \label{tab:luksza}
+\end{table}
+% Koel mutations
+\begin{table}[h]
+    \centering
+    \csvreader[
+      tabular=|r*{8}{|c}|,
+      table head= \hline Gene & Position & AA & Start date & End date & Fixation & Max. freq. \\ \hline,
+      late after last line=\\\hline,
+    ]{Mutation_Tables/koel_mutations.csv}{}%
+    {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii}
+    \caption{Same as table~\sref{tab:shih}, for \cite{Koel976} (\emph{Koel et. al.}).} 
+    \label{tab:koel}
+\end{table}
+% Wolf mutations
+% \begin{table}[h]
+%     \centering
+%     \csvreader[
+%       tabular=|r*{8}{|c}|,
+%       table head= \hline Gene & Position & AA & Start date & End date & Fixation & Max. freq. \\ \hline,
+%       late after last line=\\\hline,
+%     ]{SM_figures/wolf_mutations.csv}{}%
+%     {\csvcoli & \csvcolii & \csvcoliii & \csvcoliv & \csvcolv & \csvcolvi & \csvcolvii}
+%     \caption{Same as table~\sref{tab:shih}, for \cite{wolf_long_2006} (\emph{Wolf et. al.}).} 
+%     \label{tab:wolf}
+% \end{table}
+
+\clearpage
+
+\subsection{Supplementary figures} % (fold)
+\label{sub:supplementary_figures}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{SM_figures/Nseq_per_year.png}
+		\caption{Number of A/H3N2 HA sequences per year from year 1990. }
+		\label{fig:nseq_per_year}
+	\end{figure}
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.7\textwidth]{SM_figures/Nseq_per_month.png}
+		\caption{Number of H3N@ HA and NA sequences per month from year 2000. }
+		\label{fig:nseq_per_month}
+	\end{figure}
+
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=0.95\textwidth]{SM_figures/sample_trajectories.png}
+		\caption{Frequency trajectories for the 9 most entropic positions in the A/H3N2 HA protein.}
+		\label{fig:sample_trajectories}
+	\end{figure}
+
+	\begin{figure*}
+		\centering
+		\includegraphics[width=0.9\textwidth]{./SM_figures/ShortTerm_h1n1.png}
+		\caption{Equivalent to panel \textbf{B} of figure \ref{fig:trajectories} of the main text for A/H1N1 influenza. $89$ trajectories are shown and participate to the mean (thick black line). }
+		\label{fig:trajectories_h1n1}
+	\end{figure*}
+
+	\begin{figure*}
+		\centering
+		\includegraphics[width=0.9\textwidth]{./SM_figures/pfix_v_freq_strat_h1n1pdm.png}
+		\caption{Equivalent of figure \ref{fig:pfix_stratified} of the main text for the HA gene of A/H1N1 influenza. Fixation probability $P_{fix}(f)$ as a function of frequency. \textbf{A}: Mutation with higher or lower LBI values, based on their position with respect to the median LBI value. \textbf{B}: Different lists of epitope positions in the HA protein. The authors and the number of positions is indicated in the legend. \textbf{C}: Mutations for binary positions, \emph{i.e.} positions for which we never see more than two amino acids in the same time bin. \textbf{D}: Mutations that appear once or more than once in the tree for a given time bin.}
+		\label{fig:pfix_stratified_h1n1}
+	\end{figure*}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{SM_figures/geospread_and_time_h3n2.png}
+		\caption{Based on A/H3N2 HA and NA. \textbf{A}: Mutations with a higher or lower geographical spread, based on the median value of the score used (see Methods). \emph{Note}: the words \emph{local} and \emph{global} only reflect the position of the geographic spread of the mutation relative to the median value computed for all mutations found at this frequency. As this median value may change with the considered frequency bin, so does the definition of local and global mutations. \textbf{B}: Mutations whose trajectories are older or more recent, based on the median age of trajectories when reaching the considered frequency $f$.}
+		\label{fig:geospread_and_time_h3n2}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{SM_figures/geospread_and_time_h1n1pdm.png}
+		\caption{Based on A/H1N1 HA and NA. \textbf{A}: Mutations with a higher or lower geographical spread, based on the median value of the score used (see Methods). \emph{Note}: the words \emph{local} and \emph{global} only reflect the position of the geographic spread of the mutation relative to the median value computed for all mutations found at this frequency. As this median value may change with the considered frequency bin, so does the definition of local and global mutations. \textbf{B}: Mutations whose trajectories are older or more recent, based on the median age of trajectories when reaching the considered frequency $f$.}
+		\label{fig:geospread_and_time_h1n1pdm}
+	\end{figure}
+
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{SM_figures/GeoSpread_v_time_ha.png}
+		\caption{Geographic spread of mutations as a function of the time for which they have been present in the population above a frequency of 5\%. Points represent individual mutations and for a population in a given time bin. The line is the average of dots for a given value on the $x$-axis. Based on data for A/H3N2 HA.}
+		\label{fig:geospread_v_time}
+	\end{figure}
+
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{SM_figures/EMD_to_future.png}
+		\caption{Earthmover's distance to the future population for different predictors. A present population consists of all A/H3N2 HA sequences sampled in a 4 months time window. Quantities are averaged over all possible ``present'' populations from the year 2002. Predictors are: \textbf{Global consensus}: Consensus sequence of the present population. Best long-term predictor for a structure-less neutrally evolving population. \textbf{All present population}: All sequences in the present population. Perfect predictor if the population does not change at all through time. \textbf{Cluster-wise consensus}: Consensus sequence for each cluster in the present population. Clusters are based on local maxima of the LBI. Sequences are assigned to a given cluster based on their tree branch-length distance to the corresponding local maximum.}
+		\label{fig:emd_to_future}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{SM_figures/simulation.png}
+		\caption{Fixation probability as a function of frequency for the simulations discussed in the main text. \textbf{Top:} Simulation without antibodies. The three colored curves reflect different rate of change for the fitness landscape. Visual inspection of the frequency trajectories indicates a typical sweep time of $\sim400$ generations. \textbf{Bottom:} Simulation with antibodies. The different colored curves indicate the rate at which antibodies are introduced. }
+		\label{fig:simulations}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=0.9\textwidth]{SM_figures/simulation_fitness.png}
+		\caption{Fixation probability as a function of frequency for the simulations discussed in the main text, with trajectories stratified according to real fitness values. ``High'' and ``low'' fitness classes are defined with respect to the median value. \textbf{Top:} Simulation without antibodies and with changes to the fitness landscape every $dt=10$ generations. \textbf{Bottom:} Simulation with antibodies, with a new antibody every $dt=10$ generations. }
+		\label{fig:simulations_fitness}
+	\end{figure}
+
+
+% subsection supplementary_figures (end)
+
+% section supplementary_material (end)
+
+
+\end{document}
