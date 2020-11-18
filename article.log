@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.6)  17 NOV 2020 17:08
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.6)  18 NOV 2020 15:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -865,35 +865,67 @@ Underfull \hbox (badness 10000) in paragraph at lines 486--492
  []
 
 [14] [15]
-<SM_figures/frequency_biases.png, id=89, 925.056pt x 462.528pt>
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 561.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
+File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 561.
+<Rev_figures/clusters_examples.png, id=89, 925.056pt x 925.056pt>
+File: Rev_figures/clusters_examples.png Graphic file (type png)
+<use Rev_figures/clusters_examples.png>
+Package pdftex.def Info: Rev_figures/clusters_examples.png  used on input line 
+583.
+(pdftex.def)             Requested size: 462.52687pt x 462.52687pt.
+
+Underfull \hbox (badness 10000) in paragraph at lines 588--594
+
+ []
+
+<Rev_figures/Pfix_v_freq_clustering_panel.png, id=90, 1110.0672pt x 555.0336pt>
+
+File: Rev_figures/Pfix_v_freq_clustering_panel.png Graphic file (type png)
+<use Rev_figures/Pfix_v_freq_clustering_panel.png>
+Package pdftex.def Info: Rev_figures/Pfix_v_freq_clustering_panel.png  used on 
+input line 607.
+(pdftex.def)             Requested size: 555.03224pt x 277.51611pt.
+
+Overfull \hbox (45.03224pt too wide) in paragraph at lines 607--608
+ [][] 
+ []
+
+[16] [17 <./Rev_figures/clusters_examples.png>]
+<SM_figures/frequency_biases.png, id=98, 925.056pt x 462.528pt>
 File: SM_figures/frequency_biases.png Graphic file (type png)
 <use SM_figures/frequency_biases.png>
-Package pdftex.def Info: SM_figures/frequency_biases.png  used on input line 56
-4.
+Package pdftex.def Info: SM_figures/frequency_biases.png  used on input line 64
+6.
 (pdftex.def)             Requested size: 462.52687pt x 231.26343pt.
- [16 <./SM_figures/frequency_biases.png>] [17]
-<SM_figures/nextstrain_h3n2_ha_5.png, id=97, 796.47563pt x 447.92343pt>
+ [18 <./Rev_figures/Pfix_v_freq_clustering_panel.png>] [19 <./SM_figures/freque
+ncy_biases.png>]
+<SM_figures/nextstrain_h3n2_ha_5.png, id=108, 796.47563pt x 447.92343pt>
 File: SM_figures/nextstrain_h3n2_ha_5.png Graphic file (type png)
 <use SM_figures/nextstrain_h3n2_ha_5.png>
 Package pdftex.def Info: SM_figures/nextstrain_h3n2_ha_5.png  used on input lin
-e 605.
+e 687.
 (pdftex.def)             Requested size: 438.06296pt x 246.35864pt.
-<./SM_figures/cutoff_159S_p1.png, id=98, 1110.0672pt x 555.0336pt>
+<./SM_figures/cutoff_159S_p1.png, id=109, 1110.0672pt x 555.0336pt>
 File: ./SM_figures/cutoff_159S_p1.png Graphic file (type png)
 <use ./SM_figures/cutoff_159S_p1.png>
-Package pdftex.def Info: ./SM_figures/cutoff_159S_p1.png  used on input line 63
-1.
+Package pdftex.def Info: ./SM_figures/cutoff_159S_p1.png  used on input line 71
+3.
 (pdftex.def)             Requested size: 458.99689pt x 229.4962pt.
-<./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png, id=99, 925.056pt x 693.792
-pt>
+<./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png, id=110, 925.056pt x 693.79
+2pt>
 File: ./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png Graphic file (type png
 )
 <use ./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png>
 Package pdftex.def Info: ./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png  us
-ed on input line 638.
+ed on input line 720.
 (pdftex.def)             Requested size: 458.99689pt x 344.24854pt.
- [18 <./SM_figures/nextstrain_h3n2_ha_5.png>] [19 <./SM_figures/cutoff_159S_p1.
-png> <./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png>] [20]
+ [20 <./SM_figures/nextstrain_h3n2_ha_5.png>] [21 <./SM_figures/cutoff_159S_p1.
+png> <./SM_figures/pfix_v_freq_strat_h3n2_cutoff159S.png>] [22]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -903,105 +935,105 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21] [22] [23] [24]
-<SM_figures/Nseq_per_year.png, id=125, 925.056pt x 693.792pt>
+[23] [24] [25] [26]
+<SM_figures/Nseq_per_year.png, id=136, 925.056pt x 693.792pt>
 File: SM_figures/Nseq_per_year.png Graphic file (type png)
 <use SM_figures/Nseq_per_year.png>
-Package pdftex.def Info: SM_figures/Nseq_per_year.png  used on input line 740.
+Package pdftex.def Info: SM_figures/Nseq_per_year.png  used on input line 822.
 (pdftex.def)             Requested size: 356.99844pt x 267.75122pt.
-<SM_figures/Nseq_per_month.png, id=126, 925.056pt x 693.792pt>
+<SM_figures/Nseq_per_month.png, id=137, 925.056pt x 693.792pt>
 File: SM_figures/Nseq_per_month.png Graphic file (type png)
 <use SM_figures/Nseq_per_month.png>
-Package pdftex.def Info: SM_figures/Nseq_per_month.png  used on input line 746.
+Package pdftex.def Info: SM_figures/Nseq_per_month.png  used on input line 828.
 
 (pdftex.def)             Requested size: 356.99844pt x 267.75122pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<SM_figures/sample_trajectories.png, id=127, 1850.112pt x 1387.584pt>
+<SM_figures/sample_trajectories.png, id=138, 1850.112pt x 1387.584pt>
 File: SM_figures/sample_trajectories.png Graphic file (type png)
 <use SM_figures/sample_trajectories.png>
 Package pdftex.def Info: SM_figures/sample_trajectories.png  used on input line
- 753.
+ 835.
 (pdftex.def)             Requested size: 484.49844pt x 363.36758pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<./SM_figures/ShortTerm_h3n2_varf0.png, id=128, 925.056pt x 462.528pt>
+<./SM_figures/ShortTerm_h3n2_varf0.png, id=139, 925.056pt x 462.528pt>
 File: ./SM_figures/ShortTerm_h3n2_varf0.png Graphic file (type png)
 <use ./SM_figures/ShortTerm_h3n2_varf0.png>
 Package pdftex.def Info: ./SM_figures/ShortTerm_h3n2_varf0.png  used on input l
-ine 760.
+ine 842.
 (pdftex.def)             Requested size: 458.99689pt x 229.49902pt.
-<./SM_figures/ShortTerm_h1n1.png, id=129, 925.056pt x 1156.32pt>
+<./SM_figures/ShortTerm_h1n1.png, id=140, 925.056pt x 1156.32pt>
 File: ./SM_figures/ShortTerm_h1n1.png Graphic file (type png)
 <use ./SM_figures/ShortTerm_h1n1.png>
-Package pdftex.def Info: ./SM_figures/ShortTerm_h1n1.png  used on input line 76
-7.
+Package pdftex.def Info: ./SM_figures/ShortTerm_h1n1.png  used on input line 84
+9.
 (pdftex.def)             Requested size: 458.99689pt x 573.74759pt.
-<./SM_figures/ShortTerm_h1n1_varf0.png, id=130, 925.056pt x 462.528pt>
+<./SM_figures/ShortTerm_h1n1_varf0.png, id=141, 925.056pt x 462.528pt>
 File: ./SM_figures/ShortTerm_h1n1_varf0.png Graphic file (type png)
 <use ./SM_figures/ShortTerm_h1n1_varf0.png>
 Package pdftex.def Info: ./SM_figures/ShortTerm_h1n1_varf0.png  used on input l
-ine 774.
+ine 856.
 (pdftex.def)             Requested size: 458.99689pt x 229.49902pt.
-<./SM_figures/pfix_v_freq_strat_h1n1pdm.png, id=131, 925.056pt x 693.792pt>
+<./SM_figures/pfix_v_freq_strat_h1n1pdm.png, id=142, 925.056pt x 693.792pt>
 File: ./SM_figures/pfix_v_freq_strat_h1n1pdm.png Graphic file (type png)
 <use ./SM_figures/pfix_v_freq_strat_h1n1pdm.png>
 Package pdftex.def Info: ./SM_figures/pfix_v_freq_strat_h1n1pdm.png  used on in
-put line 782.
+put line 864.
 (pdftex.def)             Requested size: 458.99689pt x 344.24854pt.
-<SM_figures/geospread_and_time_h3n2.png, id=132, 925.056pt x 462.528pt>
+<SM_figures/geospread_and_time_h3n2.png, id=143, 925.056pt x 462.528pt>
 File: SM_figures/geospread_and_time_h3n2.png Graphic file (type png)
 <use SM_figures/geospread_and_time_h3n2.png>
 Package pdftex.def Info: SM_figures/geospread_and_time_h3n2.png  used on input 
-line 789.
+line 871.
 (pdftex.def)             Requested size: 458.99689pt x 229.49902pt.
-<SM_figures/geospread_and_time_h1n1pdm.png, id=133, 925.056pt x 462.528pt>
+<SM_figures/geospread_and_time_h1n1pdm.png, id=144, 925.056pt x 462.528pt>
 File: SM_figures/geospread_and_time_h1n1pdm.png Graphic file (type png)
 <use SM_figures/geospread_and_time_h1n1pdm.png>
 Package pdftex.def Info: SM_figures/geospread_and_time_h1n1pdm.png  used on inp
-ut line 796.
+ut line 878.
 (pdftex.def)             Requested size: 458.99689pt x 229.49902pt.
-<SM_figures/GeoSpread_v_time_ha.png, id=134, 925.056pt x 693.792pt>
+<SM_figures/GeoSpread_v_time_ha.png, id=145, 925.056pt x 693.792pt>
 File: SM_figures/GeoSpread_v_time_ha.png Graphic file (type png)
 <use SM_figures/GeoSpread_v_time_ha.png>
 Package pdftex.def Info: SM_figures/GeoSpread_v_time_ha.png  used on input line
- 804.
+ 886.
 (pdftex.def)             Requested size: 458.99689pt x 344.24854pt.
-<SM_figures/EMD_to_future.png, id=135, 925.056pt x 693.792pt>
+<SM_figures/EMD_to_future.png, id=146, 925.056pt x 693.792pt>
 File: SM_figures/EMD_to_future.png Graphic file (type png)
 <use SM_figures/EMD_to_future.png>
-Package pdftex.def Info: SM_figures/EMD_to_future.png  used on input line 812.
+Package pdftex.def Info: SM_figures/EMD_to_future.png  used on input line 894.
 (pdftex.def)             Requested size: 458.99689pt x 344.24854pt.
-<SM_figures/simulation.png, id=136, 925.056pt x 693.792pt>
+<SM_figures/simulation.png, id=147, 925.056pt x 693.792pt>
 File: SM_figures/simulation.png Graphic file (type png)
 <use SM_figures/simulation.png>
-Package pdftex.def Info: SM_figures/simulation.png  used on input line 819.
+Package pdftex.def Info: SM_figures/simulation.png  used on input line 901.
 (pdftex.def)             Requested size: 458.99689pt x 344.24854pt.
-<SM_figures/simulation_fitness.png, id=137, 925.056pt x 693.792pt>
+<SM_figures/simulation_fitness.png, id=148, 925.056pt x 693.792pt>
 File: SM_figures/simulation_fitness.png Graphic file (type png)
 <use SM_figures/simulation_fitness.png>
 Package pdftex.def Info: SM_figures/simulation_fitness.png  used on input line 
-826.
+908.
 (pdftex.def)             Requested size: 458.99689pt x 344.24854pt.
-[25 <./SM_figures/Nseq_per_year.png>] [26 <./SM_figures/Nseq_per_month.png>]
-[27 <./SM_figures/sample_trajectories.png> <./SM_figures/ShortTerm_h3n2_varf0.p
-ng>] [28 <./SM_figures/ShortTerm_h1n1.png>] [29 <./SM_figures/ShortTerm_h1n1_va
-rf0.png>] [30 <./SM_figures/pfix_v_freq_strat_h1n1pdm.png>] [31 <./SM_figures/g
+[27 <./SM_figures/Nseq_per_year.png>] [28 <./SM_figures/Nseq_per_month.png>]
+[29 <./SM_figures/sample_trajectories.png> <./SM_figures/ShortTerm_h3n2_varf0.p
+ng>] [30 <./SM_figures/ShortTerm_h1n1.png>] [31 <./SM_figures/ShortTerm_h1n1_va
+rf0.png>] [32 <./SM_figures/pfix_v_freq_strat_h1n1pdm.png>] [33 <./SM_figures/g
 eospread_and_time_h3n2.png> <./SM_figures/geospread_and_time_h1n1pdm.png>]
-[32 <./SM_figures/GeoSpread_v_time_ha.png>] [33 <./SM_figures/EMD_to_future.png
->] [34 <./SM_figures/simulation.png>] [35 <./SM_figures/simulation_fitness.png>
+[34 <./SM_figures/GeoSpread_v_time_ha.png>] [35 <./SM_figures/EMD_to_future.png
+>] [36 <./SM_figures/simulation.png>] [37 <./SM_figures/simulation_fitness.png>
 ] (./article.aux) ) 
 Here is how much of TeX's memory you used:
- 8614 strings out of 492982
- 135199 string characters out of 6134897
- 307452 words of memory out of 5000000
- 11743 multiletter control sequences out of 15000+600000
+ 8648 strings out of 492982
+ 136045 string characters out of 6134897
+ 307714 words of memory out of 5000000
+ 11771 multiletter control sequences out of 15000+600000
  24091 words of font info for 186 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,17n,46p,1346b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,17n,46p,1347b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx
 8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx9.pfb><
@@ -1030,10 +1062,10 @@ cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb>
-Output written on article.pdf (35 pages, 4463906 bytes).
+Output written on article.pdf (37 pages, 4763767 bytes).
 PDF statistics:
- 280 PDF objects out of 1000 (max. 8388607)
- 169 compressed objects within 2 object streams
+ 293 PDF objects out of 1000 (max. 8388607)
+ 176 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 28266 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 28276 words of extra memory for PDF output out of 29859 (max. 10000000)
 

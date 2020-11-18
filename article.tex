@@ -536,6 +536,88 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 	To minimize this distance, we find a profile $q_i(a)$ that maximizes the quantity $\sum_{\alpha} \delta_{s^\alpha_i, a}q_\alpha$ for each position $i$. It is clear that this is done by assigning a value $q_i(a)=1$ if $a$ maximizes $p_i(a)$, and $q_i(a)=0$ otherwise. Thus, the profile of the predictor must be that of the consensus sequence, which is only possible if the predictor becomes $\{\sigma^{cons},1\}$.
 % subsection predictor_based_on_the_local_lbi_maxima (end)
 
+\subsection{Correcting for nested mutations} % (fold)
+\label{sub:correcting_for_nested_mutations}
+
+The analysis of the main text computes probabilities of fixation assuming that all trajectories are independent. 
+However, it is well-known that mutations in infleunza viruses are nested: they appear on backgrounds that already carry other mutations. 
+Since mutations appearing on the same genomes will jointly fix or disappear, many frequency trajectories are not independent but correlated. 
+In order to compensate for potential biases due to this effect, we attempted to cluster trajectories based on similarity in their strain composition. 
+Our aim is that two trajectories corresponding to mutations appearing mostly on the same genomes will be grouped in the same cluster. 
+We then conduct the same analysis as in the main text on a set of \emph{effectively independent} trajectories constructed by taking one trajectory from each cluster. 
+
+In order to perform clustering, we define a distance between trajectories. 
+A frequency trajectory $X$ is characterized by a series of frequency values and a time interval $T$. 
+$f(t)$ for $t\in T$ corresponds to the frequency at which a given mutation $x$ appears in the population at date $t$, and we define $S(t)$ as the strains that carry mutation $x$ at date $t$. 
+With this notation, $f(t)$ is the ratio of the number of elements in $S(t)$ to the total number of strains at date $t$. 
+Let us now consider two frequency trajectories $X_1$ and $X_2$. \\
+We define the distance $d(X_1,X_2)$ between these two trajectories based on the average similarity of the strains $S_1$ and $S_2$ that compose them: 
+$$ d(X_1,X_2) = \frac{1}{\vert T_1\cap T_2\vert}\sum_{t\in T_1\cap T_2} \frac{\vert S_1(t)\cap S_2(t)\vert}{\vert S_1(t)\cup S_2(t)\vert}, $$ 
+where $T_1\cap T_2$ is the time interval where both trajectories are active, and $\vert\cdot\vert$ denotes the number of elements of a set. 
+The quantity summed corresponds to the Jaccard index between strains composing $X_1$ and $X_2$ at a given date. 
+It is 1 if the two trajectories share exactly the same strains for this date, and 0 if they share no strain at all.  
+This leads to the two following properties of $d$: 
+\begin{itemize}
+	\item if $d(X_1,X_2)=0$, then $X_1$ and $X_2$ represent the same frequency trajectory. The mutations $x_1$ and $x_2$ that they correpond to always appear on the same strains and are totally linked.
+	\item if $d(X_1,X_2)=1$, then $X_1$ and $X_2$ can be considered completely independent. This can be the case if the two trajectories do not occur at the same dates, *i.e.* $\vert T_1\cap T_2\vert=0$, or if their respective mutations are never present on the same genomes.  
+\end{itemize} 
+
+we attempt to reduce the potential statistical bias due to the nesting of trajectories by grouping them based on the above defined distance. 
+Given a set of trajectories $\{X\}$, we perform a decomposition of $\{X\}$ into disjoint clusters $C_1(d^\star)\cup\ldots\cup C_n(d^\star)=\{X\}$ where $d^\star$ is an arbitrary threshold distance. 
+Clusters are built in such a way that given two trajectories $X_i$ and $X_j$
+$$ d(X_i,X_j) \leq d^\star \Rightarrow \exists k: X_i,X_j\in C_k $$
+and
+$$ X_i\in C_k \Rightarrow \exists j\in C_k: d(X_i,X_j) \leq d^\star. $$
+These condition imply that the clusters formed are the minimal ones that guarantee that any two trajectories closer than the threshold distance $d^\star$ belong to the same cluster. 
+The number of clusters $n$ depends on the chosen value for $d^\star$.  
+
+We compute clusters for different values of $d^\star$ for the case of the HA gene in A/H3N2. 
+The top panel of figure \sref{fig:cluster_examples} shows the number cluster $n$ as a function of $d^\star$. 
+In the $d^\star=0$ case, only trajectories that are exactly identical in terms of strain composition are clustered together. 
+In this case, our clustering amounts to counting mutations that appear on exactly the same strains as one, reducing the number of effective trajectories from 800 to slightly less than 700. 
+For higher values of $d^\star$, the number of clusters steadily goes down until it reaches 1 for $d^\star=1$, which is the maximum value of the distance $d(X_1,X_2)$. 
+The sharp drop in $n$ for $d^\star=0.5$ is explained by the high number of very short (typically one time point) and low frequency trajectories that share one out of two strains. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/clusters_examples.png}
+	\caption{\textbf{Top}: Left-axis: number $n$ of clusters as a function of the threshold distance $d^\star$. The total number of trajectories is shown as a flat orange line. Right-axis: average size of clusters as a function of $d^\star$. \textbf{Bottom}: Examples of clusters for four values of $d^\star$. The four clusters displayed are the ones to which mutation HA1:33R belongs to. }
+	\label{fig:cluster_examples}
+\end{figure}
+
+Since the choice of $d^\star$ is arbitrary and since no particular value can be chosen based on the number of clusters $n(d^\star)$, we decide to test our clustering strategy for five values, namely $d^\star\in\{0, 0.05, 0.1, 0.2, 0.49\}$.
+The bottom panel of figure \sref{fig:cluster_examples} shows examples of a cluster for the four non-zero values of $d^\star$. 
+The cluster displayed in each case is the one containing the mutation HA1:33R. 
+As $d^\star$ increases, more and more unlike trajectories are grouped together. 
+In the case $d^\star=0.49$, the cluster consists of 13 trajectories, 5 of which end up dying while the rest fix. 
+Since such a high value of $d^\star$ results in grouping trajectories that do not have the same fate (fixation or death), we decide to exclude it from the rest of the analysis, resulting in four remaining values $d^\star\in\{0, 0.05, 0.1, 0.2\}$. \\
+
+Once clustering is performed, we re-conduct the analysis of the main text on a set of effective trajectories. 
+This set is constructed by taking one trajectory at random from each cluster. 
+Effective trajectories are then considered independent from each other. 
+The left panel of figure \sref{fig:pfix_v_freq_clusters} shows the fixation probability of trajectories as a function of their frequency for different values of $d^\star$, for the HA gene of A/H3N2.
+The result obtained in panel A of figure \ref{fig:fix_loss_active} of the main text is also showed as a reference. 
+For the three lower values of $d^\star$, results do not differ from the one obtained in the main text, even though the number of trajectories in each frequency bin has dropped as can be seen in the right panel of figure \sref{fig:pfix_v_freq_clusters}. 
+This indicates that grouping together trajectories that share most of their strains, and are thus very correlated, does not modify the computed fixation probability in any way. 
+For the higher value $d^\star=0.2$, fixation probability drops slightly across all frequency bins, suggesting that fixating trajectories tend to be grouped together more frequently. 
+However, this drop remains of limited amplitude. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/Pfix_v_freq_clustering_panel.png}
+	\caption{\textbf{Left}: Fixation probability of trajectories as a function of probability for four values of $d^\star$. The reference curve is the same as in panel A of figure \ref{fig:fix_loss_active} for the HA gene. For readability, error bars are only displayed for the reference curve. \textbf{Bottom}: Number of trajectories in each frequency bin corresponding to the left panel.}
+	\label{fig:pfix_v_freq_clusters}
+\end{figure}
+
+Overall, this analysis leads us to think that even though mutations in influenza may be nested, considering trajectories as independent does not result in strong statistical biases. 
+Indeed, clustering similar trajectories together does significantly modify results presented in the main text.   
+
+
+
+
+% subsection correcting_for_nested_mutations (end)
+
+
 \subsection{Biases in frequency estimations} % (fold)
 \label{sub:biases_in_frequency_estimations}
 
