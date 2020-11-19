@@ -11,11 +11,12 @@
 \definecolor{purple}{rgb}{0.459,0.109,0.538}
 \definecolor{deepsaffron}{rgb}{1.0, 0.6, 0.2}
 \newcommand{\Richard}[1]{{\color{drab}Richard: #1}}
-\newcommand{\refa}[1]{\textbf{R1:} #1}
-\newcommand{\refb}[1]{\textbf{R2:} #1}
-\newcommand{\editor}[1]{\textbf{Editor:} #1}
+\newcommand{\refa}[1]{\textbf{R1:} #1\vskip 5mm}
+\newcommand{\refb}[1]{\textbf{R2:} #1\vskip 5mm}
+\newcommand{\editor}[1]{\textbf{Editor:} #1\vskip 5mm}
 %\newcommand{\criticism}[1]{\textbf{Criticism:} #1}
-\newcommand{\response}[1]{{\it {\color{response}\textbf{Response:} #1}}}
+\newcommand{\response}[1]{{\it {\color{response}\textbf{Response:} #1}}\vskip 5mm}
+\newcommand{\responsedraft}[1]{{\it {\color{purple}\textbf{ResponseDraft:} #1}}}
 
 
 \begin{document}
@@ -55,12 +56,25 @@ value of the starting frequency.}
 \refa{1.1. Mutations in influenza are highly nested, with a substantial
 hitch-hiking, and no attempt is made to disentangle such dependencies when counting the mutations.}
 
+\response{This is a good suggestion, and we agree with reviewer 1 that our original manuscript lacked a method to disentangle nested mutations. \\
+We added a new section in the Supplementary Material where we attempt to cluster together trajectories of mutations that partly appear on the same strains. 
+Trajectories corresponding to mutations always or often appearing on the same strains are then counted as one "effective" trajectory. 
+However, this new way of counting mutations does not significantly change our results, and as a consequence we left the figures of main text unchanged.}
+
 \refa{1.2 Despite the more general formulation in the beginning, this
 approach makes use only of the last time point in the trajectory,
 rather than the full trace (contrary to the work of Illingworth\&
 Mustonen). I find the observed neutral-like statistics not surprising
 for such a limited data input, which doesn't capture past frequency dynamics. Therefore, these conclusions should be
 revisited and benchmarked against the more general implementation of Illingworth\&Mustonen-like approach.}
+
+\responsedraft{
+	\begin{itemize}
+		\item Illingworth\&Mustonen do not do prediction. They fit complete frequency trajectories using two models (no linkage and linkage), and find that only one of the two is able to deliver a good fit. The conclusion is that linkage is a dominant effect for shape of trajectories. 
+		\item We could indeed make an attempt at modeling the initial shape of a frequency trajectory until the point where a prediction (fixation/loss) is made. However, we feel that a strong point of our approach is to be modeling-free. 
+		\item Simulations of populations evolving without recombination show that even without modeling, the fixation probability of a rising trajectory is higher than its frequency at the time when the prediction is made. Our claim is only that observations in A/H3N2 influenza differ both from what is typically expected the theory of evolving populations and from simulations. In particular, we do claim not that the trajectories are intrisically unpredictable. 
+	\end{itemize}
+}
 
 \refa{2. The authors examined the predictive power of one predictive
 method, the LBI. However, they did not do a systematic comparison of
@@ -90,7 +104,9 @@ I appreciate this study, I think it will be of interest to many readers and it i
 \refb{3. Question: what do these results mean for vaccines? How to decide which strains to use for vaccines? This may be known to those who work on Influenza, but for a relative outsider it is not clear. }
 
 \refb{4. Question: at what point is it expected that the vaccine itself will influence frequency trajectories? See Wen et al Biorxiv 2020}
-\response{We should mention Wen \emph{et. al.} MDPI-Viruses 2018: \emph{Estimating Vaccine-Driven Selection in Seasonal Influenza}. }
+\responsedraft{We should mention Wen \emph{et. al.} MDPI-Viruses 2018: \emph{Estimating Vaccine-Driven Selection in Seasonal Influenza}. 
+The answer is that yes it's expected that vaccine influence frequency trajectories to some extent, but it is very hard to measure in practice. 
+The above paper attempted to measure this, and did not find clear-cut results.}
 
 \refb{Fig 1B is very hard to read. Maybe it should get more space (fig 1C could work with less space).}
 
