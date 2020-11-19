@@ -1,7 +1,7 @@
 \documentclass[reprint,amsmath,amssymb,superscriptaddress,showpacs,rmp]{revtex4-1}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /dev/fd/63    Tue Nov 17 14:39:51 2020
-%DIF ADD article.tex   Tue Nov 17 13:09:52 2020
+%DIF DEL /dev/fd/63    Thu Nov 19 18:44:44 2020
+%DIF ADD article.tex   Thu Nov 19 18:10:24 2020
 
 
 
@@ -22,7 +22,11 @@
 \usepackage{lineno}
 \usepackage{enumitem}
 \usepackage{csvsimple}
-% \linenumbers
+%DIF 22c22
+%DIF < % \linenumbers
+%DIF -------
+\linenumbers %DIF > 
+%DIF -------
 
 \newcommand{\RAN}[1]{{\color{blue}Richard: #1}}
 \newcommand{\pierre}[1]{{\color{red}Pierre: #1}}
@@ -403,7 +407,8 @@ This lead us to conclude that (i) influenza virus evolution is qualitatively dif
 The primary focus in this work was the investigation of frequency trajectories of new amino acid mutations.  
 In the short term, we found that on average the direction of trajectory does not persist for longer than a few months. 
 Indeed, the average trajectory in figure \ref{fig:trajectories} takes a sharp turn when going from $t<0$ to $t>0$, instead of showing ``inertia''. 
-This suggests that selective sweeps are not representative of typical trajectories. 
+This suggests that selective sweeps are not representative of typical trajectories. \DIFaddbegin \pierre{We could cite the Illingworth paper here. They do show that as well, in a different way. The fact many trajectories are not sweeps is expected when there is strong linkage. What cannot be easily explained by linkage only is the complete lack of inertia on average (at least I think?), and the $P_{fix}(f)=f$. }
+\DIFaddend 
 
 On a longer timescale, we investigated the probability that a novel mutation observed at frequency $f$ fixes.
 In neutral models of evolution this probability equals $f$, while it should be higher or lower than $f$ for mutations with a beneficial or deleterious effect on fitness, respectively.
@@ -432,7 +437,7 @@ The low power to predict frequency dynamics or fixation naturally triggers the q
 Picking representatives of the future and predicting frequency dynamics are distinct objectives and success at the former (as compared to random picks) is not necessarily inconsistent with a lack of predictable dynamics.
 In fact, \citep{huddleston_integrating_2020} reports that the rate at which the frequency of a strain changes is often a poor predictor -- consistent with our observations here.
 But despite the fact that future frequencies are not predicted by the LBI, the strain with the highest LBI in the population is a better predictor of the future population than a randomly picked one.
-While the LBI was shown to be a correlate of relative fitness and be predictive of fixation in mathematical models of evolution \citep{neher_predicting_2014}, it does not seem to be predict influenza evolution because it measures fitness from genealogical structure.
+While the LBI was shown to be a correlate of relative fitness and be predictive of fixation in mathematical models of evolution \citep{neher_predicting_2014}, it does not seem to be \DIFdelbegin \DIFdel{predict }\DIFdelend \DIFaddbegin \DIFadd{predictive of }\DIFaddend influenza evolution because it measures fitness from genealogical structure.
 Instead, we believe it picks closer than average strains simply because it has the tendency to be maximal at the base of large and dense clades. 
 These basal genotypes are closer to the future populations than the current tips of the tree and hence a better predictor on average.
 The consensus sequence of all present strains performs slightly but consistently better than picking the strain with the highest LBI. 
@@ -595,6 +600,141 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 	$$ q_i(a) = \sum_{\alpha} \delta_{s^\alpha_i, a}q_\alpha.$$
 	To minimize this distance, we find a profile $q_i(a)$ that maximizes the quantity $\sum_{\alpha} \delta_{s^\alpha_i, a}q_\alpha$ for each position $i$. It is clear that this is done by assigning a value $q_i(a)=1$ if $a$ maximizes $p_i(a)$, and $q_i(a)=0$ otherwise. Thus, the profile of the predictor must be that of the consensus sequence, which is only possible if the predictor becomes $\{\sigma^{cons},1\}$.
 % subsection predictor_based_on_the_local_lbi_maxima (end)
+\DIFaddbegin 
+
+\subsection{\DIFadd{Correcting for nested mutations}} %DIF >  (fold)
+\label{sub:correcting_for_nested_mutations}
+
+\DIFadd{The analysis of the main text computes probabilities of fixation assuming that all trajectories are independent. 
+However, it is well-known that mutations in infleunza viruses are nested: they appear on backgrounds that already carry other mutations. 
+Since mutations appearing on the same genomes will jointly fix or disappear, many frequency trajectories are not independent but correlated. 
+In order to compensate for potential biases due to this effect, we attempted to cluster trajectories based on similarity in their strain composition. 
+Our aim is that two trajectories corresponding to mutations appearing mostly on the same genomes will be grouped in the same cluster. 
+We then conduct the same analysis as in the main text on a set of }\emph{\DIFadd{effectively independent}} \DIFadd{trajectories constructed by taking one trajectory from each cluster. 
+}
+
+\DIFadd{In order to perform clustering, we define a distance between trajectories. 
+A frequency trajectory $X$ is characterized by a series of frequency values and a time interval $T$. 
+$f(t)$ for $t\in T$ corresponds to the frequency at which a given mutation $x$ appears in the population at date $t$, and we define $S(t)$ as the strains that carry mutation $x$ at date $t$. 
+With this notation, $f(t)$ is the ratio of the number of elements in $S(t)$ to the total number of strains at date $t$. 
+Let us now consider two frequency trajectories $X_1$ and $X_2$. }\\
+\DIFadd{We define the distance $d(X_1,X_2)$ between these two trajectories based on the average similarity of the strains $S_1$ and $S_2$ that compose them: 
+}$$ \DIFadd{d(X_1,X_2) = \frac{1}{\vert T_1\cap T_2\vert}\sum_{t\in T_1\cap T_2} \frac{\vert S_1(t)\cap S_2(t)\vert}{\vert S_1(t)\cup S_2(t)\vert}, }$$ 
+\DIFadd{where $T_1\cap T_2$ is the time interval where both trajectories are active, and $\vert\cdot\vert$ denotes the number of elements of a set. 
+The quantity summed corresponds to the Jaccard index between strains composing $X_1$ and $X_2$ at a given date. 
+It is 1 if the two trajectories share exactly the same strains for this date, and 0 if they share no strain at all.  
+This leads to the two following properties of $d$: 
+}\begin{itemize}
+	\item \DIFadd{if $d(X_1,X_2)=0$, then $X_1$ and $X_2$ represent the same frequency trajectory. The mutations $x_1$ and $x_2$ that they correpond to always appear on the same strains and are totally linked.
+	}\item \DIFadd{if $d(X_1,X_2)=1$, then $X_1$ and $X_2$ can be considered completely independent. This can be the case if the two trajectories do not occur at the same dates, *i.e.* $\vert T_1\cap T_2\vert=0$, or if their respective mutations are never present on the same genomes.  
+}\end{itemize} 
+
+\DIFadd{we attempt to reduce the potential statistical bias due to the nesting of trajectories by grouping them based on the above defined distance. 
+Given a set of trajectories $\{X\}$, we perform a decomposition of $\{X\}$ into disjoint clusters $C_1(d^\star)\cup\ldots\cup C_n(d^\star)=\{X\}$ where $d^\star$ is an arbitrary threshold distance. 
+Clusters are built in such a way that given two trajectories $X_i$ and $X_j$
+}$$ \DIFadd{d(X_i,X_j) \leq d^\star \Rightarrow \exists k: X_i,X_j\in C_k }$$
+\DIFadd{and
+}$$ \DIFadd{X_i\in C_k \Rightarrow \exists j\in C_k: d(X_i,X_j) \leq d^\star. }$$
+\DIFadd{These condition imply that the clusters formed are the minimal ones that guarantee that any two trajectories closer than the threshold distance $d^\star$ belong to the same cluster. 
+The number of clusters $n$ depends on the chosen value for $d^\star$.  
+}
+
+\DIFadd{We compute clusters for different values of $d^\star$ for the case of the HA gene in A/H3N2. 
+The top panel of figure \sref{fig:cluster_examples} shows the number cluster $n$ as a function of $d^\star$. 
+In the $d^\star=0$ case, only trajectories that are exactly identical in terms of strain composition are clustered together. 
+In this case, our clustering amounts to counting mutations that appear on exactly the same strains as one, reducing the number of effective trajectories from 800 to slightly less than 700. 
+For higher values of $d^\star$, the number of clusters steadily goes down until it reaches 1 for $d^\star=1$, which is the maximum value of the distance $d(X_1,X_2)$. 
+The sharp drop in $n$ for $d^\star=0.5$ is explained by the high number of very short (typically one time point) and low frequency trajectories that share one out of two strains. 
+}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/clusters_examples.png}
+	\caption{\textbf{\DIFaddFL{Top}}\DIFaddFL{: Left-axis: number $n$ of clusters as a function of the threshold distance $d^\star$. The total number of trajectories is shown as a flat orange line. Right-axis: average size of clusters as a function of $d^\star$. }\textbf{\DIFaddFL{Bottom}}\DIFaddFL{: Examples of clusters for four values of $d^\star$. The four clusters displayed are the ones to which mutation HA1:33R belongs to. }}
+	\label{fig:cluster_examples}
+\end{figure}
+
+\DIFadd{Since the choice of $d^\star$ is arbitrary and since no particular value can be chosen based on the number of clusters $n(d^\star)$, we decide to test our clustering strategy for five values, namely $d^\star\in\{0, 0.05, 0.1, 0.2, 0.49\}$.
+The bottom panel of figure \sref{fig:cluster_examples} shows examples of a cluster for the four non-zero values of $d^\star$. 
+The cluster displayed in each case is the one containing the mutation HA1:33R. 
+As $d^\star$ increases, more and more unlike trajectories are grouped together. 
+In the case $d^\star=0.49$, the cluster consists of 13 trajectories, 5 of which end up dying while the rest fix. 
+Since such a high value of $d^\star$ results in grouping trajectories that do not have the same fate (fixation or death), we decide to exclude it from the rest of the analysis, resulting in four remaining values $d^\star\in\{0, 0.05, 0.1, 0.2\}$. }\\
+
+\DIFadd{Once clustering is performed, we re-conduct the analysis of the main text on a set of effective trajectories. 
+This set is constructed by taking one trajectory at random from each cluster. 
+Effective trajectories are then considered independent from each other. 
+The left panel of figure \sref{fig:pfix_v_freq_clusters} shows the fixation probability of trajectories as a function of their frequency for different values of $d^\star$, for the HA gene of A/H3N2.
+The result obtained in panel A of figure \ref{fig:fix_loss_active} of the main text is also showed as a reference. 
+For the three lower values of $d^\star$, results do not differ from the one obtained in the main text, even though the number of trajectories in each frequency bin has dropped as can be seen in the right panel of figure \sref{fig:pfix_v_freq_clusters}. 
+This indicates that grouping together trajectories that share most of their strains, and are thus very correlated, does not modify the computed fixation probability in any way. 
+For the higher value $d^\star=0.2$, fixation probability drops slightly across all frequency bins, suggesting that fixating trajectories tend to be grouped together more frequently. 
+However, this drop remains of limited amplitude. 
+}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/Pfix_v_freq_clustering_panel.png}
+	\caption{\textbf{\DIFaddFL{Left}}\DIFaddFL{: Fixation probability of trajectories as a function of probability for four values of $d^\star$. The reference curve is the same as in panel A of figure \ref{fig:fix_loss_active} for the HA gene. For readability, error bars are only displayed for the reference curve. }\textbf{\DIFaddFL{Bottom}}\DIFaddFL{: Number of trajectories in each frequency bin corresponding to the left panel.}}
+	\label{fig:pfix_v_freq_clusters}
+\end{figure}
+
+\DIFadd{Overall, this analysis leads us to think that even though mutations in influenza may be nested, considering trajectories as independent does not result in strong statistical biases. 
+Indeed, clustering similar trajectories together does significantly modify results presented in the main text.   
+}
+
+
+
+
+%DIF >  subsection correcting_for_nested_mutations (end)
+
+\subsection{\DIFadd{Ability of fitness models to predict fixation}} %DIF >  (fold)
+\label{sub:ability_of_fitness_models_to_predict_fixation}
+
+\DIFadd{In a companion article \mbox{%DIFAUXCMD
+\citep{huddleston_integrating_2020}}\hspace{0pt}%DIFAUXCMD
+, authors developed several models to predict the future HA population for A/H3N2 influenza. 
+The premise of these models is to assign a fitness score to the HA gene of each A/H3N2 strain in a given year, and to then apply deterministic evolutionary equations to obtain the future strain composition. 
+The fitness scores are derived from several quantities that have been shown to be connected with viral fitness. 
+}
+
+\DIFadd{Here, we assess the ability of four fitness scores computed in \mbox{%DIFAUXCMD
+\citep{huddleston_integrating_2020} }\hspace{0pt}%DIFAUXCMD
+to predict fixation: mutational load and epitope antigenic novelty introduced in \mbox{%DIFAUXCMD
+\citep{luksza_predictive_2014}}\hspace{0pt}%DIFAUXCMD
+, hemagglutination inhibition (HI) antigenic novelty \mbox{%DIFAUXCMD
+\citep{neher_prediction_2016} }\hspace{0pt}%DIFAUXCMD
+and the previously mentioned Local Branching Index (LBI) \mbox{%DIFAUXCMD
+\citep{neher_predicting_2014}}\hspace{0pt}%DIFAUXCMD
+. 
+Figure \sref{fig:pfix_v_freq_indivjohnsmodels} shows fixation probability for HA mutations with fitness scores in the top or bottom half of the fitness distribution for the four fitness measures. 
+}\pierre{Maybe use delta-frequency instead of epitope mutations? They behave weirdly (high fitness is worse), and delta-frequency uses more than the last time point in the trajectory, which may partly answer one point of Rev1.}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/pfix_v_freq_indivJohnsmodels.png}
+	\caption{\DIFaddFL{Ability of fitness scores based on }\textbf{\DIFaddFL{A}} \DIFaddFL{LBI, }\textbf{\DIFaddFL{B}} \DIFaddFL{HI titer, }\textbf{\DIFaddFL{C}} \DIFaddFL{mutational load and }\textbf{\DIFaddFL{D}} \DIFaddFL{epitope antigenic novelty to predict fixation of mutation frequency trajectories in the HA gene of A/H3N2. Similar to figure \ref{fig:pfix_stratified} of the main text.}}
+	\label{fig:pfix_v_freq_indivjohnsmodels}
+\end{figure}
+
+\DIFadd{Next, we use two fitness scores based on linear combinations of the following quantities: mutational load + LBI and mutational load + HI antigenic novelty. 
+These two combinations were found in \mbox{%DIFAUXCMD
+\citep{huddleston_integrating_2020} }\hspace{0pt}%DIFAUXCMD
+to be the best predictors of future population. 
+The coefficients of the linear combinations were trained each year using the five previous years of data, and here we use their average value over a 25 years training period. 
+}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/pfix_v_freq_combiJohnsmodels.png}
+	\caption{\DIFaddFL{Ability of fitness scores based on two combinations of the four fitness scores mentioned above: }\textbf{\DIFaddFL{A}} \DIFaddFL{mutational load + LBI; }\textbf{\DIFaddFL{B}} \DIFaddFL{mutational load + HI titer.}}
+	\label{fig:pfix_v_freq_combijohnsmodels}
+\end{figure}
+
+
+%DIF >  subsection ability_of_fitness_models_to_predict_fixation (end)
+\DIFaddend 
+
 
 \subsection{Biases in frequency estimations} % (fold)
 \label{sub:biases_in_frequency_estimations}
