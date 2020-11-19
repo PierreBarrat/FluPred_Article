@@ -372,7 +372,7 @@ The low power to predict frequency dynamics or fixation naturally triggers the q
 Picking representatives of the future and predicting frequency dynamics are distinct objectives and success at the former (as compared to random picks) is not necessarily inconsistent with a lack of predictable dynamics.
 In fact, \citep{huddleston_integrating_2020} reports that the rate at which the frequency of a strain changes is often a poor predictor -- consistent with our observations here.
 But despite the fact that future frequencies are not predicted by the LBI, the strain with the highest LBI in the population is a better predictor of the future population than a randomly picked one.
-While the LBI was shown to be a correlate of relative fitness and be predictive of fixation in mathematical models of evolution \citep{neher_predicting_2014}, it does not seem to be predict influenza evolution because it measures fitness from genealogical structure.
+While the LBI was shown to be a correlate of relative fitness and be predictive of fixation in mathematical models of evolution \citep{neher_predicting_2014}, it does not seem to be predictive of influenza evolution because it measures fitness from genealogical structure.
 Instead, we believe it picks closer than average strains simply because it has the tendency to be maximal at the base of large and dense clades. 
 These basal genotypes are closer to the future populations than the current tips of the tree and hence a better predictor on average.
 The consensus sequence of all present strains performs slightly but consistently better than picking the strain with the highest LBI. 
@@ -616,6 +616,38 @@ Indeed, clustering similar trajectories together does significantly modify resul
 
 
 % subsection correcting_for_nested_mutations (end)
+
+\subsection{Ability of fitness models to predict fixation} % (fold)
+\label{sub:ability_of_fitness_models_to_predict_fixation}
+
+In a companion article \citep{huddleston_integrating_2020}, authors developed several models to predict the future HA population for A/H3N2 influenza. 
+The premise of these models is to assign a fitness score to the HA gene of each A/H3N2 strain in a given year, and to then apply deterministic evolutionary equations to obtain the future strain composition. 
+The fitness scores are derived from several quantities that have been shown to be connected with viral fitness. 
+
+Here, we assess the ability of four fitness scores computed in \citep{huddleston_integrating_2020} to predict fixation: mutational load and epitope antigenic novelty introduced in \citep{luksza_predictive_2014}, hemagglutination inhibition (HI) antigenic novelty \citep{neher_prediction_2016} and the previously mentioned Local Branching Index (LBI) \citep{neher_predicting_2014}. 
+Figure \sref{fig:pfix_v_freq_indivjohnsmodels} shows fixation probability for HA mutations with fitness scores in the top or bottom half of the fitness distribution for the four fitness measures. 
+\pierre{Maybe use delta-frequency instead of epitope mutations? They behave weirdly (high fitness is worse), and delta-frequency uses more than the last time point in the trajectory, which may partly answer one point of Rev1.}
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/pfix_v_freq_indivJohnsmodels.png}
+	\caption{Ability of fitness scores based on \textbf{A} LBI, \textbf{B} HI titer, \textbf{C} mutational load and \textbf{D} epitope antigenic novelty to predict fixation of mutation frequency trajectories in the HA gene of A/H3N2. Similar to figure \ref{fig:pfix_stratified} of the main text.}
+	\label{fig:pfix_v_freq_indivjohnsmodels}
+\end{figure}
+
+Next, we use two fitness scores based on linear combinations of the following quantities: mutational load + LBI and mutational load + HI antigenic novelty. 
+These two combinations were found in \citep{huddleston_integrating_2020} to be the best predictors of future population. 
+The coefficients of the linear combinations were trained each year using the five previous years of data, and here we use their average value over a 25 years training period. 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.5]{Rev_figures/pfix_v_freq_combiJohnsmodels.png}
+	\caption{Ability of fitness scores based on two combinations of the four fitness scores mentioned above: \textbf{A} mutational load + LBI; \textbf{B} mutational load + HI titer.}
+	\label{fig:pfix_v_freq_combijohnsmodels}
+\end{figure}
+
+
+% subsection ability_of_fitness_models_to_predict_fixation (end)
 
 
 \subsection{Biases in frequency estimations} % (fold)
