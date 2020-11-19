@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.6)  18 NOV 2020 18:44
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2019.2.6)  19 NOV 2020 13:16
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -719,7 +719,7 @@ File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman
 )
 Class revtex4-1 Info: Overriding lineo.sty, restoring output routine, on input 
 line 32.
-Class revtex4-1 Info: Line numbering not turned on yet on input line 32.
+Class revtex4-1 Info: Reinvoke \linenumbers on input line 32.
 \openout3 = `articleNotes.bib'.
 
 Class revtex4-1 Info: Overriding \@LN@LLerror on input line 32.
@@ -758,17 +758,26 @@ Underfull \hbox (badness 2197) in paragraph at lines 77--84
  []
 
 [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2]
-<./Figures/Panel1.png, id=26, 925.056pt x 925.056pt>
+<./Figures/Panel1.png, id=26, 925.056pt x 1156.32pt>
 File: ./Figures/Panel1.png Graphic file (type png)
 <use ./Figures/Panel1.png>
 Package pdftex.def Info: ./Figures/Panel1.png  used on input line 170.
-(pdftex.def)             Requested size: 458.99689pt x 458.99806pt.
+(pdftex.def)             Requested size: 458.99689pt x 573.74759pt.
+
+
+LaTeX Warning: Float too large for page by 6.74759pt on input line 173.
+
 <./Figures/Panel2.png, id=28, 1110.0672pt x 901.9296pt>
 File: ./Figures/Panel2.png Graphic file (type png)
 <use ./Figures/Panel2.png>
 Package pdftex.def Info: ./Figures/Panel2.png  used on input line 185.
 (pdftex.def)             Requested size: 458.99689pt x 372.93134pt.
- [3] [4 <./Figures/Panel1.png>] [5 <./Figures/Panel2.png>]
+[3] [4 <./Figures/Panel1.png>]
+
+LaTeX Warning: A float is stuck (cannot be placed); try class option [floatfix]
+ on input line 210.
+
+[5 <./Figures/Panel2.png>]
 Underfull \hbox (badness 1810) in paragraph at lines 237--242
 []\OT1/cmr/m/n/10 (+20) We con-duct the same anal-y-sis on A/H1N1pdm
  []
@@ -804,7 +813,7 @@ Underfull \hbox (badness 2469) in paragraph at lines 399--404
 om / PierreBarrat /
  []
 
-[10] (./article.bbl [11]
+[10] [11] (./article.bbl
 Underfull \hbox (badness 10000) in paragraph at lines 9--12
  []\OT1/cmr/m/n/9 (+20) World Health Or-ga-ni-za-tion, 2018.  URL $\OT1/cmtt/m/
 n/9 https :
@@ -883,7 +892,8 @@ Underfull \hbox (badness 10000) in paragraph at lines 588--594
 
  []
 
-<Rev_figures/Pfix_v_freq_clustering_panel.png, id=90, 1110.0672pt x 555.0336pt>
+[16]
+<Rev_figures/Pfix_v_freq_clustering_panel.png, id=93, 1110.0672pt x 555.0336pt>
 
 File: Rev_figures/Pfix_v_freq_clustering_panel.png Graphic file (type png)
 <use Rev_figures/Pfix_v_freq_clustering_panel.png>
@@ -895,7 +905,7 @@ Overfull \hbox (45.03224pt too wide) in paragraph at lines 607--608
  [][] 
  []
 
-[16] [17 <./Rev_figures/clusters_examples.png>]
+[17 <./Rev_figures/clusters_examples.png>]
 <SM_figures/frequency_biases.png, id=98, 925.056pt x 462.528pt>
 File: SM_figures/frequency_biases.png Graphic file (type png)
 <use SM_figures/frequency_biases.png>
@@ -1027,11 +1037,11 @@ eospread_and_time_h3n2.png> <./SM_figures/geospread_and_time_h1n1pdm.png>]
 >] [36 <./SM_figures/simulation.png>] [37 <./SM_figures/simulation_fitness.png>
 ] (./article.aux) ) 
 Here is how much of TeX's memory you used:
- 8648 strings out of 492982
- 136045 string characters out of 6134897
- 307714 words of memory out of 5000000
- 11771 multiletter control sequences out of 15000+600000
- 24091 words of font info for 186 fonts, out of 8000000 for 9000
+ 8655 strings out of 492982
+ 136145 string characters out of 6134897
+ 307907 words of memory out of 5000000
+ 11777 multiletter control sequences out of 15000+600000
+ 24689 words of font info for 188 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,17n,46p,1347b,373s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
@@ -1062,10 +1072,10 @@ cm/cmsy9.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 hare/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb></usr/share/t
 exlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt9.pfb></usr/share/texlive/
 texmf-dist/fonts/type1/public/amsfonts/cm/cmu10.pfb>
-Output written on article.pdf (37 pages, 4750012 bytes).
+Output written on article.pdf (37 pages, 4999189 bytes).
 PDF statistics:
  293 PDF objects out of 1000 (max. 8388607)
  176 compressed objects within 2 object streams
  0 named destinations out of 1000 (max. 500000)
- 28276 words of extra memory for PDF output out of 29859 (max. 10000000)
+ 29300 words of extra memory for PDF output out of 29859 (max. 10000000)
 
