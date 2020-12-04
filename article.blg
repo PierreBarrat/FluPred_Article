@@ -6,45 +6,45 @@ Database file #1: articleNotes.bib
 Database file #2: references.bib
 Warning--entry type for "WHOfactsheet" isn't style-file defined
 --line 585 of file references.bib
-You've used 34 entries,
+You've used 35 entries,
             2481 wiz_defined-function locations,
-            848 strings with 14573 characters,
-and the built_in function-call counts, 16683 in all, are:
-= -- 1446
-> -- 1054
-< -- 15
-+ -- 389
-- -- 320
-* -- 1546
-:= -- 2770
-add.period$ -- 181
-call.type$ -- 34
-change.case$ -- 68
-chr.to.int$ -- 33
-cite$ -- 34
-duplicate$ -- 701
-empty$ -- 1279
-format.name$ -- 370
-if$ -- 3475
+            856 strings with 14899 characters,
+and the built_in function-call counts, 17085 in all, are:
+= -- 1488
+> -- 1069
+< -- 16
++ -- 395
+- -- 324
+* -- 1578
+:= -- 2834
+add.period$ -- 187
+call.type$ -- 35
+change.case$ -- 70
+chr.to.int$ -- 34
+cite$ -- 35
+duplicate$ -- 720
+empty$ -- 1314
+format.name$ -- 377
+if$ -- 3561
 int.to.chr$ -- 2
-int.to.str$ -- 35
-missing$ -- 32
-newline$ -- 256
-num.names$ -- 102
-pop$ -- 174
+int.to.str$ -- 36
+missing$ -- 33
+newline$ -- 264
+num.names$ -- 105
+pop$ -- 178
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 35
 quote$ -- 0
-skip$ -- 424
+skip$ -- 436
 stack$ -- 0
-substring$ -- 788
-swap$ -- 156
+substring$ -- 806
+swap$ -- 158
 text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 238
+type$ -- 245
 warning$ -- 0
-while$ -- 117
+while$ -- 121
 width$ -- 0
-write$ -- 606
+write$ -- 625
 (There was 1 warning)

@@ -117,7 +117,13 @@ This amounts to $44\,976$ HA and $36\,300$ NA sequences for A/H3N2 and $45\,350$
 
 The central quantities that we derived from this data are \emph{frequency trajectories} of amino acids at each position in the sequences. If an amino acid $X_i$ is found at position $i$ at a frequency between 5\% and 95\% in the population of a given time bin $t$, then the population is considered polymorphic at position $i$ and at time $t$. This polymorphism is characterized by the frequency of $X_i$, $f_{X_i}(t)$, and also by frequencies of other amino acids at $i$. The series of values $f_{X_i}(t)$ for contiguous time bins constitutes the frequency trajectory of $X_i$. A trajectory is terminated if the corresponding frequency is measured above 95\% (resp.~below 5\%) for two time bins in a row, in which case amino acid $X_i$ is considered as \emph{fixed} (resp.~\emph{absent}) in the population. Otherwise, the trajectory is considered \emph{active}. Examples of trajectories can be seen in figure~\sref{fig:sample_trajectories} of the Supplement.
 
-%Frequency trajectories allow a simple formulation of the above-stated questions. The short term prediction amounts to predicting the curve $f(t)$ starting from a given date $t_0$. On the other hand, the long term prediction amounts to predicting how long a trajectory will remain active, and whether it will fix or disappear when it finishes. 
+Since segments in influenza do not recombine, trajectories defined as above are sometimes heavily correlated with each other. 
+Indeed, the trajectories corresponding to two mutations that partly appear on the same background will tend to show a similar behavior. 
+In the extreme case were the two mutations always appear on the same strains, their two trajectories will be identical. 
+This ``nested'' characted or frequency trajectories may introduce biases when performing statistical analysis. 
+In section \ref{sub:correcting_for_nested_trajectories} of the SM, we attempt to correct for nested trajectories by clustering them based on the strains that compose them. 
+However, this does not significantly change the results presented below. 
+ 
 In the rest of this work, we will focus on frequency trajectories that are starting at a zero (low) frequency, \emph{i.e.} $f(t=0)=0$. 
 These represent new amino acid variants which were absent in the population at the time bin when the trajectory started and are currently rising in the population (see Methods).
 Such distinction in novel and ancestral variants is necessary to meaningfully interrogate predictability.
@@ -154,7 +160,7 @@ However, future distributions for $\Delta t >0$ do not seem to follow a pattern 
 The thick black line in Figure~\ref{fig:trajectories}B shows the average frequency of all trajectories. 
 This average makes a sharp turn at $t=0$ and is essentially flat for $t>0$ in the case of A/H3N2, and slightly increasing for A/H1N1pdm (see supplement).
 Hence, the fact that this average rose for $t<0$ gives little information for $t>0$, and is due to the conditions by which these trajectories were selected.
-This shows that sweep-like trajectories rising steadily from frequency $0$ to $1$ are not common enough to dominate the average trajectory.  
+	This shows that sweep-like trajectories rising steadily from frequency $0$ to $1$ are not common enough to dominate the average trajectory.  \pierre{This result is consistent with\citep{illingworth_components_2012}. They show that sweep-like trajectories are very bad fits to actual trajectories.}
 
 Consistent with the average, the frequency distribution of the selected trajectories broadens in time without a significant shift of the mean as time passes. 
 After 60 days, the distribution is rather symmetrical around the initial $f_0=0.3$ value, suggesting that the knowledge that the trajectories were rising is lost after two months. 
@@ -205,7 +211,7 @@ This result is exactly what is expected in a population evolving in the \emph{ab
 % The result for the neutral case is intuitive:
 A mutation or trait appearing at frequency $f$ is shared by $f\cdot N$ individuals, and the probability for one of them to become the ancestor of all the future population is $f\cdot N/N=f$. 
 Thus, the probability of this mutation or trait to fix in the population is equal to its current frequency, a case which we will refer to as the neutral expectation. 
-Panel \textbf{C} of figure~\ref{fig:fix_loss_active} indicates that mutations in the surface proteins of A/H3N2 influenza are in good agreement with the neutral expectation, while those in A/H1N1pdm show only small deviations from it. 
+Panel \textbf{C} of figure~\ref{fig:fix_loss_active} indicates that mutations in the surface proteins of A/H3N2 influenza are in good agreement with the neutral expectation, while those in A/H1N1pdm show only small deviations from it. \pierre{``limited but clear'' instead of ``small''?}
 In both cases, the probability of fixation seems to be mainly dictated by the current frequency $f$ at which the mutation is observed. 
 
 This dynamics is in apparent contradiction with evidence that influenza surface proteins are under strong selective pressure to evade human immune responses \citep{bhatt_genomic_2011}.
@@ -536,8 +542,8 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 	To minimize this distance, we find a profile $q_i(a)$ that maximizes the quantity $\sum_{\alpha} \delta_{s^\alpha_i, a}q_\alpha$ for each position $i$. It is clear that this is done by assigning a value $q_i(a)=1$ if $a$ maximizes $p_i(a)$, and $q_i(a)=0$ otherwise. Thus, the profile of the predictor must be that of the consensus sequence, which is only possible if the predictor becomes $\{\sigma^{cons},1\}$.
 % subsection predictor_based_on_the_local_lbi_maxima (end)
 
-\subsection{Correcting for nested mutations} % (fold)
-\label{sub:correcting_for_nested_mutations}
+\subsection{Correcting for nested trajectories} % (fold)
+\label{sub:correcting_for_nested_trajectories}
 
 The analysis of the main text computes probabilities of fixation assuming that all trajectories are independent. 
 However, it is well-known that mutations in infleunza viruses are nested: they appear on backgrounds that already carry other mutations. 
@@ -581,7 +587,7 @@ The sharp drop in $n$ for $d^\star=0.5$ is explained by the high number of very 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.5]{Rev_figures/clusters_examples.png}
-	\caption{\textbf{Top}: Left-axis: number $n$ of clusters as a function of the threshold distance $d^\star$. The total number of trajectories is shown as a flat orange line. Right-axis: average size of clusters as a function of $d^\star$. \textbf{Bottom}: Examples of clusters for four values of $d^\star$. The four clusters displayed are the ones to which mutation HA1:33R belongs to. }
+	\caption{\textbf{Top}: Left-axis: number $n$ of clusters as a function of the threshold distance $d^\star$. The total number of trajectories is shown as a flat orange line. Right-axis: average size of clusters as a function of $d^\star$. \textbf{Bottom}: Examples of clusters for four values of $d^\star$. The four clusters displayed are the ones to which the trajectory of mutation HA1:33R belongs. }
 	\label{fig:cluster_examples}
 \end{figure}
 
