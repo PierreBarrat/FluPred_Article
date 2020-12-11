@@ -632,22 +632,36 @@ Indeed, clustering similar trajectories together does significantly modify resul
 
 In a companion article \citep{huddleston_integrating_2020}, authors developed several models to predict the future HA population for A/H3N2 influenza.
 The premise of these models is to assign a fitness score to the HA gene of each A/H3N2 strain in a given year, and to then apply deterministic evolutionary equations to obtain the future strain composition.
-The fitness scores are derived from several quantities that have been shown to be connected with viral fitness.
+The fitness values are computed using several quantities that have been shown to be connected with viral fitness.
+Fitness depends either on a single or on two quantities, and coefficient(s) of each fitness model are trained by minimizing the earth movers distance between the observed strain population one year in the future and the estimated population produced by the model. 
+The training is performed using HA sequences from 1990 to 2015, and we consider here the models obtained by taking the average value of coefficients obtained for every year. 
 
-Here, we assess the ability of four fitness scores computed in \citep{huddleston_integrating_2020} to predict fixation: mutational load and epitope antigenic novelty introduced in \citep{luksza_predictive_2014}, hemagglutination inhibition (HI) antigenic novelty \citep{neher_prediction_2016} and the previously mentioned Local Branching Index (LBI) \citep{neher_predicting_2014}.
-Figure \sref{fig:pfix_v_freq_indivjohnsmodels} shows fixation probability for HA mutations with fitness scores in the top or bottom half of the fitness distribution for the four fitness measures.
-\pierre{Maybe use delta-frequency instead of epitope mutations? They behave weirdly (high fitness is worse), and delta-frequency uses more than the last time point in the trajectory, which may partly answer one point of Rev1.}
+
+We first assess the ability of the four most performing fitness models based on individual scores in \citep{huddleston_integrating_2020} to predict fixation: mutational load \citep{luksza_predictive_2014}, hemagglutination inhibition (HI) antigenic novelty \citep{neher_prediction_2016}, a ``delta frequency''score based on the recent increase in frequency of clades, and the previously mentioned Local Branching Index (LBI) \citep{neher_predicting_2014}.
+Figure \sref{fig:pfix_v_freq_indivjohnsmodels} shows fixation probability for HA mutations with fitness scores in the top or bottom half of the fitness distribution for the four fitness measures. 
+
+The best performing individual score (and second overall) in \citep{huddleston_integrating_2020}, LBI, does not provide any information about fixation (figure \sref{fig:pfix_v_freq_indivjohnsmodels}\textbf{A}).
+This is consistent with the result found in figure \ref{fig:pfix_stratified} of the main text. 
+In panels \textbf{B} and \textbf{D}, we observe the same inability to predict fixation for the fitness models based on HI titer and delta frequency, which were respectively the second and third best individual scores (fifth and sixth overall) in \citep{huddleston_integrating_2020}.
+However, the score based on mutational load (panel \textbf{C}) does show a more significant predicting power, with higher fitness mutations having a $\sim 25$\% higher chance of fixing than lower fitness ones for three frequency bins in a row. 
+However, this effect vanishes for higher frequencies, with both fitter and less fit mutations having the same chance to fix. 
+
 
 \begin{figure}
 	\centering
 	\includegraphics[scale=0.5]{Rev_figures/pfix_v_freq_indivJohnsmodels.png}
-	\caption{Ability of fitness scores based on \textbf{A} LBI, \textbf{B} HI titer, \textbf{C} mutational load and \textbf{D} epitope antigenic novelty to predict fixation of mutation frequency trajectories in the HA gene of A/H3N2. Similar to figure \ref{fig:pfix_stratified} of the main text.}
+	\caption{Ability of fitness scores based on \textbf{A} LBI, \textbf{B} HI titer, \textbf{C} mutational load and \textbf{D} delta frequency, to predict fixation of mutation frequency trajectories in the HA gene of A/H3N2. Similar to figure \ref{fig:pfix_stratified} of the main text.}
 	\label{fig:pfix_v_freq_indivjohnsmodels}
 \end{figure}
 
-Next, we use two fitness scores based on linear combinations of the following quantities: mutational load + LBI and mutational load + HI antigenic novelty.
-These two combinations were found in \citep{huddleston_integrating_2020} to be the best predictors of future population.
-The coefficients of the linear combinations were trained each year using the five previous years of data, and here we use their average value over a 25 years training period.
+Next, we use two fitness models based on linear combinations of the following quantities: mutational load + LBI and mutational load + HI antigenic novelty.
+These composite models were the first and third best performing ones in \citep{huddleston_integrating_2020}. 
+Figure \sref{fig:pfix_v_freq_combijohnsmodels} again shows fixation probability for HA mutations with fitness scores above or below the median fitness value. 
+
+Both models provide some information about fixation, with the mutational load + HI model having more success for frequencies around $0.5$. 
+This observation could be explained by the fact that fitness based on HI titers alone showed some power in this same frequency range. 
+However, both models do not seem to perform significantly better than the one based on mutational load alone. 
+This is not surprising, as LBI and HI titer did not perform well as individual models. 
 
 \begin{figure}
 	\centering
@@ -655,6 +669,15 @@ The coefficients of the linear combinations were trained each year using the fiv
 	\caption{Ability of fitness scores based on two combinations of the four fitness scores mentioned above: \textbf{A} mutational load + LBI; \textbf{B} mutational load + HI titer.}
 	\label{fig:pfix_v_freq_combijohnsmodels}
 \end{figure}
+
+Combining models in \citep{huddleston_integrating_2020} typically achieved a greater performance than using single models. 
+This was the case for the mutational load + LBI model, combining the second and 7th best predictors overall to obtain the best one, and for the mutational load + HI titer model that combined the 4th and 7th best predictors to obtain the third best one.  
+However, our results indicate that the gain in capability of predicting the future strain composition obtained by combining models is not immediately transferable to the exercise of predicting fixation. 
+
+It is important to note that the prediction targets in \citep{huddleston_integrating_2020} and in the present article are not identical. 
+It is shown in figure \ref{fig:LBI_consensus} of the main text that even though LBI performs well when predicting the future strain composition, it may not be because it is indicative of fitness. 
+
+
 
 
 % subsection ability_of_fitness_models_to_predict_fixation (end)
