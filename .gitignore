@@ -1,2 +1,5 @@
 Revision/notes*.pdf
 *.log
+*.aux
+article.pdf
+diff.pdf
