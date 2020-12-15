@@ -17,7 +17,7 @@
 \newcommand{\editor}[1]{\textbf{Editor:} #1\vskip 5mm}
 %\newcommand{\criticism}[1]{\textbf{Criticism:} #1}
 \newcommand{\response}[1]{{\it {\color{response}\textbf{Response:} #1}}\vskip 5mm}
-\newcommand{\responsedraft}[1]{{\it {\color{purple}\textbf{ResponseDraft:} #1}}}
+\newcommand{\responsedraft}[1]{{\it {\color{purple}\textbf{ResponseDraft:} #1}}\vskip 5mm}
 
 
 \begin{document}
@@ -93,24 +93,24 @@ revisited and benchmarked against the more general implementation of Illingworth
 	This is why we resort to a model free approach ask what a priori information can help to determine which mutations fix or die.
 }
 
-\responsedraft{
-	We thank reviewer 1 for pointing out the work of Illingworth\&Mustonen to us, which we were unaware of. However, we believe that the method used in their article is not applicable as is in our case. To explain our thinking, we first briefly summarize the approach taken in Illingworth\&Mustonen: the authors fit two kind of models to fully known frequency trajectories:
-	\begin{itemize}
-		\item An "unlinked" model, where the fitness effect of a mutation fully determines its ultimate fixation or loss. The only trajectories that the model can produce are upward or downward sweeps, for beneficial or deleterious mutations respectively.
-		\item A "linked" model, in which the fate of a mutation is determined both by its own fitness and by the fitness of other mutations present on the genomes it appears on. This model fits actual trajectories much more accurately, which is one of the main findings of the paper.
-	\end{itemize}
-	Interestingly, both models depend on the same parameters that have to be fitted, namely the fitness effects of individual mutations. Linkage between mutations in the second model is introduced by using the measured frequencies of appearance of two mutations on the same genome. \\
-	\pierre{What I'm trying to say below
-	\begin{itemize}
-		\item Illingworth\&Mustonen don't do prediction, so there is no clear way to apply their method to our article.
-		\item Fitting the initial part of the trajectory using their models doesn't make much sense.
-		\item We want to stay model free: it's possible to find signs of selection without fitting (cf. H1N1/simulated data)
-		\item Even if we're doing something very simple, it's surprising to see neutral-like behaviour.
-	\end{itemize}}
-	We first want to point out that this approach is fundamentally different to the one of our article. Since Illingworth\&Mustonen fit models to fully known trajectories, these models cannot meaningfully be used for prediction purposes. Indeed, fitness effects of individual mutations are fitted with knowledge of the fixation or loss of the given mutation, and of the frequency of other mutations in the case of the second model. This strongly contrasts with our approach which is to find patterns of predictability of the future behaviour of frequency trajectories using past data only: \emph{e.g.} if a frequency trajectory has risen from $0$ to a frequency $f>0$, what can be said of its future shape or of its fixation? Thus, methods in Illingworth\&Mustonen are designed to answer a different question than the one we are asking in our work. \\
-	A way of reconciling the two approaches would be for us to fit the initial part of a trajectory with either model, and to use this fit to predict its future behaviour. However, we feel that this idea is not very relevant to our article for two reasons. First, neither model proposed by Illingworth\&Mustonen is really practical in our setting. The "unlinked" model only generates sweep-like trajectories, which our results show to be not representative of the "typical" trajectory (in good agreement with Illingworth\&Mustonen). The "linked" model can fit more complex trajectories, \emph{e.g.} ones that rise rapidly but ultimately die. However, it crucially depends on the frequencies of joint appearance of pairs mutations on genomes to introduce linkage. These frequencies vary through time, allowing the \emph{effective} fitness of a mutation to vary, and a trajectory to rise and then fall. In our case, these frequencies would only be known for the past, making impossible any prediction of the model. \\
-	The second reason is that we believe that our model-free approach has intrinsic benefits. [Something saying that we'd prefer not to start fitting models to  data, because it's not the point. But I'm not sure how to formulate this.] \\
-	Finally, we are aware that using only the last time point of a rising trajectory gives only limited opportunity for predicting its future. However, observing apparently-neutral statistics in the case of A/H3N2 is still surprising to us. The case of simulated populations shows that clear signs of selection can be observed by looking at basic features of trajectories (\emph{e.g.} figure S20 of the supplementary material). This is consistent with the theory of evolving population: if the only available information about a mutation is that it has risen in frequency starting from $0$, it has a higher chance on being beneficial than deleterious, and its fixation probability should be higher than what it would be in a neutral scenario. Hence, even with our very simple approach, we observe that predictability of A/H3N2 qualitatively differs from what models of adapting populations would suggest. \\}
+% \responsedraft{
+% 	We thank reviewer 1 for pointing out the work of Illingworth\&Mustonen to us, which we were unaware of. However, we believe that the method used in their article is not applicable as is in our case. To explain our thinking, we first briefly summarize the approach taken in Illingworth\&Mustonen: the authors fit two kind of models to fully known frequency trajectories:
+% 	\begin{itemize}
+% 		\item An "unlinked" model, where the fitness effect of a mutation fully determines its ultimate fixation or loss. The only trajectories that the model can produce are upward or downward sweeps, for beneficial or deleterious mutations respectively.
+% 		\item A "linked" model, in which the fate of a mutation is determined both by its own fitness and by the fitness of other mutations present on the genomes it appears on. This model fits actual trajectories much more accurately, which is one of the main findings of the paper.
+% 	\end{itemize}
+% 	Interestingly, both models depend on the same parameters that have to be fitted, namely the fitness effects of individual mutations. Linkage between mutations in the second model is introduced by using the measured frequencies of appearance of two mutations on the same genome. \\
+% 	\pierre{What I'm trying to say below
+% 	\begin{itemize}
+% 		\item Illingworth\&Mustonen don't do prediction, so there is no clear way to apply their method to our article.
+% 		\item Fitting the initial part of the trajectory using their models doesn't make much sense.
+% 		\item We want to stay model free: it's possible to find signs of selection without fitting (cf. H1N1/simulated data)
+% 		\item Even if we're doing something very simple, it's surprising to see neutral-like behaviour.
+% 	\end{itemize}}
+% 	We first want to point out that this approach is fundamentally different to the one of our article. Since Illingworth\&Mustonen fit models to fully known trajectories, these models cannot meaningfully be used for prediction purposes. Indeed, fitness effects of individual mutations are fitted with knowledge of the fixation or loss of the given mutation, and of the frequency of other mutations in the case of the second model. This strongly contrasts with our approach which is to find patterns of predictability of the future behaviour of frequency trajectories using past data only: \emph{e.g.} if a frequency trajectory has risen from $0$ to a frequency $f>0$, what can be said of its future shape or of its fixation? Thus, methods in Illingworth\&Mustonen are designed to answer a different question than the one we are asking in our work. \\
+% 	A way of reconciling the two approaches would be for us to fit the initial part of a trajectory with either model, and to use this fit to predict its future behaviour. However, we feel that this idea is not very relevant to our article for two reasons. First, neither model proposed by Illingworth\&Mustonen is really practical in our setting. The "unlinked" model only generates sweep-like trajectories, which our results show to be not representative of the "typical" trajectory (in good agreement with Illingworth\&Mustonen). The "linked" model can fit more complex trajectories, \emph{e.g.} ones that rise rapidly but ultimately die. However, it crucially depends on the frequencies of joint appearance of pairs mutations on genomes to introduce linkage. These frequencies vary through time, allowing the \emph{effective} fitness of a mutation to vary, and a trajectory to rise and then fall. In our case, these frequencies would only be known for the past, making impossible any prediction of the model. \\
+% 	The second reason is that we believe that our model-free approach has intrinsic benefits. [Something saying that we'd prefer not to start fitting models to  data, because it's not the point. But I'm not sure how to formulate this.] \\
+% 	Finally, we are aware that using only the last time point of a rising trajectory gives only limited opportunity for predicting its future. However, observing apparently-neutral statistics in the case of A/H3N2 is still surprising to us. The case of simulated populations shows that clear signs of selection can be observed by looking at basic features of trajectories (\emph{e.g.} figure S20 of the supplementary material). This is consistent with the theory of evolving population: if the only available information about a mutation is that it has risen in frequency starting from $0$, it has a higher chance on being beneficial than deleterious, and its fixation probability should be higher than what it would be in a neutral scenario. Hence, even with our very simple approach, we observe that predictability of A/H3N2 qualitatively differs from what models of adapting populations would suggest. \\}
 
 \refa{2. The authors examined the predictive power of one predictive
 method, the LBI. However, they did not do a systematic comparison of
@@ -130,6 +130,8 @@ We believe this addition has made the manuscript stronger and we thank both refe
 \refa{3. Going through the previous and cited literature, I think the authors should cite some of these works in a more careful way. Specifically, the very related work by Illingworth and Mustonen is not mentioned. The distribution $P_delta_t(f|f_0)$ has been at the core of
 the method of Strelkowa and Lassig, 2012 (which is cited, but at other
 parts of the text), and the same paper also uses a similar simulation model, which should be acknowledged at the appropriate points of the text.}
+\responsedraft{Not (fully) addressed yet!
+}
 
 \refa{It would help if the plots with red-green-blue lines were also distinguished by differing markers.}
 \response{We have now added markers in most figures.}
@@ -167,11 +169,6 @@ We now discuss now highlight the differences in the text and discuss potential r
 }
 
 \refb{4. Question: at what point is it expected that the vaccine itself will influence frequency trajectories? See Wen et al Biorxiv 2020}
-
-\responsedraft{We should mention Wen \emph{et. al.} MDPI-Viruses 2018: \emph{Estimating Vaccine-Driven Selection in Seasonal Influenza}.
-The answer is that yes it's expected that vaccine influence frequency trajectories to some extent, but it is very hard to measure in practice.
-The above paper attempted to measure this, and did not find clear-cut results.}
-
 \response{
 	The degree to which the vaccine drives evolution is a very interesting question!
 	In the past, global influenza vaccine uptake was unlikely sufficient to generate much pressure and fairly thorough mixing of variants across countries with very different vaccination rates have been used to argue against a strong effect. But this might have changed in recent years and the paper by Wen et al in Viruses, 2018 picks up some signal.
@@ -179,6 +176,6 @@ The above paper attempted to measure this, and did not find clear-cut results.}
 }
 
 \refb{Fig 1B is very hard to read. Maybe it should get more space (fig 1C could work with less space).}
-\responsedraft{We have reworked this figure to allow more space for panel B.}
+\response{We have reworked this figure to allow more space for panel B.}
 
 \end{document}
