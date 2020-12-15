@@ -1,4 +1,4 @@
-\begin{thebibliography}{34}
+\begin{thebibliography}{35}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -170,6 +170,15 @@ Juhye~M Lee, Rachel Eguia, Seth~J Zost, Saket Choudhary, Patrick~C Wilson,
 \newblock URL \url{https://doi.org/10.7554/eLife.49324}.
 \newblock Publisher: eLife Sciences Publications, Ltd.
 
+\bibitem[Illingworth and Mustonen(2012)]{illingworth_components_2012}
+Christopher J.~R. Illingworth and Ville Mustonen.
+\newblock Components of {Selection} in the {Evolution} of the {Influenza}
+  {Virus}: {Linkage} {Effects} {Beat} {Inherent} {Selection}.
+\newblock \emph{PLOS Pathogens}, 8\penalty0 (12):\penalty0 1--10, 2012.
+\newblock \doi{10.1371/journal.ppat.1003091}.
+\newblock URL \url{https://doi.org/10.1371/journal.ppat.1003091}.
+\newblock Publisher: Public Library of Science.
+
 \bibitem[Kimura(1964)]{kimura_diffusion_1964}
 Motoo Kimura.
 \newblock Diffusion {Models} in {Population} {Genetics}.
@@ -188,6 +197,22 @@ Le~Yan, Richard~A Neher, and Boris~I Shraiman.
 \newblock \doi{10.7554/eLife.44205}.
 \newblock URL \url{https://doi.org/10.7554/eLife.44205}.
 \newblock Publisher: eLife Sciences Publications, Ltd.
+
+\bibitem[Huddleston et~al.(2020)Huddleston, Barnes, Rowe, Kondor, Wentworth,
+  Whittaker, Ermetal, Daniels, McCauley, Fujisaki, Nakamura, Kishida, Watanabe,
+  Hasegawa, Barr, Subbarao, Neher, and Bedford]{huddleston_integrating_2020}
+John Huddleston, John~R. Barnes, Thomas Rowe, Rebecca Kondor, David~E.
+  Wentworth, Lynne Whittaker, Burcu Ermetal, Rodney~S. Daniels, John~W.
+  McCauley, Seiichiro Fujisaki, Kazuya Nakamura, Noriko Kishida, Shinji
+  Watanabe, Hideki Hasegawa, Ian Barr, Kanta Subbarao, Richard Neher, and
+  Trevor Bedford.
+\newblock Integrating genotypes and phenotypes improves long-term forecasts of
+  seasonal influenza {A}/{H3N2} evolution.
+\newblock \emph{bioRxiv}, page 2020.06.12.145151, June 2020.
+\newblock \doi{10.1101/2020.06.12.145151}.
+\newblock URL
+  \url{https://www.biorxiv.org/content/10.1101/2020.06.12.145151v1}.
+\newblock Publisher: Cold Spring Harbor Laboratory Section: New Results.
 
 \bibitem[Neher and Shraiman(2011)]{neher_genetic_2011}
 R.~A. Neher and B.~I. Shraiman.
@@ -214,24 +239,6 @@ R.~M. Bush, C.~A. Bender, K.~Subbarao, N.~J. Cox, and W.~M. Fitch.
 \newblock \emph{Science (New York, N.Y.)}, 286\penalty0 (5446):\penalty0
   1921--1925, December 1999.
 \newblock ISSN 0036-8075.
-
-\bibitem[Xue et~al.()Xue, Moncla, Bedford, and Bloom]{xue_within-host_nodate}
-Katherine~S. Xue, Louise~H. Moncla, Trevor Bedford, and Jesse~D. Bloom.
-\newblock Within-{Host} {Evolution} of {Human} {Influenza} {Virus}.
-\newblock \emph{Trends in Microbiology}.
-\newblock ISSN 0966-842X.
-\newblock \doi{10.1016/j.tim.2018.02.007}.
-\newblock URL
-  \url{https://www.sciencedirect.com/science/article/pii/S0966842X1830043X}.
-
-\bibitem[Morris et~al.(2020)Morris, Petrova, Rossine, Parker, Grenfell, Neher,
-  Levin, and Russell]{morris_asynchrony_2020}
-Dylan~H. Morris, Velislava Petrova, Fernando~W. Rossine, Edyth Parker, Bryan
-  Grenfell, Richard Neher, Simon Levin, and Colin Russell.
-\newblock Asynchrony between virus diversity and antibody selection limits
-  influenza virus evolution.
-\newblock preprint, Open Science Framework, April 2020.
-\newblock URL \url{https://osf.io/847p2}.
 
 \bibitem[Steinbrück and McHardy(2012)]{steinbruck_inference_2012}
 Lars Steinbrück and Alice~Carolyn McHardy.
@@ -283,6 +290,15 @@ Jason Schweinsberg.
 \newblock \doi{10.1016/S0304-4149(03)00028-0}.
 \newblock URL
   \url{http://www.sciencedirect.com/science/article/pii/S0304414903000280}.
+
+\bibitem[Morris et~al.(2020)Morris, Petrova, Rossine, Parker, Grenfell, Neher,
+  Levin, and Russell]{morris_asynchrony_2020}
+Dylan~H. Morris, Velislava Petrova, Fernando~W. Rossine, Edyth Parker, Bryan
+  Grenfell, Richard Neher, Simon Levin, and Colin Russell.
+\newblock Asynchrony between virus diversity and antibody selection limits
+  influenza virus evolution.
+\newblock preprint, Open Science Framework, April 2020.
+\newblock URL \url{https://osf.io/847p2}.
 
 \bibitem[Hadfield et~al.(2018)Hadfield, Megill, Bell, Huddleston, Potter,
   Callender, Sagulenko, Bedford, and Neher]{10.1093/bioinformatics/bty407}

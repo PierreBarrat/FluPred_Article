@@ -5,48 +5,46 @@ The style file: unsrtnat.bst
 Database file #1: diffNotes.bib
 Database file #2: references.bib
 Warning--entry type for "WHOfactsheet" isn't style-file defined
---line 567 of file references.bib
-Warning--empty year in xue_within-host_nodate
-Warning--empty year in xue_within-host_nodate
-You've used 34 entries,
+--line 585 of file references.bib
+You've used 35 entries,
             2481 wiz_defined-function locations,
-            846 strings with 14154 characters,
-and the built_in function-call counts, 15960 in all, are:
-= -- 1394
-> -- 970
-< -- 14
-+ -- 361
-- -- 292
-* -- 1489
-:= -- 2666
-add.period$ -- 181
-call.type$ -- 34
-change.case$ -- 68
-chr.to.int$ -- 33
-cite$ -- 36
-duplicate$ -- 665
-empty$ -- 1259
-format.name$ -- 342
-if$ -- 3309
+            857 strings with 14897 characters,
+and the built_in function-call counts, 17085 in all, are:
+= -- 1488
+> -- 1069
+< -- 16
++ -- 395
+- -- 324
+* -- 1578
+:= -- 2834
+add.period$ -- 187
+call.type$ -- 35
+change.case$ -- 70
+chr.to.int$ -- 34
+cite$ -- 35
+duplicate$ -- 720
+empty$ -- 1314
+format.name$ -- 377
+if$ -- 3561
 int.to.chr$ -- 2
-int.to.str$ -- 35
-missing$ -- 32
-newline$ -- 256
-num.names$ -- 102
-pop$ -- 176
+int.to.str$ -- 36
+missing$ -- 33
+newline$ -- 264
+num.names$ -- 105
+pop$ -- 178
 preamble$ -- 1
-purify$ -- 34
+purify$ -- 35
 quote$ -- 0
-skip$ -- 373
+skip$ -- 436
 stack$ -- 0
-substring$ -- 754
-swap$ -- 120
-text.length$ -- 2
+substring$ -- 806
+swap$ -- 158
+text.length$ -- 3
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 238
-warning$ -- 2
-while$ -- 116
+type$ -- 245
+warning$ -- 0
+while$ -- 121
 width$ -- 0
-write$ -- 604
-(There were 3 warnings)
+write$ -- 625
+(There was 1 warning)
