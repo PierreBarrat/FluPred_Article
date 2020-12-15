@@ -1,7 +1,7 @@
 \documentclass[reprint,amsmath,amssymb,superscriptaddress,showpacs,rmp]{revtex4-1}
 %DIF LATEXDIFF DIFFERENCE FILE
-%DIF DEL /dev/fd/63    Fri Dec 11 18:15:46 2020
-%DIF ADD article.tex   Fri Dec 11 18:12:12 2020
+%DIF DEL /dev/fd/63    Tue Dec 15 11:14:35 2020
+%DIF ADD article.tex   Tue Dec 15 10:50:56 2020
 
 
 
@@ -154,18 +154,18 @@
     But one has to be careful to account for the fact that these positions are often ascertained post-hoc \citep{Shih6283} and human immune responses are diverse with substantial inter-individual variation
     \citep{lee_mapping_2019}.
 
-	\DIFaddbegin \DIFadd{A mutation with a fitness benefit should have a tendency to fix, while detrimental mutations fix less often.
+	\DIFdelbegin \DIFdel{In this work, we use HA and NA sequences of A/H3N2 and A/H1N1pdm influenza from year 2000 to 2019 to perform a retrospective analysis of }\DIFdelend \DIFaddbegin \DIFadd{A mutation with a fitness benefit should have a tendency to fix, while detrimental mutations fix less often.
 	Fixation and loss of a mutation is, however, not only determined by its intrinsic fitness benefit, but also by the fitness of the background it arose on and the fitness of competing variants \mbox{%DIFAUXCMD
 \citep{strelkowa_clonal_2012}}\hspace{0pt}%DIFAUXCMD
 .
 	This degree to which these different components affect influenza evolution has been investigated by \mbox{%DIFAUXCMD
 \citet{illingworth_components_2012}}\hspace{0pt}%DIFAUXCMD
 , who showed that intrinsic selection, background fitness, and later interference have comparable effects on fixation.
-	%DIF >  Need more context/bridging
-	}\DIFaddend In this work, we use HA and NA sequences of A/H3N2 and A/H1N1pdm influenza from year 2000 to 2019 to perform a retrospective analysis of frequency trajectories of amino acid mutations.
+	These interference effects, along with stochastic epidemiological dynamics and transient selection, limit the predictability of evolution.
+	Here, we investigate the }\DIFaddend frequency trajectories of amino acid mutations \DIFaddbegin \DIFadd{and the degree to which fixation or loss are predictable}\DIFaddend .
 	We quantify how rapidly mutations at different frequencies are lost or fixed and how rapidly they spread through the population.
 	We further investigate whether any properties or statistics are predictive of whether a particular mutation fixes or not.
-	To our surprise, we find that the predictability of these trajectories is very limited: The probability that a mutation fixes differs little from its current frequency, as would be expected if fixation happened purely by chance.
+	To our surprise, we find that the predictability of these trajectories is very limited: \DIFdelbegin \DIFdel{The }\DIFdelend \DIFaddbegin \DIFadd{for A/H3N2, the }\DIFaddend probability that a mutation fixes differs little from its current frequency, as would be expected if fixation happened purely by chance.
 	This observation holds for many different categories of mutations, including mutations at epitope positions.
 	This weak predictability is not attributable solely to clonal interference and genetic linkage, as simulation of models including even strong interference retain clear signatures of predictability.
 	Consistent with these observations, we show that a simple predictor uninformed by fitness, the consensus sequence, performs as the well as the Local Branching Index (LBI), the growth measure based on the genealogy used in \cite{neher_predicting_2014}.
@@ -190,23 +190,28 @@ This amounts to $44\,976$ HA and $36\,300$ NA sequences for A/H3N2 and $45\,350$
 The central quantities that we derived from this data are \emph{frequency trajectories} of amino acids at each position in the sequences. If an amino acid $X_i$ is found at position $i$ at a frequency between 5\% and 95\% in the population of a given time bin $t$, then the population is considered polymorphic at position $i$ and at time $t$. This polymorphism is characterized by the frequency of $X_i$, $f_{X_i}(t)$, and also by frequencies of other amino acids at $i$. The series of values $f_{X_i}(t)$ for contiguous time bins constitutes the frequency trajectory of $X_i$. A trajectory is terminated if the corresponding frequency is measured above 95\% (resp.~below 5\%) for two time bins in a row, in which case amino acid $X_i$ is considered as \emph{fixed} (resp.~\emph{absent}) in the population. Otherwise, the trajectory is considered \emph{active}. Examples of trajectories can be seen in figure~\sref{fig:sample_trajectories} of the Supplement.
 
 %DIF < Frequency trajectories allow a simple formulation of the above-stated questions. The short term prediction amounts to predicting the curve $f(t)$ starting from a given date $t_0$. On the other hand, the long term prediction amounts to predicting how long a trajectory will remain active, and whether it will fix or disappear when it finishes. 
-\DIFaddbegin \DIFadd{Since genomic segments of influenza do not recombine, concurrent trajectories of mutations on the same segment will be correlated.
+\DIFdelbegin \DIFdel{In the rest of this work, we will }\DIFdelend \DIFaddbegin \DIFadd{Since genomic segments of influenza do not recombine, concurrent trajectories of mutations on the same segment will be correlated.
 %DIF > Indeed, the trajectories corresponding to two mutations that partly appear on the same background will tend to show a similar behavior.
 In the extreme case were the two mutations always appear on the same strains, their two trajectories will be identical.
 This ``nested'' characted or frequency trajectories may introduce biases when performing statistical analysis.
 In section \ref{sub:correcting_for_nested_trajectories} of the SM, we investigate the effect of such nested trajectories by clustering them based on the strains that compose them.
-While the number of trajectories that contribute to the analysis decreases with more aggressive clustering, this does not significantly change the results presented below.
+While the number of trajectories that contribute to the analysis decreases with more aggressive clustering, it does not significantly change the results presented below.
 }
 
-\DIFaddend In the rest of this work, we will focus on frequency trajectories that are starting at a zero (low) frequency, \emph{i.e.} $f(t=0)=0$.
+\DIFadd{We }\DIFaddend focus on frequency trajectories that are starting at a zero (low) frequency, \emph{i.e.} $f(t=0)=0$.
 These represent new amino acid variants which were absent in the population at the time bin when the trajectory started and are currently rising in the population (see Methods).
 Such distinction in novel and ancestral variants is necessary to meaningfully interrogate predictability.
 Each rising trajectory of a new mutation implies the existence of another decreasing one at the same position, since frequencies of all amino acids at a given position must sum to one.
-If novel variants arise by selection, we expect to see a stronger signal of selection after conditioning on these novel variants.
-In classic models of population genetics, strongly advantageous variants undergo rapid selective \emph{sweeps}, i.e., the rapid rise and fixation.
+\DIFdelbegin \DIFdel{If novel variants arise by selection, we expect to see a stronger signal of selection after conditioning on these novel variants. 
+}\DIFdelend %DIF > If novel variants arise by selection, we expect to see a stronger signal of selection after conditioning on these novel variants.
+In classic models of population genetics, strongly advantageous variants undergo rapid selective \emph{sweeps}, i.e., the rapid rise and \DIFdelbegin \DIFdel{fixation}\DIFdelend \DIFaddbegin \DIFadd{fix}\DIFaddend .
 The sweep of a mutation can be due to its own fitness effect, to the genetic background or to the effect of the seven other segments.
 By considering the ensemble of novel variants that are rising in frequency, we effectively average over backgrounds, obtaining a set of mutations that we expect to be beneficial on average.
 If such sweeps are common in the evolution of HA and NA, the restriction to trajectories that start at low frequency should thus enrich for mutations that are positively selected and on their way to fixation.
+\DIFaddbegin \DIFadd{Interference between multiple such advantages mutations will perturb the trajectories \mbox{%DIFAUXCMD
+\citep{illingworth_components_2012} }\hspace{0pt}%DIFAUXCMD
+but we still expect a consistent tendency to rise in frequency (see below).
+}\DIFaddend 
 
 \subsection*{Predicting future frequencies}
 Having observed the frequency trajectory $f(t)$ of a mutation until a given date $t_0$, how much can we say about the future values of $f$ after $t_0$?
@@ -227,14 +232,14 @@ A fraction of those would then sweep through the population and fix.
 
 To quantify the extent to which this preconception of sweeping adaptive mutations is true, we estimated the probability distribution $P_{\Delta t}(f\vert\,f_0)$ of finding a trajectory at frequency $f$ after a time $\Delta t$ given that it was observed at $f_0$ at time $0$.
 The results for different $\Delta t$ are shown in figure~\ref{fig:trajectories}C.
-Initially, \emph{i.e.} at time $t_0=0$, this distribution is by construction peaked around $f_0$.
+Initially, \emph{i.e.}\DIFaddbegin \DIFadd{, }\DIFaddend at time $t_0=0$, this distribution is by construction peaked around $f_0$.
 If a large fraction of the trajectories keep increasing after  this time, we should see the ``mass'' of $P_{\Delta t}(f\vert\,f_0)$ move to the right towards higher frequencies as time progresses.
 
 However, future distributions for $\Delta t >0$ do not seem to follow a pattern compatible with selective sweeps.
 The thick black line in Figure~\ref{fig:trajectories}B shows the average frequency of all trajectories.
 This average makes a sharp turn at $t=0$ and is essentially flat for $t>0$ in the case of A/H3N2, and slightly increasing for A/H1N1pdm (see supplement).
 Hence, the fact that this average rose for $t<0$ gives little information for $t>0$, and is due to the conditions by which these trajectories were selected.
-	This shows that sweep-like trajectories rising steadily from frequency $0$ to $1$ are not common enough to dominate the average trajectory.  \DIFaddbegin \pierre{This result is consistent with\citep{illingworth_components_2012}. They show that sweep-like trajectories are very bad fits to actual trajectories.}
+This shows that sweep-like trajectories rising steadily from frequency $0$ to $1$ are not common enough to dominate the average trajectory.  \DIFaddbegin \pierre{This result is consistent with\citep{illingworth_components_2012}. They show that sweep-like trajectories are very bad fits to actual trajectories.}
 \DIFaddend 
 
 Consistent with the average, the frequency distribution of the selected trajectories broadens in time without a significant shift of the mean as time passes.
@@ -286,8 +291,9 @@ This result is exactly what is expected in a population evolving in the \emph{ab
 % The result for the neutral case is intuitive:
 A mutation or trait appearing at frequency $f$ is shared by $f\cdot N$ individuals, and the probability for one of them to become the ancestor of all the future population is $f\cdot N/N=f$.
 Thus, the probability of this mutation or trait to fix in the population is equal to its current frequency, a case which we will refer to as the neutral expectation.
-Panel \textbf{C} of figure~\ref{fig:fix_loss_active} indicates that mutations in the surface proteins of A/H3N2 influenza are in good agreement with the neutral expectation, while those in A/H1N1pdm show only small deviations from it. \DIFaddbegin \pierre{``limited but clear'' instead of ``small''?}
-\DIFaddend In both cases, the probability of fixation seems to be mainly dictated by the current frequency $f$ at which the mutation is observed.
+Panel \textbf{C} of figure~\ref{fig:fix_loss_active} indicates that mutations in the surface proteins of A/H3N2 influenza are in good agreement with the neutral expectation\DIFdelbegin \DIFdel{, while those in }\DIFdelend \DIFaddbegin \DIFadd{.
+For }\DIFaddend A/H1N1pdm\DIFdelbegin \DIFdel{show only small deviations from it}\DIFdelend \DIFaddbegin \DIFadd{, we find that new mutations fix moderatly but consistently more often then their current frequency}\DIFaddend .
+In both cases, \DIFdelbegin \DIFdel{the probability of fixation seems to be mainly dictated by the current frequency $f$ at which the mutation is observed}\DIFdelend \DIFaddbegin \DIFadd{frequency is a strong predictor of fixation}\DIFaddend .
 
 This dynamics is in apparent contradiction with evidence that influenza surface proteins are under strong selective pressure to evade human immune responses \citep{bhatt_genomic_2011}.
 If strong selection was present, we would expect rising amino acid mutations to fix at a distinctively higher frequency than the one at which they are measured.
@@ -308,7 +314,13 @@ Only mutations at the 7 epitope sites reported in~\cite{Koel976} have higher cha
 No clear difference is found for the lists by \citet{luksza_predictive_2014, wolf_long_2006}, while positions from \citet{Shih6283} show lower chances of fixation.
 One should also note that many of these positions were determined post-hoc and might be enriched for positions that experienced rapid substitutions before the publication of the respective studies.
 
-Two ways of categorising mutations, however, suggest some power to predict fixation.
+\DIFdelbegin \DIFdel{Two ways of categorising mutations, however, suggest some power to predict }\DIFdelend \DIFaddbegin \DIFadd{In supplementary figure \sref{fig:pfix_v_freq_combijohnsmodels}, we repeat this analysis for several predictors from our recent comparison of predictive models for influenza \mbox{%DIFAUXCMD
+\citep{huddleston_integrating_2020} }\hspace{0pt}%DIFAUXCMD
+including models that use serological data.
+While many of these model predict future population composition, the only score that was predictive of fixation is mutations load.
+}
+
+\DIFadd{In addition to mutational load, we find that parallel evolution is predictive of }\DIFaddend fixation.
 In panel Fig.~\ref{fig:pfix_stratified}\textbf{C}, we split trajectories into those occurring at binary positions where only two amino acid variants co-circulate and non-binary positions with more than two variants.
 Novel variants at non-binary positions, \emph{i.e.} ones for which competition between three amino acids or more has occurred at least once, have a higher chance of fixation.
 In panel \textbf{D}, we separated mutations that appear more than once or only once in the reconstructed tree (see methods), and found that the former fix more often.
@@ -346,7 +358,13 @@ Frequency of mutations might thus be amplified through different sampling biases
 
 The results shown in figures~\ref{fig:fix_loss_active} and \ref{fig:pfix_stratified} are difficult to reconcile with the idea that seasonal influenza virus evolution is driven by rapid directed positive selection.
 One possible explanation for the weakly predictable behaviour of mutations (beyond their current frequency) might be tight genetic linkage inside each segment and strong competition between different adaptive mutations \citep{neher_genetic_2011,strelkowa_clonal_2012}.
-We design a simple model of population evolution based on the \texttt{ffpopsim} simulation software to test this hypothesis~\cite{10.1093/bioinformatics/bts633}.
+\DIFaddbegin \DIFadd{Indeed, \mbox{%DIFAUXCMD
+\citet{illingworth_components_2012} }\hspace{0pt}%DIFAUXCMD
+have shown that background fitness and interference have substantial effects on frequyency trajectories.
+}
+
+\DIFadd{Nevertheless, we expect that signatures of intrinsic fitness benefits remain.
+}\DIFaddend We design a simple model of population evolution based on the \texttt{ffpopsim} simulation software to test this hypothesis~\cite{10.1093/bioinformatics/bts633}.
 The model represents a population of binary genomes of length $L=200$ evolving in a fitness landscape that changes through time.
 
 First, we use an additive fitness function, with sequence $(x_1\ldots x_L)$ having a fitness $\sum_i h_i x_i$.
@@ -372,7 +390,7 @@ This is corroborated by visual inspection of the trajectories, which shows that 
 In other regimes, with smaller $\Delta t$ or with strong epistatic competition, $P_{fix}(f)$ is reduced and closer to the diagonal.
 However, it takes an extremely fast changing fitness landscape to push $P_{fix}$ close to the diagonal: with $\Delta t=10$, that is about 40 changes to the fitness landscape in the time it would take a selective sweep to go from 0\% to fixation, $P_{fix}(f)$ differs from $f$ in a way that is comparable to what is observed in A/H1N1pdm influenza.
 
-These models are not meant to be accurate models of influenza viruses evolution. 
+These models are not meant to be accurate models of influenza viruses evolution.
 But figure~\sref{fig:simulations} does show \DIFdelbegin \DIFdel{is }\DIFdelend that the patterns observed in influenza virus evolution are only reproduced by models of adapting populations when pushing clonal competition to extreme values.
 We conclude that the pattern in figure~\ref{fig:fix_loss_active} may not be a straightforward manifestation of genetic linkage and clonal interference, but that some more intricate interplay of epidemiology, seasonality, human immunity and chance gives rise to the weakly predictable yet strongly selected evolutionary dynamics of IAVs.
 
@@ -713,8 +731,8 @@ Indeed, clustering similar trajectories together does significantly modify resul
 , authors developed several models to predict the future HA population for A/H3N2 influenza.
 The premise of these models is to assign a fitness score to the HA gene of each A/H3N2 strain in a given year, and to then apply deterministic evolutionary equations to obtain the future strain composition.
 The fitness values are computed using several quantities that have been shown to be connected with viral fitness.
-Fitness depends either on a single or on two quantities, and coefficient(s) of each fitness model are trained by minimizing the earth movers distance between the observed strain population one year in the future and the estimated population produced by the model. 
-The training is performed using HA sequences from 1990 to 2015, and we consider here the models obtained by taking the average value of coefficients obtained for every year. 
+Fitness depends either on a single or on two quantities, and coefficient(s) of each fitness model are trained by minimizing the earth movers distance between the observed strain population one year in the future and the estimated population produced by the model.
+The training is performed using HA sequences from 1990 to 2015, and we consider here the models obtained by taking the average value of coefficients obtained for every year.
 }
 
 
@@ -727,18 +745,18 @@ to predict fixation: mutational load \mbox{%DIFAUXCMD
 , a ``delta frequency''score based on the recent increase in frequency of clades, and the previously mentioned Local Branching Index (LBI) \mbox{%DIFAUXCMD
 \citep{neher_predicting_2014}}\hspace{0pt}%DIFAUXCMD
 .
-Figure \sref{fig:pfix_v_freq_indivjohnsmodels} shows fixation probability for HA mutations with fitness scores in the top or bottom half of the fitness distribution for the four fitness measures. 
+Figure \sref{fig:pfix_v_freq_indivjohnsmodels} shows fixation probability for HA mutations with fitness scores in the top or bottom half of the fitness distribution for the four fitness measures.
 }
 
 \DIFadd{The best performing individual score (and second overall) in \mbox{%DIFAUXCMD
 \citep{huddleston_integrating_2020}}\hspace{0pt}%DIFAUXCMD
 , LBI, does not provide any information about fixation (figure \sref{fig:pfix_v_freq_indivjohnsmodels}}\textbf{\DIFadd{A}}\DIFadd{).
-This is consistent with the result found in figure \ref{fig:pfix_stratified} of the main text. 
+This is consistent with the result found in figure \ref{fig:pfix_stratified} of the main text.
 In panels }\textbf{\DIFadd{B}} \DIFadd{and }\textbf{\DIFadd{D}}\DIFadd{, we observe the same inability to predict fixation for the fitness models based on HI titer and delta frequency, which were respectively the second and third best individual scores (fifth and sixth overall) in \mbox{%DIFAUXCMD
 \citep{huddleston_integrating_2020}}\hspace{0pt}%DIFAUXCMD
 .
-However, the score based on mutational load (panel }\textbf{\DIFadd{C}}\DIFadd{) does show a more significant predicting power, with higher fitness mutations having a $\sim 25$\% higher chance of fixing than lower fitness ones for three frequency bins in a row. 
-However, this effect vanishes for higher frequencies, with both fitter and less fit mutations having the same chance to fix. 
+However, the score based on mutational load (panel }\textbf{\DIFadd{C}}\DIFadd{) does show a more significant predicting power, with higher fitness mutations having a $\sim 25$\% higher chance of fixing than lower fitness ones for three frequency bins in a row.
+However, this effect vanishes for higher frequencies, with both fitter and less fit mutations having the same chance to fix.
 }
 
 
@@ -752,14 +770,14 @@ However, this effect vanishes for higher frequencies, with both fitter and less 
 \DIFadd{Next, we use two fitness models based on linear combinations of the following quantities: mutational load + LBI and mutational load + HI antigenic novelty.
 These composite models were the first and third best performing ones in \mbox{%DIFAUXCMD
 \citep{huddleston_integrating_2020}}\hspace{0pt}%DIFAUXCMD
-. 
-Figure \sref{fig:pfix_v_freq_combijohnsmodels} again shows fixation probability for HA mutations with fitness scores above or below the median fitness value. 
+.
+Figure \sref{fig:pfix_v_freq_combijohnsmodels} again shows fixation probability for HA mutations with fitness scores above or below the median fitness value.
 }
 
-\DIFadd{Both models provide some information about fixation, with the mutational load + HI model having more success for frequencies around $0.5$. 
-This observation could be explained by the fact that fitness based on HI titers alone showed some power in this same frequency range. 
-However, both models do not seem to perform significantly better than the one based on mutational load alone. 
-This is not surprising, as LBI and HI titer did not perform well as individual models. 
+\DIFadd{Both models provide some information about fixation, with the mutational load + HI model having more success for frequencies around $0.5$.
+This observation could be explained by the fact that fitness based on HI titers alone showed some power in this same frequency range.
+However, both models do not seem to perform significantly better than the one based on mutational load alone.
+This is not surprising, as LBI and HI titer did not perform well as individual models.
 }
 
 \begin{figure}
@@ -771,15 +789,15 @@ This is not surprising, as LBI and HI titer did not perform well as individual m
 
 \DIFadd{Combining models in \mbox{%DIFAUXCMD
 \citep{huddleston_integrating_2020} }\hspace{0pt}%DIFAUXCMD
-typically achieved a greater performance than using single models. 
-This was the case for the mutational load + LBI model, combining the second and 7th best predictors overall to obtain the best one, and for the mutational load + HI titer model that combined the 4th and 7th best predictors to obtain the third best one.  
-However, our results indicate that the gain in capability of predicting the future strain composition obtained by combining models is not immediately transferable to the exercise of predicting fixation. 
+typically achieved a greater performance than using single models.
+This was the case for the mutational load + LBI model, combining the second and 7th best predictors overall to obtain the best one, and for the mutational load + HI titer model that combined the 4th and 7th best predictors to obtain the third best one.
+However, our results indicate that the gain in capability of predicting the future strain composition obtained by combining models is not immediately transferable to the exercise of predicting fixation.
 }
 
 \DIFadd{It is important to note that the prediction targets in \mbox{%DIFAUXCMD
 \citep{huddleston_integrating_2020} }\hspace{0pt}%DIFAUXCMD
-and in the present article are not identical. 
-It is shown in figure \ref{fig:LBI_consensus} of the main text that even though LBI performs well when predicting the future strain composition, it may not be because it is indicative of fitness. 
+and in the present article are not identical.
+It is shown in figure \ref{fig:LBI_consensus} of the main text that even though LBI performs well when predicting the future strain composition, it may not be because it is indicative of fitness.
 }
 
 
