@@ -60,7 +60,7 @@ the authors show that the fates of mutations are not determined by the
 value of the starting frequency.}
 
 \response{We thank the reviewer for pointing out the work by Illingworth and Mustonen, which is indeed very relevant and complementary to our approach.
-We discus their relation below. }
+We discuss their relation below. }
 
 
 \refa{1.1. Mutations in influenza are highly nested, with a substantial
@@ -68,8 +68,8 @@ hitch-hiking, and no attempt is made to disentangle such dependencies when count
 
 \response{
 The reviewer is correct that our original manuscript did not attempt to account for nested mutations and we agree that this should have been done. \\
-We added a new section in the Supplementary Material where investigate the extent to which nesting affects our results:
-We cluster trajectories of mutations that partly appear on the same strains to various degrees and trajectories corresponding to mutations always or often appearing on the same strains are then counted as one ``effective" trajectory.
+We added a new section in the Supplementary Material (``Correcting for nested trajectories'') where investigate the extent to which nesting affects our results.
+We cluster trajectories of mutations that partly appear on the same strains to various degrees, and trajectories corresponding to mutations always or often appearing on the same strains are then counted as one ``effective" trajectory.
 Our analysis shows that nesting of mutations does not change our results significantly.
 We therefore left the figures of main text unchanged and refer to the supplement for a discussion of this issue.
 }
@@ -83,16 +83,18 @@ revisited and benchmarked against the more general implementation of Illingworth
 
 \response{
 	Illingworth and Mustonen (I\&M) presented a careful analysis to what extent trajectories can be fit using a model assuming a single fitness coefficient, or a model that differentiates different background fitnesses.
-	Our results are consistent with their finding that a single parameter model (which only allows monotonic trajectories) does capture the majority of trajectories.
+	Our results are consistent with their finding that a single parameter model (which only allows monotonic trajectories) does not capture the majority of trajectories.
 	Beyond that, our approach and aim differ from I\&M.
-	We investigate a priori features of mutations that have information on whether the mutation fixes, not whether the trajectories can be parameterized by a model.
+	We investigate \emph{a priori} features of trajectories that potentially have information on whether the mutation fixes, not whether the trajectories can be parametrized by a model.
 	Fitting a model to a partial trajectory to predict fitness is not expected to work: I\&M showed that subsequent interference has a substantial effect and our results indicate that the speed at which the mutation rises does not predict fitness.
 
-	Furthermore, I\&M estimate fixing mutations to have a much higher intrinisic fitness than dying mutation while we show that very little such information is available a priori.
+	Furthermore, I\&M estimate fixing mutations to have a much higher intrinsic fitness than dying mutations while we show that very little such information is available a priori.
 	The retrospective fit to trajectories tends to assign a positive fitness effect to fixing (and hence on average rising) mutations.
-	This is why we resort to a model free approach ask what a priori information can help to determine which mutations fix or die.
+	This is why we resort to a model free approach to ask what a priori information can help to determine which mutations fix or die.
 }
-
+\responsedraft{Should we mention all the changes we made in the text? 
+We spend more time explaining that even though there is linkage, and even though we're looking at just the last point, we expect something above diagonal. 
+(Last paragraph before "Results", last paragraph before "Predicting future frequencies"), and first paragraph of "Simulations of models of adaptation"}
 % \responsedraft{
 % 	We thank reviewer 1 for pointing out the work of Illingworth\&Mustonen to us, which we were unaware of. However, we believe that the method used in their article is not applicable as is in our case. To explain our thinking, we first briefly summarize the approach taken in Illingworth\&Mustonen: the authors fit two kind of models to fully known frequency trajectories:
 % 	\begin{itemize}
@@ -120,17 +122,24 @@ predictability, eg. on page 8, in line 47, and on page 9, line 48 are
 too sweeping and should be made precisely for those methods looked at
 in detail.}
 
-\response{In a recent model-driven effort (Huddleston et al), we investigate the power of sequence based, antigenically informed, experimentally informed, or phylogenetic (LBI) scores to predict future influenza virus populations.
+\response{The reviewer is right to point out that our original manuscript did not perform a systematic comparison of different prediction methods. 
+
+In a recent model-driven effort (Huddleston et al), we investigate the power of sequence based, antigenically informed, experimentally informed, or phylogenetic (LBI) scores to predict future influenza virus populations.
 The LBI was among the highest performing models and we hence used this score in the original manuscript.
-But we took the suggestion of the referee (and referee 2) to heart and now include all highly performing models from Huddleston et al.
+But we took the suggestion of the referee (and referee 2) to heart and now include all highly performing models from Huddleston \emph{et al.} in a new section in the Supplementary Material ("Ability of fitness models to predict fixation"). 
 These additional results show that only mutational load has some power to differentiate between fixing and non-fixing trajectories.
 We believe this addition has made the manuscript stronger and we thank both referees for the suggestion.
+
+We also agree with the reviewer that these different methods differ in prediction targets: our results indicate that most of them are not predictive of frequency dynamics, but they remain predictive of the composition of the future population. 
+In consequence, we have toned down our conclusions about predictability. \pierre{I say that because I changed p8 l47. I have not touched p9 l48 because the new appendix shows it is a correct statement.}
 }
 
 \refa{3. Going through the previous and cited literature, I think the authors should cite some of these works in a more careful way. Specifically, the very related work by Illingworth and Mustonen is not mentioned. The distribution $P_delta_t(f|f_0)$ has been at the core of
 the method of Strelkowa and Lassig, 2012 (which is cited, but at other
 parts of the text), and the same paper also uses a similar simulation model, which should be acknowledged at the appropriate points of the text.}
-\responsedraft{Not (fully) addressed yet!
+\responsedraft{I cited (Strelkowa and Lassig) in the first paragraph of the section "Predicting future frequencies". 
+Did not cite it close to the simulation part, will do. 
+We cite Illingworth and Mustonen plenty of times now. 
 }
 
 \refa{It would help if the plots with red-green-blue lines were also distinguished by differing markers.}
@@ -151,22 +160,25 @@ I appreciate this study, I think it will be of interest to many readers and it i
 	A similar point was also brought up by reviewer 1.
 	In addition to the LBI, epitopes, age, and geographic distribution we now also include the fitness scores of the best performing models in a recent machine learning effort to predict the composition of future populations (as opposed to predicting fixation).
 	These models include antigenic, experimental, and sequence or phylogenetic information.
-	Interestingly, all these models do similarly poorly and with the exception of mutational load.
+	Interestingly, all these models do similarly poorly with the exception of mutational load.
 	These results are now included as supplementary information and discussed.
 }
 
 \refb{2. Fig 2A and 2B look quite different to me. In the text it appears to me as if these are very similar to the authors. What are the characteristics of the AAs that fix in H1N1? }
 
 \response{Whether 2A or 2B are perceived as similar or not probably depends on how big a deviation from the diagonal one expected a priori.
-We now discuss now highlight the differences in the text and discuss potential reasons for the different behavior.  }
+We now discuss now highlight the differences in the text and discuss potential reasons for the different behaviour.  }
 
 \refb{3. Question: what do these results mean for vaccines? How to decide which strains to use for vaccines? This may be known to those who work on Influenza, but for a relative outsider it is not clear. }
 
 \response{
 	Computational prediction of which circulating strains will dominate future influenza populations have been attempted for about 2 decades and have recently become a regular input to the biannual consultations on the influenza vaccine composition.
 	Since performance of predictive models can only be assessed on limited historical data, we believe that our model-free approach clarifies which aspect of influenza evolution are predictable and which ones are not.
-
 }
+\responsedraft{We should maybe make clear that this is not directly related to predictions for vaccines (at least it's not the aim). 
+That's John's paper. 
+The main implications are about our understanding of the evolutionary dynamics of influenza. 
+This could also help us to reply to the first comment: doing ML is more useful to predict the future population (for vaccines) than for predicting fixation of a single mutation. }
 
 \refb{4. Question: at what point is it expected that the vaccine itself will influence frequency trajectories? See Wen et al Biorxiv 2020}
 \response{
