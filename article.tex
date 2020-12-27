@@ -427,18 +427,18 @@ These considerations might explain the disconnect between models of rapid adapta
 \subsection*{Frequency trajectories} % (fold)
 \label{sub:frequency_trajectories}
 
-	For a set of sequences in a given time bin, we compute frequencies of amino acids at each position by simple counting. We make the choice of not applying any smoothing method in an attempt to be as close to the data and ``model-less'' as possible. This is especially important for the short term prediction of frequency trajectories, as estimations of the ``persistence time'' of a trajectory might be biased by a smoothing method. \\
+	For a set of sequences in a given time bin, we compute frequencies of amino acids at each position by simple counting. We make the choice of not applying any smoothing method in an attempt to be as close to the data and ``model-free'' as possible. This is especially important for the short term prediction of frequency trajectories, as estimations of the ``persistence time'' of a trajectory might be biased by a smoothing method. \\
 	We compute frequency trajectories based on the frequencies of amino acids. A trajectory begins at time $t$ if an amino acid is seen under the lower frequency threshold of 5\% (resp. above the higher threshold of 95\%) for the two time bins preceding $t$, and above this lower threshold (resp. below the higher threshold) for time bin $t$. It ends in the reciprocal situation, that is when the frequency is measured below the lower threshold (resp. above the higher threshold) for two time bins in a row. \\
 	In order to avoid estimates of frequencies that are too noisy, we only keep trajectories that are based on a population of at least 10 sequences for \emph{each} time bin. As said in the Results section, we also restrict the analysis to trajectories that begin at a $0$ frequency, in part to avoid double counting. We find a total of 460 such trajectories. However, only 106 reach a frequency of 20\%, on which figure~\ref{fig:fix_loss_active} is based for instance.  \\
-	Note that the fact that we use samples of relatively small sizes -- at least for some time bins -- leads to biases in the estimation of frequencies. We show in Supplementary Material that these biases are generally small and do not induce any qualitative changes to results presented here.
+	Note that the fact that we use samples of relatively small sizes -- at least for some time bins -- can lead to biases in the estimation of frequencies. We show in Supplementary Material that these biases are generally small and do not induce any qualitative changes to results presented here.
 
 % subsection frequency_trajectories (end)
 
 \subsection*{Local Branching Index} % (fold)
 \label{sub:local_branching_index}
 
-	LBI was introduced in \cite{neher_predicting_2014} as an approximation of fitness in populations evolving under persistent selective pressure that is fully based on a phylogenetic tree. It relies on the intuition that the tree below high-fitness individuals will show dense branching events, whereas absence of branching is a sign of low-fitness individuals. Quantitatively, the LBI $\lambda_i(\tau)$ of a node $i$ is the integral of all of the tree's branch length around $i$, with an exponentially decreasing weight $e^{-t/\tau}$ with $t$ being the branch length. When considering a time binned population, the LBI is computed once for each time bin by considering only the leaves of the tree that belong to the time bin. This means that only branches that ultimately lead to a leaf that belongs to the time bin are considered in the integration.\\
-	$\tau$ is the time scale for which the tree is informative of the fitness of a particular node. Here, we use a value of $\tau$ equal to a tenth of $T_C\simeq6$ years, the coalescence time for influenza A/H3N2 strains, converted to units of tree branch length through the average nucleotide substitution rate ($\simeq 4\cdot 10^{-3}$ substitutions per site per year for HA). We have observed that given our method to predict the future from present populations corresponding to time bins of 4 months, changing the value of $\tau$ has little effect on the pick of the top LBI strain. By retrospectively optimizing its value, it is possible to reduce the average distance to the population 2 years ahead by $\sim0.25$ amino acids on average, making the LBI method almost as good as the consensus on figure~\ref{fig:LBI_consensus}.
+	LBI was introduced in \cite{neher_predicting_2014} as an approximation of fitness in populations evolving under persistent selective pressure. The LBI depends only on a phylogenetic tree. It relies on the intuition that the tree below high-fitness individuals will show dense branching events, whereas absence of branching is a sign of low-fitness individuals. Quantitatively, the LBI $\lambda_i(\tau)$ of a node $i$ is the integral of all of the tree's branch length around $i$, with an exponentially decreasing weight $e^{-t/\tau}$ with $t$ being the branch length. When considering a time binned population, the LBI is computed once for each time bin by considering only the leaves of the tree that belong to the time bin. This means that only branches that ultimately lead to a leaf that belongs to the time bin are considered in the integration.\\
+	The time scale $\tau$ parameterizes the distance over which the tree is informative of the fitness of a particular node. Here, we use a value of $\tau$ equal to a tenth of $T_C\simeq6$ years, the coalescence time for influenza A/H3N2 strains, converted to units of tree branch length through the average nucleotide substitution rate ($\simeq 4\cdot 10^{-3}$ substitutions per site per year for HA). We have observed that given our method to predict the future from present populations corresponding to time bins of 4 months, changing the value of $\tau$ has little effect on the pick of the top LBI strain. By retrospectively optimizing its value, it is possible to reduce the average distance to the population 2 years ahead by $\sim0.25$ amino acids on average, making the LBI method almost as good as the consensus on figure~\ref{fig:LBI_consensus}.
 
 % subsection local_branching_index (end)
 
@@ -510,7 +510,7 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 	% $$ f(\sigma) = \frac{1}{N}\sum_{n=1}^N \delta_{\sigma, \sigma^n}$$
 	% where $\delta_{x,y}$ is the Kronecker delta. \\
 	We make two hypotheses about this population. We first suppose that \emph{no} mutations occur during the evolution of this population. This may seem surprising and is of course not true in the case of influenza. This assumption is however in line with the fact that the object of this work is to predict the outcome of \emph{already existing} mutations in the influenza population. The prediction of mutations that we have not yet seen is not in its scope. Thus, assuming that no new mutations take place can be seen as a simple way to model the fact that we have no information about such events. \\
-	The second assumption is that the population evolves in a completely neutral way, meaning that the average number of descendants of each genome $\sigma^n$ is the same. Let us now consider the population after it has evolved for a long time $t\gg T$ where $T$ is the typical coalescence time (for the Wright-Fisher model, $T=2N$). At this point, all individuals in the future population will descend from a unique individual $n_0$ in the $t=0$ population. Our two hypotheses now allow us to make two statements. First, since no new mutations are allowed, the population at $t\gg T$ will be clonal, with all individuals having genome $\sigma^{n_0}$. Second, since the evolution is neutral and does not favour any genome in particular, the probability that $\sigma^{n_0}$ is equal to a given genome $\sigma$ is $1/N$. In other words, the probability that a genome at $t=0$ ultimately becomes the ancestor of all the future population is equal to its frequency in the $t=0$ population. \\
+	The second assumption is that the population evolves in a completely neutral way, meaning that the average number of descendants of each genome $\sigma^n$ is the same. Let us now consider the population after it has evolved for a long time $t\gg T$ where $T$ is the typical coalescence time (for the Wright-Fisher model, $T=2N$). At this point, all individuals in the future population will descend from a unique individual $n_0$ in the $t=0$ population. Our two hypotheses now allow us to make two statements. First, since no new mutations are allowed, the population at $t\gg T$ will be clonal, with all individuals having genome $\sigma^{n_0}$. Second, since the evolution is neutral and does not favor any genome in particular, the probability that $\sigma^{n_0}$ is equal to a given genome $\sigma$ is $1/N$. In other words, the probability that a genome at $t=0$ ultimately becomes the ancestor of all the future population is equal to its frequency in the $t=0$ population. \\
 
 	We now try to find the genome $\sigma$ that best predicts the future population on the long run, that is for $t\gg T$. Here, we take best to mean that the predictor minimizes $H(\sigma,\sigma^{n_0})$ where $H$ is the Hamming distance defined by
 	\begin{equation}
@@ -548,7 +548,7 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 
 \subsection{Predictor based on the local LBI maxima} % (fold)
 \label{sub:predictor_based_on_the_local_lbi_maxima}
-	In figure~\ref{fig:emd_to_future}, we use several sequences as a predictor of the future population. Distance between two sets of sequences, \emph{i.e.} the predictor sequences and the ones of the future population, is defined as the Earth Mover's Distance (EMD). Here, we show that for a population evolving under the same hypotheses as in section~\ref{sub:consensus_sequence_as_a_predictor}, the best \emph{multiple} sequence long term predictor is again the consensus sequence with weight $1$. \\
+	In figure~\sref{fig:emd_to_future}, we use several sequences as a predictor of the future population. Distance between two sets of sequences, \emph{i.e.} the predictor sequences and the ones of the future population, is defined as the Earth Mover's Distance (EMD). Here, we show that for a population evolving under the same hypotheses as in section~\ref{sub:consensus_sequence_as_a_predictor}, the best \emph{multiple} sequence long term predictor is again the consensus sequence with weight $1$. \\
 	Let the predictor be a set of weighted sequences $\{(s^\alpha, q_\alpha)\}$. We again use the fact that in the long term, a unique sequence $\sigma^{n_0}$ from the present will be the ancestor of the entire population. We want to compute the EMD from the predictor to $\sigma^{n_0}$, that is the EMD between the sets $\mathcal{X}=\{(s^\alpha, q_\alpha)\}$ and $\mathcal{Y} = \{\sigma^{n_0},1\}$. Applying the definition of the Methods section, it follows that the weights $\mathbf{w}$ are in this case equal to the $q_\alpha$s. By averaging over all values of $n_0$, we now obtain
 	$$ \left\langle \,\text{EMD}\left(\{(s^\alpha, q_\alpha)\}\right) \right\rangle_{n_0} = \sum_{n=1}^N\sum_{\alpha} H(s^\alpha, \sigma^n)\cdot q_\alpha.$$
 	By the same calculation procedure as in the previous section, this expression simplifies to
@@ -562,15 +562,15 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 \label{sub:correcting_for_nested_trajectories}
 
 The analysis of the main text computes probabilities of fixation assuming that all trajectories are independent.
-However, it is well-known that mutations in infleunza viruses are nested: they appear on backgrounds that already carry other mutations.
+However, it is well-known that mutations are nested: they appear on backgrounds that already carry other mutations.
 Since mutations appearing on the same genomes will jointly fix or disappear, many frequency trajectories are not independent but correlated.
 In order to compensate for potential biases due to this effect, we attempted to cluster trajectories based on similarity in their strain composition.
 Our aim is that two trajectories corresponding to mutations appearing mostly on the same genomes will be grouped in the same cluster.
 We then conduct the same analysis as in the main text on a set of \emph{effectively independent} trajectories constructed by taking one trajectory from each cluster.
 
 In order to perform clustering, we define a distance between trajectories.
-A frequency trajectory $X$ is characterized by a series of frequency values and a time interval $T$.
-$f(t)$ for $t\in T$ corresponds to the frequency at which a given mutation $x$ appears in the population at date $t$, and we define $S(t)$ as the strains that carry mutation $x$ at date $t$.
+A frequency trajectory of a mutation $X$ is characterized by a series of frequency values $f(t)$ at time point  $t\in T$.
+We define $S(t)$ as the strains that carry mutation $X$ at date $t$.
 With this notation, $f(t)$ is the ratio of the number of elements in $S(t)$ to the total number of strains at date $t$.
 Let us now consider two frequency trajectories $X_1$ and $X_2$. \\
 We define the distance $d(X_1,X_2)$ between these two trajectories based on the average similarity of the strains $S_1$ and $S_2$ that compose them:
@@ -642,7 +642,7 @@ Indeed, clustering similar trajectories together does significantly modify resul
 \subsection{Ability of fitness models to predict fixation} % (fold)
 \label{sub:ability_of_fitness_models_to_predict_fixation}
 
-In a companion article \citep{huddleston_integrating_2020}, authors developed several models to predict the future HA population for A/H3N2 influenza.
+\citet{huddleston_integrating_2020} developed several models to predict the future HA population for A/H3N2 influenza.
 The premise of these models is to assign a fitness score to the HA gene of each A/H3N2 strain in a given year, and to then apply deterministic evolutionary equations to obtain the future strain composition.
 The fitness values are computed using several quantities that have been shown to be connected with viral fitness.
 Fitness depends either on a single or on two quantities, and coefficient(s) of each fitness model are trained by minimizing the earth movers distance between the observed strain population one year in the future and the estimated population produced by the model.
@@ -657,6 +657,7 @@ This is consistent with the result found in figure \ref{fig:pfix_stratified} of 
 In panels \textbf{B} and \textbf{D}, we observe the same inability to predict fixation for the fitness models based on HI titer and delta frequency, which were respectively the second and third best individual scores (fifth and sixth overall) in \citep{huddleston_integrating_2020}.
 However, the score based on mutational load (panel \textbf{C}) does show a more significant predicting power, with higher fitness mutations having a $\sim 25$\% higher chance of fixing than lower fitness ones for three frequency bins in a row.
 However, this effect vanishes for higher frequencies, with both fitter and less fit mutations having the same chance to fix.
+This is consistent with the idea that mutations that rose to very high frequency likely have a minor fitness costs even if classified as deleterious mutation.
 
 
 \begin{figure}
