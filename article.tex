@@ -511,7 +511,7 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 	% where $\delta_{x,y}$ is the Kronecker delta. \\
 	We make two hypotheses about this population. We first suppose that \emph{no} mutations occur during the evolution of this population. This may seem surprising and is of course not true in the case of influenza. This assumption is however in line with the fact that the object of this work is to predict the outcome of \emph{already existing} mutations in the influenza population. The prediction of mutations that we have not yet seen is not in its scope. Thus, assuming that no new mutations take place can be seen as a simple way to model the fact that we have no information about such events. \\
 	The second assumption is that the population evolves in a completely neutral way, meaning that the average number of descendants of each genome $\sigma^n$ is the same. Let us now consider the population after it has evolved for a long time $t\gg T$ where $T$ is the typical coalescence time (for the Wright-Fisher model, $T=2N$). At this point, all individuals in the future population will descend from a unique individual $n_0$ in the $t=0$ population. Our two hypotheses now allow us to make two statements. First, since no new mutations are allowed, the population at $t\gg T$ will be clonal, with all individuals having genome $\sigma^{n_0}$. Second, since the evolution is neutral and does not favor any genome in particular, the probability that $\sigma^{n_0}$ is equal to a given genome $\sigma$ is $1/N$. In other words, the probability that a genome at $t=0$ ultimately becomes the ancestor of all the future population is equal to its frequency in the $t=0$ population. \\
-
+ 
 	We now try to find the genome $\sigma$ that best predicts the future population on the long run, that is for $t\gg T$. Here, we take best to mean that the predictor minimizes $H(\sigma,\sigma^{n_0})$ where $H$ is the Hamming distance defined by
 	\begin{equation}
 	 	H(\sigma^a, \sigma^b) = \sum_{i=1}^L (1 - \delta_{\sigma^a_i, \sigma^b_i}),
@@ -574,7 +574,7 @@ We define $S(t)$ as the strains that carry mutation $X$ at date $t$.
 With this notation, $f(t)$ is the ratio of the number of elements in $S(t)$ to the total number of strains at date $t$.
 Let us now consider two frequency trajectories $X_1$ and $X_2$. \\
 We define the distance $d(X_1,X_2)$ between these two trajectories based on the average similarity of the strains $S_1$ and $S_2$ that compose them:
-$$ d(X_1,X_2) = \frac{1}{\vert T_1\cap T_2\vert}\sum_{t\in T_1\cap T_2} \frac{\vert S_1(t)\cap S_2(t)\vert}{\vert S_1(t)\cup S_2(t)\vert}, $$
+$$ d(X_1,X_2) = 1 - \frac{1}{\vert T_1\cap T_2\vert}\sum_{t\in T_1\cap T_2} \frac{\vert S_1(t)\cap S_2(t)\vert}{\vert S_1(t)\cup S_2(t)\vert}, $$
 where $T_1\cap T_2$ is the time interval where both trajectories are active, and $\vert\cdot\vert$ denotes the number of elements of a set.
 The quantity summed corresponds to the Jaccard index between strains composing $X_1$ and $X_2$ at a given date.
 It is 1 if the two trajectories share exactly the same strains for this date, and 0 if they share no strain at all.
