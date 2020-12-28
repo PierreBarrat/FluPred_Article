@@ -99,7 +99,7 @@
 	We further investigate whether any properties or statistics are predictive of whether a particular mutation fixes or not.
 	To our surprise, we find that the predictability of these trajectories is very limited: for A/H3N2, the probability that a mutation fixes differs little from its current frequency, as would be expected if fixation happened purely by chance.
 	This observation holds for many different categories of mutations, including mutations at epitope positions.
-	This weak predictability is not attributable solely to clonal interference and genetic linkage, as simulation of models including even strong interference retain clear signatures of predictability.
+	This weak predictability is not attributable solely to clonal interference and genetic linkage, as simulation of models including even strong interference retains clear signatures of predictability.
 	Consistent with these observations, we show that a simple predictor uninformed by fitness, the consensus sequence, performs as the well as the Local Branching Index (LBI), the growth measure based on the genealogy used in \cite{neher_predicting_2014}.
 	This suggests that although LBI has predictive power, the reason for its success may not be related to it approximating fitness of strains.
 
@@ -147,7 +147,7 @@ Such frequency propagators were originally proposed by \citep{strelkowa_clonal_2
 To answer this question retrospectively, we use all frequency trajectories extracted from HA and NA sequences that satisfy these conditions for a given $f_0$.  The number of trajectories is limited and the frequency estimates themselves are based on a finite sample and are hence imprecise.
 Therefore, we consider trajectories in an interval $[f_0-\delta f, f_0+\delta f]$ with $\delta f = 0.05$.
 
-For $f_0=0.3$, we found $120$ such trajectories in the case of A/H3N2 influenza, represented on the panel \textbf{B} of figure~\ref{fig:trajectories}, where time is shifted such that $t_0 = 0$. The same analysis was performed for A/H1N1pdm, with the $89$ found trajectories displayed in figure \sref{fig:trajectories_h1n1}.
+For $f_0=0.3$, we found $120$ such trajectories in the case of A/H3N2 influenza, represented on the panel \textbf{C} of figure~\ref{fig:trajectories}, where time is shifted such that $t_0 = 0$. The same analysis was performed for A/H1N1pdm, with the $89$ found trajectories displayed in figure \sref{fig:trajectories_h1n1}.
 Some trajectories fall in the frequency bin around $f_0$ while decreasing, even though they crossed that bin at an earlier time.
 This is due to the fact that some trajectories ``skipped" the interval $f_0$ in question on their initial rise due to sparse sampling.
 These trajectories are nevertheless rising in the sense that they start at frequency 0 for $t\rightarrow -\infty$.
@@ -158,13 +158,13 @@ We could thus expect that most of these trajectories continue to rise after reac
 A fraction of those would then sweep through the population and fix.
 
 To quantify the extent to which this preconception of sweeping adaptive mutations is true, we estimated the probability distribution $P_{\Delta t}(f\vert\,f_0)$ of finding a trajectory at frequency $f$ after a time $\Delta t$ given that it was observed at $f_0$ at time $0$.
-The results for different $\Delta t$ are shown in figure~\ref{fig:trajectories}C.
+The results for different $\Delta t$ are shown in figure~\ref{fig:trajectories}B.
 Initially, \emph{i.e.}, at time $t_0=0$, this distribution is by construction peaked around $f_0$.
 If a large fraction of the trajectories keep increasing after  this time, we should see the ``mass'' of $P_{\Delta t}(f\vert\,f_0)$ move to the right towards higher frequencies as time progresses.
 
 However, future distributions for $\Delta t >0$ do not seem to follow a pattern compatible with selective sweeps.
-The thick black line in Figure~\ref{fig:trajectories}B shows the average frequency of all trajectories.
-This average makes a sharp turn at $t=0$ and is essentially flat for $t>0$ in the case of A/H3N2, and slightly increasing for A/H1N1pdm (see supplement).
+The thick black line in Figure~\ref{fig:trajectories}C shows the average frequency of all trajectories.
+This average makes a sharp turn at $t=0$ and is essentially flat for $t>0$ in the case of A/H3N2, and slightly increasing for A/H1N1pdm (figure \sref{fig:trajectories_h1n1}).
 Hence, the fact that this average rose for $t<0$ gives little information for $t>0$, and is due to the conditions by which these trajectories were selected.
 This shows that sweep-like trajectories rising steadily from frequency $0$ to $1$ are not common enough to dominate the average trajectory.
 
@@ -181,7 +181,7 @@ In A/H3N2, however, past dynamics alone is uninformative of future dynamics.
 \begin{figure*}
 	\centering
 	\includegraphics[width=0.9\textwidth]{./Figures/Panel1.png}
-	\caption{\textbf{A}: Sketch of the idea behind the short term prediction of frequency trajectories. Given a mutation that we have seen increasing in frequency and that we ``catch'' at frequency $f_0$ at time $t_0$, what can we say about the distribution of future frequencies $P_{\Delta t}(f\vert\,f_0)$? \textbf{B}: All frequency trajectories of amino acid mutations in the A/H3N2 HA and NA genes that were absent in the past, are seen around $f_0=30\%$ frequency at time $t_0=0$, and are based on more than 10 sequences at each time point. Red curves represent mutations that will ultimately fix, blue the ones that will be lost, and black the ones for which we do not know the final status. Dashed horizontal lines (blue and red) represent loss and fixation thresholds. The thick black line is the average of all trajectories, counting those that fix (resp. disappear) as being at frequency 1 (resp. 0). Figure \sref{fig:trajectories_h3n2_varf0} shows equivalent figures for other values of $f0$. \textbf{C}: Distribution of future frequencies $P_{\Delta t}(f\vert\,f_0)$ for the trajectories shown in panel \textbf{B} and for specific values of $\Delta t$. }
+	\caption{\textbf{A}: Sketch of the idea behind the short term prediction of frequency trajectories. Given a mutation that we have seen increasing in frequency and that we ``catch'' at frequency $f_0$ at time $t_0$, what can we say about the distribution of future frequencies $P_{\Delta t}(f\vert\,f_0)$? \textbf{B}: Distribution of future frequencies $P_{\Delta t}(f\vert\,f_0)$ for the trajectories shown in panel \textbf{C} and for specific values of $\Delta t$. \textbf{C}: All frequency trajectories of amino acid mutations in the A/H3N2 HA and NA genes that were absent in the past, are seen around $f_0=30\%$ frequency at time $t_0=0$, and are based on more than 10 sequences at each time point. Red curves represent mutations that will ultimately fix, blue the ones that will be lost, and black the ones for which we do not know the final status. Dashed horizontal lines (blue and red) represent loss and fixation thresholds. The thick black line is the average of all trajectories, counting those that fix (resp. disappear) as being at frequency 1 (resp. 0). Figure \sref{fig:trajectories_h3n2_varf0} shows equivalent figures for other values of $f0$.}
 	\label{fig:trajectories}
 \end{figure*}
 
@@ -311,6 +311,12 @@ This is corroborated by visual inspection of the trajectories, which shows that 
 Smaller $\Delta t$ or strong epistatic competition reduce $P_{fix}(f)$.
 However, it takes an extremely fast changing fitness landscape to push $P_{fix}$ close to the diagonal: with $\Delta t=10$, that is about 40 changes to the fitness landscape in the time it would take a selective sweep to go from 0\% to fixation, $P_{fix}(f)$ differs from $f$ in a way that is comparable to what is observed in A/H1N1pdm influenza.
 
+Next, we cluster trajectories of simulated populations based on the intrinsic fitness effect of corresponding mutations and in the case of a fast changing fitness landscape ($\Delta t=10$). 
+Since competition between adaptive mutations and genetic linkage is very strong in this regime, we do not expect the intrinsic fitness effect to be fully predictive of fixation. 
+However, figure \sref{fig:simulations_fitness} shows that mutations with an above median fitness effect have a significantly larger chance to fix than those with a below median fitness effect. 
+This strongly contrasts with figure \ref{fig:pfix_stratified}, and confirms the intuition that intrinsic fitness effect can be partly predictive of fixation even in a regime of strong clonal interference.
+
+
 These models are not meant to be accurate models of influenza viruses evolution.
 But figure~\sref{fig:simulations} does show that the patterns observed in influenza virus evolution are only reproduced by models of adapting populations when pushing clonal competition to extreme values.
 We conclude that the quasi-neutral pattern in figure~\ref{fig:fix_loss_active} may not be a straightforward manifestation of genetic linkage and clonal interference, but that some more intricate interplay of epidemiology, seasonality, human immunity and chance gives rise to the weakly predictable yet strongly selected evolutionary dynamics of IAVs.
@@ -341,7 +347,7 @@ The LBI tends to be high for nodes in a tree that are close to the root of a den
 A typical sample of influenza HA sequences fall into a small number of recognizable clades, and the strains with maximal LBI will often be close to the root of the largest of those clades.
 This root of the largest clade will often be close to the consensus of the whole population, explaining the similar distance patterns.
 To test that hypothesis, we measure the hamming distance from the sequence of the top LBI strain to the consensus sequence for populations of all time bins.
-Panel \textbf{B} of figure~\ref{fig:LBI_consensus} shows these distances, scaled with respect to an average strain (details in caption). It clearly shows that the top-LBI strain and the consensus sequence are indeed quite similar: out of 48 time bins, only once is the sequence of the top-LBI strain farther away from the consensus than the average sequence is. Moreover, the sequence of the top-LBI strain \emph{exactly} matches the consensus in 19 cases.
+Panel \textbf{B} of figure~\ref{fig:LBI_consensus} shows these distances, scaled with respect to an average strain (details in caption). It clearly shows that the top-LBI strain and the consensus sequence are indeed quite similar: out of 48 time bins, only twice is the sequence of the top-LBI strain farther away from the consensus than the average sequence is. Moreover, the sequence of the top-LBI strain \emph{exactly} matches the consensus in 19 cases.
 
 \begin{figure*}
 	\centering
@@ -405,7 +411,7 @@ The correspondence between the BSC and traveling wave models comes from transien
 This exponential amplification generates long-tailed effective offspring distributions which in turn can leads to genealogies described by the BSC \citep{schweinsberg_coalescent_2003,neher_genealogies_2013}.
 Many processes other than selection, including seasonality and spatio-temporal heterogeneity, can generate effective long tailed offspring distributions even in absence of bona-fide fitness differences, which might explain ladder-like non-Kingman phylogenetic trees.
 
-A recent preprint proposed that influenza virus evolution is primarily limited by an asynchrony between population level selection and generation of new variants within infected hosts \citep{morris_asynchrony_2020}.
+A recent study proposed that influenza virus evolution is primarily limited by an asynchrony between population level selection and generation of new variants within infected hosts \citep{morris_asynchrony_2020}.
 Along these lines, it is possible that the A/H3N2 population readily responds once population level selection is high enough by giving rise to essentially equivalent variants.
 Furthermore, selection might cause the rapid rise of a novel variant to macroscopic frequencies (observable in a global sample) but its benefit rapidly ``expires'' because competing variants catch up and/or it mediates immune escape only to a small fraction of the population.
 These considerations might explain the disconnect between models of rapid adaptation and the frequency dynamics observed in influenza virus populations.
@@ -419,7 +425,7 @@ These considerations might explain the disconnect between models of rapid adapta
 \subsection*{Data and code availability} % (fold)
 \label{sub:data}
 	The sequences used are obtained from the GISAID database~\cite{shu2017gisaid}.
-	Strain names and accession numbers are given as tables in two supplementary files. Outliers strains listed at \url{https://github.com/PierreBarrat/FluPredictibility/src/config} were removed. \\
+	Strain names and accession numbers are given as tables in two supplementary files. Outliers strains listed at \url{https://github.com/PierreBarrat/FluPredictibility/tree/master/src/config} were removed. \\
 	The code used to generate the figures presented here is available at \url{https://github.com/PierreBarrat/FluPredictibility}.
 	% https://github.com/nextstrain/seasonal-flu/tree/081be2f487182252627418491be36cd01d645954/config
 % subsection data (end)
