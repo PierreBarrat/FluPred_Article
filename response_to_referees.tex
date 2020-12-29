@@ -97,9 +97,6 @@ revisited and benchmarked against the more general implementation of Illingworth
     H3N2 is typically regarded as the more rapidly adapting influenze lineage with the most "spindly" phylogeny.
     We therefore do think that our observations are surprising to many people.
 }
-\responsedraft{Should we mention all the changes we made in the text?
-We spend more time explaining that even though there is linkage, and even though we're looking at just the last point, we expect something above diagonal.
-(Last paragraph before "Results", last paragraph before "Predicting future frequencies"), and first paragraph of "Simulations of models of adaptation"}
 % \responsedraft{
 % 	We thank reviewer 1 for pointing out the work of Illingworth\&Mustonen to us, which we were unaware of. However, we believe that the method used in their article is not applicable as is in our case. To explain our thinking, we first briefly summarize the approach taken in Illingworth\&Mustonen: the authors fit two kind of models to fully known frequency trajectories:
 % 	\begin{itemize}
@@ -131,20 +128,18 @@ in detail.}
 
 In a recent model-driven effort (Huddleston et al), we investigate the power of sequence based, antigenically informed, experimentally informed, or phylogenetic (LBI) scores to predict future influenza virus populations.
 The LBI was among the highest performing models and we hence used this score in the original manuscript.
-But we took the suggestion of the referee (and referee 2) to heart and now include all highly performing models from Huddleston \emph{et al.} in a new section in the Supplementary Material (``Ability of fitness models to predict fixation'').
+But we took the suggestion of the reviewer (and reviewer 2) to heart and now include all highly performing models from Huddleston \emph{et al.} in a new section in the Supplementary Material (``Ability of fitness models to predict fixation'').
 These additional results show that only mutational load has some power to differentiate between fixing and non-fixing trajectories.
-We believe this addition has made the manuscript stronger and we thank both referees for the suggestion.
+We believe this addition has made the manuscript stronger and we thank both reviewers for the suggestion.
 
 We also agree with the reviewer that these different methods differ in prediction targets: our results indicate that most of them are not predictive of frequency dynamics and fixation, but they remain predictive of the composition of the future population.
 In consequence, we have toned down our conclusions about predictability in the discussion.}
-}
 
-\refa{3. Going through the previous and cited literature, I think the authors should cite some of these works in a more careful way. Specifically, the very related work by Illingworth and Mustonen is not mentioned. The distribution $P_delta_t(f|f_0)$ has been at the core of
+
+\refa{3. Going through the previous and cited literature, I think the authors should cite some of these works in a more careful way. Specifically, the very related work by Illingworth and Mustonen is not mentioned. The distribution $P_{\delta t}(f|f_0)$ has been at the core of
 the method of Strelkowa and Lassig, 2012 (which is cited, but at other
 parts of the text), and the same paper also uses a similar simulation model, which should be acknowledged at the appropriate points of the text.}
-\responsedraft{I cited (Strelkowa and Lassig) in the first paragraph of the section "Predicting future frequencies" and in the second of ``Simulations''
-We cite Illingworth and Mustonen plenty of times now.
-}
+\response{We now refer to the work by Illingworth and Mustonen in different parts of the text. We also added citations to Strelkowa and L\"assig when discussing the future distribution of frequencies and the simulations.}
 
 \refa{It would help if the plots with red-green-blue lines were also distinguished by differing markers.}
 \response{We have now added markers in most figures.}
@@ -172,17 +167,19 @@ I appreciate this study, I think it will be of interest to many readers and it i
 
 \response{Whether 2A or 2B are perceived as similar or not probably depends on how big a deviation from the diagonal one expected a priori.
 We now highlight the differences in the text and discuss potential reasons for the different behaviour.  }
+\responsedraft{We don't discuss the potential reasons yet!}
 
 \refb{3. Question: what do these results mean for vaccines? How to decide which strains to use for vaccines? This may be known to those who work on Influenza, but for a relative outsider it is not clear. }
 
 \response{
-	Computational prediction of which circulating strains will dominate future influenza populations have been attempted for about 2 decades and have recently become a regular input to the biannual consultations on the influenza vaccine composition.
-	Since performance of predictive models can only be assessed on limited historical data, we believe that our model-free approach clarifies which aspect of influenza evolution are predictable and which ones are not.
+	% Computational prediction of which circulating strains will dominate future influenza populations have been attempted for about 2 decades and have recently become a regular input to the biannual consultations on the influenza vaccine composition.
+	% Since performance of predictive models can only be assessed on limited historical data, we believe that our model-free approach clarifies which aspect of influenza evolution are predictable and which ones are not.
+	Methods that are useful for designing vaccines are those that predict which circulating strains will dominate future influenza populations.
+	Such predictions have been attempted for about 2 decades and have recently become a regular input to the biannual consultations on the influenza vaccine composition.
+
+	On the other hand, our model-free approach is more concerned in understanding which aspects of influenza evolution are predictable and which ones are not.
+	The main implications of our results are about the evolutionary dynamics of influenza, and only indirectly about vaccines.  
 }
-\responsedraft{We should maybe make clear that this is not directly related to predictions for vaccines (at least it's not the aim).
-That's John's paper.
-The main implications are about our understanding of the evolutionary dynamics of influenza.
-This could also help us to reply to the first comment: doing ML is more useful to predict the future population (for vaccines) than for predicting fixation of a single mutation. }
 
 \refb{4. Question: at what point is it expected that the vaccine itself will influence frequency trajectories? See Wen et al Biorxiv 2020}
 \response{
