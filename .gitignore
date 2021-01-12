@@ -6,3 +6,8 @@ Revision/notes*.pdf
 *.blg
 article.pdf
 diff.pdf
+Figures/all_trajectories.png
+Figures/distance_to_future.png
+Figures/pfix_v_f.png
+Figures/pfix_v_f_epitopes.png
+Figures/sketch_shortterm.png
