@@ -311,9 +311,9 @@ This is corroborated by visual inspection of the trajectories, which shows that 
 Smaller $\Delta t$ or strong epistatic competition reduce $P_{fix}(f)$.
 However, it takes an extremely fast changing fitness landscape to push $P_{fix}$ close to the diagonal: with $\Delta t=10$, that is about 40 changes to the fitness landscape in the time it would take a selective sweep to go from 0\% to fixation, $P_{fix}(f)$ differs from $f$ in a way that is comparable to what is observed in A/H1N1pdm influenza.
 
-Next, we cluster trajectories of simulated populations based on the intrinsic fitness effect of corresponding mutations and in the case of a fast changing fitness landscape ($\Delta t=10$). 
-Since competition between adaptive mutations and genetic linkage is very strong in this regime, we do not expect the intrinsic fitness effect to be fully predictive of fixation. 
-However, figure \sref{fig:simulations_fitness} shows that mutations with an above median fitness effect have a significantly larger chance to fix than those with a below median fitness effect. 
+Next, we cluster trajectories of simulated populations based on the intrinsic fitness effect of corresponding mutations and in the case of a fast changing fitness landscape ($\Delta t=10$).
+Since competition between adaptive mutations and genetic linkage is very strong in this regime, we do not expect the intrinsic fitness effect to be fully predictive of fixation.
+However, figure \sref{fig:simulations_fitness} shows that mutations with an above median fitness effect have a significantly larger chance to fix than those with a below median fitness effect.
 This strongly contrasts with figure \ref{fig:pfix_stratified}, and confirms the intuition that intrinsic fitness effect can be partly predictive of fixation even in a regime of strong clonal interference.
 
 
@@ -413,7 +413,9 @@ Many processes other than selection, including seasonality and spatio-temporal h
 
 A recent study proposed that influenza virus evolution is primarily limited by an asynchrony between population level selection and generation of new variants within infected hosts \citep{morris_asynchrony_2020}.
 Along these lines, it is possible that the A/H3N2 population readily responds once population level selection is high enough by giving rise to essentially equivalent variants.
-Furthermore, selection might cause the rapid rise of a novel variant to macroscopic frequencies (observable in a global sample) but its benefit rapidly ``expires'' because competing variants catch up and/or it mediates immune escape only to a small fraction of the population.
+Furthermore, selection might cause the rapid rise of a novel variant to macroscopic frequencies (observable in a global sample) but its benefit rapidly ``expires'' because competing variants catch up and/or it mediates immune escape only to a small fraction of the population \citep{lee_mapping_2019}.
+Immunity to A/H1N1pdm might be less variable among humans than to A/H3N2 since A/H1N1pdm has been circulating for only 11 years.
+Different age-groups therefore got exposed to more similar A/H1N1pdm variants than their initial exposure to A/H3N2.
 These considerations might explain the disconnect between models of rapid adaptation and the frequency dynamics observed in influenza virus populations.
 
 
@@ -517,7 +519,7 @@ This work was funded in part by NIAID (R01AI127893-01) and the SNF (310030\_1885
 	% where $\delta_{x,y}$ is the Kronecker delta. \\
 	We make two hypotheses about this population. We first suppose that \emph{no} mutations occur during the evolution of this population. This may seem surprising and is of course not true in the case of influenza. This assumption is however in line with the fact that the object of this work is to predict the outcome of \emph{already existing} mutations in the influenza population. The prediction of mutations that we have not yet seen is not in its scope. Thus, assuming that no new mutations take place can be seen as a simple way to model the fact that we have no information about such events. \\
 	The second assumption is that the population evolves in a completely neutral way, meaning that the average number of descendants of each genome $\sigma^n$ is the same. Let us now consider the population after it has evolved for a long time $t\gg T$ where $T$ is the typical coalescence time (for the Wright-Fisher model, $T=2N$). At this point, all individuals in the future population will descend from a unique individual $n_0$ in the $t=0$ population. Our two hypotheses now allow us to make two statements. First, since no new mutations are allowed, the population at $t\gg T$ will be clonal, with all individuals having genome $\sigma^{n_0}$. Second, since the evolution is neutral and does not favor any genome in particular, the probability that $\sigma^{n_0}$ is equal to a given genome $\sigma$ is $1/N$. In other words, the probability that a genome at $t=0$ ultimately becomes the ancestor of all the future population is equal to its frequency in the $t=0$ population. \\
- 
+
 	We now try to find the genome $\sigma$ that best predicts the future population on the long run, that is for $t\gg T$. Here, we take best to mean that the predictor minimizes $H(\sigma,\sigma^{n_0})$ where $H$ is the Hamming distance defined by
 	\begin{equation}
 	 	H(\sigma^a, \sigma^b) = \sum_{i=1}^L (1 - \delta_{\sigma^a_i, \sigma^b_i}),
